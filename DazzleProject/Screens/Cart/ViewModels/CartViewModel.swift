@@ -9,4 +9,8 @@ import Foundation
 
 class CartViewModel: ObservableObject {
     @Published var cartCnt: Int = 0
+    
+    func addCartCnt() {
+        self.cartCnt += 1
+    }
 }

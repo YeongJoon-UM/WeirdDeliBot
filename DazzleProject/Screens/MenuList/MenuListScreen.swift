@@ -12,6 +12,7 @@ struct MenuListView: View {
     @State var currentTab: Int = 0
     @Environment(\.presentationMode) var presentation
     
+    
     var body: some View {
         NavigationView(){
             ZStack(alignment: .top) {

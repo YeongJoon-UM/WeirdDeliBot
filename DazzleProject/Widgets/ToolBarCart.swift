@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ToolBarCart: ToolbarContent {
-    var viewModel = CartViewModel()
+    @EnvironmentObject var viewModel: CartViewModel
     
     var body: some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {

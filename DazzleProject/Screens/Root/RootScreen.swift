@@ -34,17 +34,12 @@ struct RootScreen: View {
                         .background(.black, in: RoundedRectangle(cornerRadius: 8))
                 }
                 
-//                NavigationLink(destination: ShopView()){
-//                    Text("사장님 화면")
-//                        .foregroundColor(.blue)
-//                        .underline()
-//                        .padding(EdgeInsets(top: 8, leading: 8, bottom: 40, trailing: 8))
-//                }
-                
-                
             }
         }
-    }}
+        .environmentObject(CartViewModel())
+    }
+    
+}
 
 struct RootScreen_Previews: PreviewProvider {
     static var previews: some View {
