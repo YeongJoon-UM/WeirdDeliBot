@@ -27,16 +27,16 @@ struct RootScreen: View {
                 
                 NavigationLink(destination: MenuListView()){
                     Text("주문하기")
-                        .font(.system(size: 25))
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(width: 216, height: 46, alignment: .center)
-                        .background(.black, in: RoundedRectangle(cornerRadius: 8))
-                }
+                        .frame(width: 227, height: 50)
+                        .font(Font.system(size: 20))
+                        .foregroundColor(Color.white)
+                        .background(Capsule().fill(Color.black))
+                        .padding(.bottom, 20)                }
                 
             }
         }
         .environmentObject(CartViewModel())
+        .environmentObject(SideMenuViewModel())
     }
     
 }

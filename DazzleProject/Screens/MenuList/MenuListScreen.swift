@@ -14,29 +14,33 @@ struct MenuListView: View {
     
     
     var body: some View {
-        NavigationView(){
-            ZStack(alignment: .top) {
-                TabView(selection: self.$currentTab) {
-                    CoffeeTab().tag(0)
-                    TeaBottleTab().tag(1)
-                    JuiceAdeTab().tag(2)
-                    SmoothieFrapTab().tag(3)
-                    BubbleLatteTab().tag(4)
-                    BakeryTab().tag(5)
+        ZStack{
+            NavigationView(){
+                ZStack(alignment: .top) {
+                    TabView(selection: self.$currentTab) {
+                        CoffeeTab().tag(0)
+                        TeaBottleTab().tag(1)
+                        JuiceAdeTab().tag(2)
+                        SmoothieFrapTab().tag(3)
+                        BubbleLatteTab().tag(4)
+                        BakeryTab().tag(5)
+                    }
+                    .padding([.top], 40)
+                    .tabViewStyle(.page(indexDisplayMode: .never))
+                    
+                    TabBarView(currentTab: $currentTab)
                 }
-                .padding([.top], 40)
-                .tabViewStyle(.page(indexDisplayMode: .never))
+                .navigationBarTitle(Text("주문하기"))
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar{ ToolBarBackButton(presentation: presentation) }
+                .toolbar{ ToolBarSideMenu() }
+                .toolbar{ ToolBarCart() }
                 
-                TabBarView(currentTab: $currentTab)
             }
-            .navigationBarTitle(Text("주문하기"))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar{ ToolBarBackButton(presentation: presentation) }
-            .toolbar{ ToolBarCart() }
+            .navigationBarBackButtonHidden()
+            SideMenuScreen()
         }
-        .navigationBarBackButtonHidden()
     }
-    
 }
 
 //TODO: 화면 Swipe로 넘길 시 해당 Tap의 Topic이 보이도록 조치
@@ -91,8 +95,3 @@ struct TabBarItem: View {
 }
 
 
-struct MenuListView_Previews: PreviewProvider {
-    static var previews: some View {
-        MenuListView()
-    }
-}
