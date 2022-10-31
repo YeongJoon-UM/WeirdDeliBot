@@ -40,9 +40,3 @@ struct RootScreen: View {
     }
     
 }
-
-struct RootScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        RootScreen()
-    }
-}

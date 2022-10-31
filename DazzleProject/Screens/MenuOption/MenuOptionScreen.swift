@@ -16,7 +16,7 @@ struct MenuOptionScreen: View {
     
     var body: some View {
         ZStack {
-            NavigationView() {
+            NavigationView {
                 VStack() {
                     MenuDescRow(menu: menu)
                         .padding()
@@ -26,6 +26,7 @@ struct MenuOptionScreen: View {
                     Button(action: {
                         viewModel.addToCart()
                         cartViewModel.addCartCnt()
+                        self.presentation.wrappedValue.dismiss()    //option 모두 고른 menu를 cart에 넣고 직전 화면으로 돌아감.
                     }) {
                         Text("장바구니")
                             .frame(width: 227, height: 50)

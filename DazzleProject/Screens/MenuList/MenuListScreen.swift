@@ -17,6 +17,7 @@ struct MenuListView: View {
         ZStack{
             NavigationView(){
                 ZStack(alignment: .top) {
+                    TabBarView(currentTab: $currentTab)
                     TabView(selection: self.$currentTab) {
                         CoffeeTab().tag(0)
                         TeaBottleTab().tag(1)
@@ -26,9 +27,8 @@ struct MenuListView: View {
                         BakeryTab().tag(5)
                     }
                     .padding([.top], 40)
-                    .tabViewStyle(.page(indexDisplayMode: .never))
-                    
-                    TabBarView(currentTab: $currentTab)
+                    .tabViewStyle(PageTabViewStyle.init(indexDisplayMode: .never))
+                    .animation(.default, value: currentTab)
                 }
                 .navigationBarTitle(Text("주문하기"))
                 .navigationBarTitleDisplayMode(.inline)
@@ -43,25 +43,31 @@ struct MenuListView: View {
     }
 }
 
-//TODO: 화면 Swipe로 넘길 시 해당 Tap의 Topic이 보이도록 조치
+//TODO: 화면 Swipe로 넘길 시 해당 Tap의 Topic이 따라오도록 조치
 struct TabBarView: View {
     @StateObject var viewModel = MenuListViewModel()
     @Binding var currentTab: Int
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false){
-            HStack(spacing: 20) {
-                ForEach(Array(zip(viewModel.topicList.indices, viewModel.topicList)),
-                        id: \.0,
-                        content: {
-                    index, name in
-                    TabBarItem(currentTab: self.$currentTab,
-                               tabBarItemName: name,
-                               tab: index)
-                })
+            ScrollViewReader { scrollReader in
+                HStack(spacing: 20) {
+                    ForEach(Array(zip(viewModel.topicList.indices, viewModel.topicList)),
+                            id: \.0,
+                            content: {
+                        index, name in
+                        TabBarItem(currentTab: self.$currentTab,
+                                   tabBarItemName: name,
+                                   tab: index)
+                    })
+                    .onChange(of: currentTab){ value in
+                        withAnimation{ scrollReader.scrollTo(value, anchor: .center) }
+                    }
+                }
+               
             }
-            .padding(.horizontal)
         }
+        .padding(.horizontal)
         .frame(height: 30)
     }
 }
