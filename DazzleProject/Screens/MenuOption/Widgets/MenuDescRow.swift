@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MenuDescRow: View {
-    var menu: Menu
+    var menu: Beverage
     
     var body: some View {
         VStack{
@@ -20,7 +20,7 @@ struct MenuDescRow: View {
                 
                 VStack {
                     Text(menu.name)
-                        .font(Font.system(size: 19, weight: .bold))
+                        .font(.system(size: 19, weight: .bold))
                         .frame(maxWidth: .infinity, alignment: .topLeading)
                         .padding(.bottom, 8)
                     Text(menu.desc)
@@ -34,6 +34,7 @@ struct MenuDescRow: View {
             }
             .padding(.bottom, 11)
             Divider()
+                .padding(.bottom, 0)
                 
         }
     }

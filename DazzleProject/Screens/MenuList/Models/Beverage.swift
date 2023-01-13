@@ -8,10 +8,10 @@
 import Foundation
 
 struct RepoResponse: Codable {
-    let Menus: [Menu]
+    let Beverages: [Beverage]
 }
 
-struct Menu: Identifiable, Codable, Hashable {
+struct Beverage: Identifiable, Codable, Hashable {
     var id: Int
     var image: String
     var name: String
@@ -24,5 +24,5 @@ struct Menu: Identifiable, Codable, Hashable {
 }
 
 struct Menus {
-    var menu: [Menu]
+    var beverage: [Beverage]
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MenuRow: View {
-    var menu: Menu
+    var menu: Beverage
     
     var body: some View {
         VStack{

@@ -15,7 +15,7 @@ struct MenuListView: View {
     
     var body: some View {
         ZStack{
-            NavigationView(){
+            NavigationView {
                 ZStack(alignment: .top) {
                     TabBarView(currentTab: $currentTab)
                     TabView(selection: self.$currentTab) {
@@ -43,7 +43,7 @@ struct MenuListView: View {
     }
 }
 
-//TODO: 화면 Swipe로 넘길 시 해당 Tap의 Topic이 따라오도록 조치
+
 struct TabBarView: View {
     @StateObject var viewModel = MenuListViewModel()
     @Binding var currentTab: Int

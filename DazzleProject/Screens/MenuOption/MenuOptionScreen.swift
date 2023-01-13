@@ -11,7 +11,7 @@ struct MenuOptionScreen: View {
     @StateObject var viewModel = MenuOptionViewModel()
     @EnvironmentObject var cartViewModel: CartViewModel
     
-    let menu: Menu
+    let menu: Beverage
     @Environment(\.presentationMode) var presentation
     
     var body: some View {
@@ -21,11 +21,24 @@ struct MenuOptionScreen: View {
                     MenuDescRow(menu: menu)
                         .padding()
                     
+                    Text("Options")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .font(.system(size: 19))
+                        .padding(.leading, 16)
+                        .padding(.top, 0)
+                        
+                    MenuOptionRow(viewModel: viewModel)
+                    
                     Spacer()
                     
+                    Text("Total : \(menu.price + viewModel.totalOptionPrice())₩")
+                        .font(Font.system(size: 19, weight: .bold))
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .padding(.bottom, 30)
+                        .padding(.trailing, 16)
+                    
                     Button(action: {
-                        viewModel.addToCart()
-                        cartViewModel.addCartCnt()
+                        cartViewModel.addToCart(beverage: menu, shot: viewModel.shot, cream: viewModel.cream, sizeUp: viewModel.sizeUp, totalPrice: (menu.price + viewModel.totalOptionPrice()))
                         self.presentation.wrappedValue.dismiss()    //option 모두 고른 menu를 cart에 넣고 직전 화면으로 돌아감.
                     }) {
                         Text("장바구니")
@@ -48,3 +61,4 @@ struct MenuOptionScreen: View {
         }
     }
 }
+
