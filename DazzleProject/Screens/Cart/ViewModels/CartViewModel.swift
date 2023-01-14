@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class CartViewModel: ObservableObject {
     @Published var carts: [Cart] = []
@@ -14,6 +15,15 @@ class CartViewModel: ObservableObject {
 
     func addToCart(beverage: Beverage, shot: Option, cream: Option, sizeUp: Option, totalPrice: Int) {
         carts.append(Cart(id: UUID(), beverage: beverage, shot: shot, cream: cream, sizeUp: sizeUp, totalPrice: totalPrice))
-        cartTotalPrice += totalPrice
+        //cartTotalPrice += totalPrice
+    }
+    
+    func getCartTotalPrice() {
+        cartTotalPrice = 0
+        if !carts.isEmpty {
+            for cart in carts {
+                cartTotalPrice += cart.totalPrice
+            }
+        }
     }
 }

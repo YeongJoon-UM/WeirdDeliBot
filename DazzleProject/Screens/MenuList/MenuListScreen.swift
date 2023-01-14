@@ -30,7 +30,7 @@ struct MenuListView: View {
                     .tabViewStyle(PageTabViewStyle.init(indexDisplayMode: .never))
                     .animation(.default, value: currentTab)
                 }
-                .navigationBarTitle(Text("주문하기"))
+                .navigationBarTitle(Text("Menu"))
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar{ ToolBarBackButton(presentation: presentation) }
                 .toolbar{ ToolBarSideMenu() }

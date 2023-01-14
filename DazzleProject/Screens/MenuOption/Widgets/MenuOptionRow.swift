@@ -62,9 +62,7 @@ struct MenuOptionRow : View {
                 .frame(width: 20)
                 .padding(.trailing, 8)
             }
-            Divider()
-                .padding(.bottom, 0)
-            
+
             HStack {
                 Text(viewModel.cream.name)
                     .frame(width: 100)
@@ -114,8 +112,6 @@ struct MenuOptionRow : View {
                 .frame(width: 20)
                 .padding(.trailing, 8)
             }
-            Divider()
-                .padding(.bottom, 0)
             
             HStack {
                 Text(viewModel.sizeUp.name)
@@ -166,8 +162,6 @@ struct MenuOptionRow : View {
                 .frame(width: 20)
                 .padding(.trailing, 8)
             }
-            Divider()
-                .padding(.bottom, 0)
         }
     }
 }

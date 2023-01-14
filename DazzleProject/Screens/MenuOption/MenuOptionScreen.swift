@@ -39,6 +39,7 @@ struct MenuOptionScreen: View {
                     
                     Button(action: {
                         cartViewModel.addToCart(beverage: menu, shot: viewModel.shot, cream: viewModel.cream, sizeUp: viewModel.sizeUp, totalPrice: (menu.price + viewModel.totalOptionPrice()))
+                        cartViewModel.getCartTotalPrice()
                         self.presentation.wrappedValue.dismiss()    //option 모두 고른 menu를 cart에 넣고 직전 화면으로 돌아감.
                     }) {
                         Text("장바구니")
