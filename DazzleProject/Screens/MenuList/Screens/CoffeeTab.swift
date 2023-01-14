@@ -21,6 +21,7 @@ struct CoffeeTab: View {
             }
             .listRowSeparator(.hidden)
         }
+        
         .listStyle(.plain)
         
     }

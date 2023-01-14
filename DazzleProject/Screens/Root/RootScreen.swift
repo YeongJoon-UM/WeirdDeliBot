@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RootScreen: View {
+    @EnvironmentObject var locationViewModel : LocationViewModel
     var body: some View {
         NavigationView{
             VStack{
@@ -25,18 +26,22 @@ struct RootScreen: View {
                 
                 Spacer()
                 
+
+                
                 NavigationLink(destination: MenuListView()){
                     Text("주문하기")
                         .frame(width: 227, height: 50)
                         .font(Font.system(size: 20))
                         .foregroundColor(Color.white)
                         .background(Capsule().fill(Color.black))
-                        .padding(.bottom, 20)                }
-                
+                        .padding(.bottom, 20)
+                }
+                 
             }
         }
         .environmentObject(CartViewModel())
         .environmentObject(SideMenuViewModel())
+        .environmentObject(LocationViewModel())
     }
     
 }

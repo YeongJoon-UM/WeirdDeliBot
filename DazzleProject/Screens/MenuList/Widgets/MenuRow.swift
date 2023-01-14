@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct MenuRow: View {
-    var menu: Menu
+    var menu: Beverage
     
     var body: some View {
-        VStack{
-            HStack {
+        VStack(spacing: 0) {
+            HStack(spacing: 0) {
                 Image(menu.image)
                     .resizable()
                     .frame(width: 100, height: 100)
                     .scaledToFit()
-                VStack {
+                VStack(spacing: 0) {
                     Text(menu.name)
                         .font(Font.system(size: 18))
                         .frame(maxWidth: .infinity, alignment: .trailing)
@@ -29,9 +29,6 @@ struct MenuRow: View {
                 }
 
             }
-            .padding(.bottom, 11)
-            Divider()
-                
         }
     }
 }
