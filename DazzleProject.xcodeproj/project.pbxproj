@@ -38,6 +38,7 @@
 		1B47B7ED28F6B03B007E929B /* SideMenuScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B47B7EC28F6B03B007E929B /* SideMenuScreen.swift */; };
 		1B47B7F128F6B056007E929B /* SideMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B47B7F028F6B056007E929B /* SideMenuViewModel.swift */; };
 		1B47B7F328F6B26F007E929B /* ToolBarSideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B47B7F228F6B26F007E929B /* ToolBarSideMenu.swift */; };
+		1B5842D82973BE960014DAC7 /* CartEditScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5842D72973BE960014DAC7 /* CartEditScreen.swift */; };
 		1B7EDEDB295953A600DDBA82 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1B7EDEDA295953A600DDBA82 /* Alamofire */; };
 		1B97BD3D2962A4B20089DA67 /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B97BD3C2962A4B20089DA67 /* Cart.swift */; };
 		1B97BD412962AE880089DA67 /* CartRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B97BD402962AE880089DA67 /* CartRow.swift */; };
@@ -100,6 +101,7 @@
 		1B47B7F028F6B056007E929B /* SideMenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewModel.swift; sourceTree = "<group>"; };
 		1B47B7F228F6B26F007E929B /* ToolBarSideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarSideMenu.swift; sourceTree = "<group>"; };
 		1B5842D6297283EE0014DAC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1B5842D72973BE960014DAC7 /* CartEditScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartEditScreen.swift; sourceTree = "<group>"; };
 		1B97BD3C2962A4B20089DA67 /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		1B97BD402962AE880089DA67 /* CartRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartRow.swift; sourceTree = "<group>"; };
 		1BFAC89A2910EDC800188F82 /* LocationScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationScreen.swift; path = ../../../../../Location/LocationScreen.swift; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 				1B47B7BC28ED0278007E929B /* ViewModels */,
 				1B97BD3F2962AE780089DA67 /* Widgets */,
 				1B47B7C028ED052A007E929B /* CartScreen.swift */,
+				1B5842D72973BE960014DAC7 /* CartEditScreen.swift */,
 			);
 			path = Cart;
 			sourceTree = "<group>";
@@ -603,6 +606,7 @@
 				1B47B7E128ED5E53007E929B /* MenuOptionViewModel.swift in Sources */,
 				1B47B7D128ED0A1E007E929B /* ToolBarBackButton.swift in Sources */,
 				1B463C602959622F00B9FE80 /* Option.swift in Sources */,
+				1B5842D82973BE960014DAC7 /* CartEditScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
