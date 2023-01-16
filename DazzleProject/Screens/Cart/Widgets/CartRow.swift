@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CartRow: View {
-    @EnvironmentObject var viewModel: CartViewModel
     var cart: Cart
     @State var isOptionShow: Bool = false
     
@@ -96,7 +95,7 @@ struct CartRow: View {
                 }
                 .buttonStyle(.plain)
                 .frame(width: 12, height: 12)
-            }
+            } 
         }
     }
 }

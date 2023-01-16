@@ -14,9 +14,8 @@ struct CartEditScreen: View {
     
     
     var body: some View {
-        
-        VStack() {
-            VStack{
+        VStack {
+            VStack {
                 HStack {
                     Image(viewModel.carts[index].beverage.image)
                         .resizable()
@@ -73,6 +72,8 @@ struct CartEditScreen: View {
                                 .foregroundColor(.black)
                                 .onTapGesture {
                                     viewModel.addOptionAmount(option: &viewModel.carts[index].shot)
+                                    viewModel.carts[index].totalPrice += 500
+                                    viewModel.getCartTotalPrice()
                                 }
                         }
                     }
@@ -93,6 +94,8 @@ struct CartEditScreen: View {
                                 .foregroundColor(.black)
                                 .onTapGesture {
                                     viewModel.subOptionAmount(option: &viewModel.carts[index].shot)
+                                    viewModel.carts[index].totalPrice -= 500
+                                    viewModel.getCartTotalPrice()
                                 }
                         }
                     }
@@ -123,6 +126,8 @@ struct CartEditScreen: View {
                                 .foregroundColor(.black)
                                 .onTapGesture {
                                     viewModel.addOptionAmount(option: &viewModel.carts[index].cream)
+                                    viewModel.carts[index].totalPrice += 500
+                                    viewModel.getCartTotalPrice()
                                 }
                         }
                     }
@@ -143,6 +148,8 @@ struct CartEditScreen: View {
                                 .foregroundColor(.black)
                                 .onTapGesture {
                                     viewModel.subOptionAmount(option: &viewModel.carts[index].cream)
+                                    viewModel.carts[index].totalPrice -= 500
+                                    viewModel.getCartTotalPrice()
                                 }
                         }
                     }
@@ -173,6 +180,8 @@ struct CartEditScreen: View {
                                 .foregroundColor(.black)
                                 .onTapGesture {
                                     viewModel.addOptionAmount(option: &viewModel.carts[index].sizeUp)
+                                    viewModel.carts[index].totalPrice += 1000
+                                    viewModel.getCartTotalPrice()
                                 }
                         }
                     }
@@ -193,6 +202,8 @@ struct CartEditScreen: View {
                                 .foregroundColor(.black)
                                 .onTapGesture {
                                     viewModel.subOptionAmount(option: &viewModel.carts[index].sizeUp)
+                                    viewModel.carts[index].totalPrice -= 1000
+                                    viewModel.getCartTotalPrice()
                                 }
                         }
                     }
@@ -203,14 +214,20 @@ struct CartEditScreen: View {
             
             Spacer()
             
-            Text("Total : \(viewModel.cartTotalPrice)₩")
+            Text("Total : \(viewModel.carts[index].totalPrice)₩")
                 .font(Font.system(size: 19, weight: .bold))
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.bottom, 30)
                 .padding(.trailing, 16)
             
+            //viewModel.carts[index]의 값을 수정해도 insert 시 수정되지 않은 값으로 최초 입력되는 현상?
+            let newCart: Cart = Cart(id: UUID(), beverage: viewModel.carts[index].beverage, shot: viewModel.carts[index].shot, cream: viewModel.carts[index].cream, sizeUp: viewModel.carts[index].sizeUp, totalPrice: viewModel.carts[index].totalPrice)
+            
             Button(action: {
+                viewModel.carts[index] = newCart
+                //viewModel.carts[index] = viewModel.carts[index] //위 코드의 경우 동작하고 아래의 경우 동작하지 않음
                 self.presentation.wrappedValue.dismiss()    //option 모두 고른 menu를 cart에 넣고 직전 화면으로 돌아감.
+                
             }) {
                 Text("수정하기")
                     .frame(width: 227, height: 50)

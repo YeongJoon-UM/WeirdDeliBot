@@ -27,6 +27,7 @@ class CartViewModel: ObservableObject {
         }
     }
     
+    
     func addOptionAmount(option: inout Option) {
         option.amount += 1
     }
