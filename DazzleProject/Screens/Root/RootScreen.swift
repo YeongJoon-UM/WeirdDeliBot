@@ -11,17 +11,17 @@ struct RootScreen: View {
     @EnvironmentObject var locationViewModel : LocationViewModel
     var body: some View {
         NavigationView{
-            VStack{
+            VStack(spacing: 0) {
                 
-                Text("App Name")
-                    .font(.system(size: 40, weight: .bold))
-                    .padding(EdgeInsets(top: 100, leading: 8, bottom: 8, trailing: 8))
                 
-                Spacer()
+                Text("Dazzle Bot")
+                    .sizeCustom(40, .bold)
+                    .padding(.bottom, 150)
+                    .padding(.top, 100)
                 
-                Image(systemName: "circle")
+                Image(systemName: "cup.and.saucer")
                     .resizable()
-                    .frame(width: 100, height: 100)
+                    .frame(width: 150, height: 120)
                     .scaledToFit()
                 
                 Spacer()
@@ -31,7 +31,7 @@ struct RootScreen: View {
                 NavigationLink(destination: MenuListView()){
                     Text("주문하기")
                         .frame(width: 227, height: 50)
-                        .font(Font.system(size: 20))
+                        .size20Regular()
                         .foregroundColor(Color.white)
                         .background(Capsule().fill(Color.black))
                         .padding(.bottom, 20)

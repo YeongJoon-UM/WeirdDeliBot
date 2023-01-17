@@ -14,26 +14,27 @@ struct CartEditScreen: View {
     
     
     var body: some View {
-        VStack {
-            VStack {
-                HStack {
+        VStack(spacing: 0) {
+            VStack(spacing: 0) {
+                HStack(spacing: 0) {
                     Image(viewModel.carts[index].beverage.image)
                         .resizable()
                         .frame(width: 150, height: 150)
                         .scaledToFit()
-                    
-                    VStack {
+                        .padding(.leading, 8)
+                    VStack(spacing: 0) {
                         Text(viewModel.carts[index].beverage.name)
-                            .font(.system(size: 19, weight: .bold))
+                            .size19Bold()
                             .frame(maxWidth: .infinity, alignment: .topLeading)
                             .padding(.bottom, 8)
                         Text(viewModel.carts[index].beverage.desc)
                             .frame(maxWidth: .infinity, minHeight: 70 , alignment: .topLeading)
                         Text("\(viewModel.carts[index].beverage.price)₩")
-                            .font(Font.system(size: 19, weight: .bold))
+                            .size19Bold()
                             .frame(maxWidth: .infinity, alignment: .bottomTrailing)
                             .padding(.top, 10)
                     }
+                    .padding(.horizontal, 8)
 
                 }
                 .padding(.bottom, 11)
@@ -44,31 +45,31 @@ struct CartEditScreen: View {
             
             Text("Options")
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .font(.system(size: 19))
+                .size19Regular()
                 .padding(.leading, 16)
-                .padding(.top, 0)
+                .padding(.top, 8)
                 
-            VStack{
-                HStack {
+            VStack(spacing: 0) {
+                HStack(spacing: 0) {
                     Text(viewModel.carts[index].shot.name)
                         .frame(width: 100)
-                        .font(.system(size: 16))
+                        .size16Regular()
                         .padding(.leading, 8)
-                    HStack {
+                    HStack(spacing: 0) {
                         if viewModel.carts[index].shot.amount != 0 {
                             Text("+\(viewModel.carts[index].shot.price * viewModel.carts[index].shot.amount)₩")
-                                .font(.system(size: 16))
+                                .size16Regular()
                         }
                     }.frame(width: 170, height: 50)
                     
-                    HStack {
+                    HStack(spacing: 0) {
                         if(viewModel.carts[index].shot.amount >= 3) {
                             Image(systemName: "plus.square")
-                                .font(.system(size: 20))
+                                .size20Regular()
                                 .foregroundColor(.gray)
                         } else {
                             Image(systemName: "plus.square")
-                                .font(.system(size: 20))
+                                .size20Regular()
                                 .foregroundColor(.black)
                                 .onTapGesture {
                                     viewModel.addOptionAmount(option: &viewModel.carts[index].shot)
@@ -81,16 +82,16 @@ struct CartEditScreen: View {
                             
                     
                     Text("\(viewModel.carts[index].shot.amount)")
-                        .frame(width: 20)
+                        .frame(width: 30)
                     
-                    HStack {
+                    HStack(spacing: 0) {
                         if(viewModel.carts[index].shot.amount == 0) {
                             Image(systemName: "minus.square")
-                                .font(.system(size: 20))
+                                .size20Regular()
                                 .foregroundColor(.gray)
                         } else {
                             Image(systemName: "minus.square")
-                                .font(.system(size: 20))
+                                .size20Regular()
                                 .foregroundColor(.black)
                                 .onTapGesture {
                                     viewModel.subOptionAmount(option: &viewModel.carts[index].shot)
@@ -103,26 +104,26 @@ struct CartEditScreen: View {
                     .padding(.trailing, 8)
                 }
 
-                HStack {
+                HStack(spacing: 0) {
                     Text(viewModel.carts[index].cream.name)
                         .frame(width: 100)
-                        .font(.system(size: 16))
+                        .size16Regular()
                         .padding(.leading, 8)
-                    HStack {
+                    HStack(spacing: 0) {
                         if viewModel.carts[index].cream.amount != 0 {
                             Text("+\(viewModel.carts[index].cream.price * viewModel.carts[index].cream.amount)₩")
-                                .font(Font.system(size: 16))
+                                .size16Regular()
                         }
                     }.frame(width: 170, height: 50)
                     
-                    HStack {
+                    HStack(spacing: 0) {
                         if(viewModel.carts[index].cream.amount >= 2) {
                             Image(systemName: "plus.square")
-                                .font(.system(size: 20))
+                                .size20Regular()
                                 .foregroundColor(.gray)
                         } else {
                             Image(systemName: "plus.square")
-                                .font(.system(size: 20))
+                                .size20Regular()
                                 .foregroundColor(.black)
                                 .onTapGesture {
                                     viewModel.addOptionAmount(option: &viewModel.carts[index].cream)
@@ -135,16 +136,16 @@ struct CartEditScreen: View {
                             
                     
                     Text("\(viewModel.carts[index].cream.amount)")
-                        .frame(width: 20)
+                        .frame(width: 30)
                     
-                    HStack {
+                    HStack(spacing: 0) {
                         if(viewModel.carts[index].cream.amount == 0) {
                             Image(systemName: "minus.square")
-                                .font(.system(size: 20))
+                                .size20Regular()
                                 .foregroundColor(.gray)
                         } else {
                             Image(systemName: "minus.square")
-                                .font(.system(size: 20))
+                                .size20Regular()
                                 .foregroundColor(.black)
                                 .onTapGesture {
                                     viewModel.subOptionAmount(option: &viewModel.carts[index].cream)
@@ -157,26 +158,26 @@ struct CartEditScreen: View {
                     .padding(.trailing, 8)
                 }
                 
-                HStack {
+                HStack(spacing: 0) {
                     Text(viewModel.carts[index].sizeUp.name)
                         .frame(width: 100)
-                        .font(.system(size: 16))
+                        .size16Regular()
                         .padding(.leading, 8)
-                    HStack {
+                    HStack(spacing: 0) {
                         if viewModel.carts[index].sizeUp.amount != 0 {
                             Text("+\(viewModel.carts[index].sizeUp.price * viewModel.carts[index].sizeUp.amount)₩")
-                                .font(Font.system(size: 16))
+                                .size16Regular()
                         }
                     }.frame(width: 170, height: 50)
                     
-                    HStack {
+                    HStack(spacing: 0) {
                         if(viewModel.carts[index].sizeUp.amount >= 1) {
                             Image(systemName: "plus.square")
-                                .font(.system(size: 20))
+                                .size20Regular()
                                 .foregroundColor(.gray)
                         } else {
                             Image(systemName: "plus.square")
-                                .font(.system(size: 20))
+                                .size20Regular()
                                 .foregroundColor(.black)
                                 .onTapGesture {
                                     viewModel.addOptionAmount(option: &viewModel.carts[index].sizeUp)
@@ -189,16 +190,16 @@ struct CartEditScreen: View {
                             
                     
                     Text("\(viewModel.carts[index].sizeUp.amount)")
-                        .frame(width: 20)
+                        .frame(width: 30)
                     
-                    HStack {
+                    HStack(spacing: 0) {
                         if(viewModel.carts[index].sizeUp.amount == 0) {
                             Image(systemName: "minus.square")
-                                .font(.system(size: 20))
+                                .size20Regular()
                                 .foregroundColor(.gray)
                         } else {
                             Image(systemName: "minus.square")
-                                .font(.system(size: 20))
+                                .size20Regular()
                                 .foregroundColor(.black)
                                 .onTapGesture {
                                     viewModel.subOptionAmount(option: &viewModel.carts[index].sizeUp)
@@ -215,7 +216,7 @@ struct CartEditScreen: View {
             Spacer()
             
             Text("Total : \(viewModel.carts[index].totalPrice)₩")
-                .font(Font.system(size: 19, weight: .bold))
+                .size19Bold()
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.bottom, 30)
                 .padding(.trailing, 16)
@@ -231,7 +232,7 @@ struct CartEditScreen: View {
             }) {
                 Text("수정하기")
                     .frame(width: 227, height: 50)
-                    .font(Font.system(size: 20))
+                    .size20Regular()
                     .foregroundColor(Color.white)
                     .background(Capsule().fill(Color.black))
                     .padding(.bottom, 20)

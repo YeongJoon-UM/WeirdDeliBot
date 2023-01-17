@@ -83,7 +83,7 @@ struct TabBarItem: View {
         Button {
             self.currentTab = tab
         } label: {
-            VStack {
+            VStack(spacing: 8) {
                 Spacer()
                 Text(tabBarItemName)
                 if currentTab == tab {

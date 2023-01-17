@@ -39,17 +39,18 @@ struct CartScreen: View {
                 Spacer()
                 
                 Text("Total Price : \(viewModel.cartTotalPrice)₩")
-                    .font(Font.system(size: 19, weight: .bold))
+                    .size19Bold()
                     .frame(maxWidth: .infinity, alignment: .trailing)
                     .padding(.bottom, 30)
                     .padding(.trailing, 16)
                 
                 Button(action: {
+                    //TODO: 데이터 서버 전달
                     self.presentation.wrappedValue.dismiss()
                 }) {
                     Text("주문하기")
                         .frame(width: 227, height: 50)
-                        .font(Font.system(size: 20))
+                        .size20Regular()
                         .foregroundColor(Color.white)
                         .background(Capsule().fill(Color.black))
                         .padding(.bottom, 20)
