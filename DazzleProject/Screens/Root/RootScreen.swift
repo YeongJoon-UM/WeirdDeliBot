@@ -8,40 +8,27 @@
 import SwiftUI
 
 struct RootScreen: View {
-    @EnvironmentObject var locationViewModel : LocationViewModel
-    var body: some View {
-        NavigationView{
-            VStack(spacing: 0) {
-                
-                
-                Text("Dazzle Bot")
-                    .sizeCustom(40, .bold)
-                    .padding(.bottom, 150)
-                    .padding(.top, 100)
-                
-                Image(systemName: "cup.and.saucer")
-                    .resizable()
-                    .frame(width: 150, height: 120)
-                    .scaledToFit()
-                
-                Spacer()
-                
-
-                
-                NavigationLink(destination: MenuListView()){
-                    Text("주문하기")
-                        .frame(width: 227, height: 50)
-                        .size20Regular()
-                        .foregroundColor(Color.white)
-                        .background(Capsule().fill(Color.black))
-                        .padding(.bottom, 20)
-                }
-                 
-            }
-        }
-        .environmentObject(CartViewModel())
-        .environmentObject(SideMenuViewModel())
-        .environmentObject(LocationViewModel())
+    @ObservedObject var viewModel: RootViewModel
+    
+    init() {
+        self.viewModel = RootViewModel()
     }
     
+    var body: some View {
+        MenuListView()
+            .environmentObject(viewModel)
+            .environmentObject(CartViewModel())
+            .environmentObject(SideMenuViewModel())
+        /*if(viewModel.token != nil) {
+            MenuListView()
+                .environmentObject(viewModel)
+                .environmentObject(CartViewModel())
+                .environmentObject(SideMenuViewModel())
+        } else {
+            LogInScreen()
+                .environmentObject(viewModel)
+                .environmentObject(CartViewModel())
+                .environmentObject(SideMenuViewModel())
+        }*/
+    }
 }

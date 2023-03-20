@@ -86,4 +86,3 @@ struct SideMenuScreen: View {
     }
 }
 
-

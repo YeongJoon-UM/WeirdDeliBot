@@ -39,6 +39,7 @@ struct CartEditScreen: View {
                 }
                 .padding(.bottom, 11)
                 Divider()
+                    .padding(.horizontal, 8)
                     .padding(.bottom, 0)
                     
             }
