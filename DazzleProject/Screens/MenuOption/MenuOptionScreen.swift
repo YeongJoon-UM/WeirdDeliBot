@@ -17,13 +17,13 @@ struct MenuOptionScreen: View {
     var body: some View {
         ZStack {
             NavigationView {
-                VStack() {
+                VStack(spacing: 0) {
                     MenuDescRow(menu: menu)
                         .padding()
                     
                     Text("Options")
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.system(size: 19))
+                        .size19Regular()
                         .padding(.leading, 16)
                         .padding(.top, 0)
                         
@@ -32,7 +32,7 @@ struct MenuOptionScreen: View {
                     Spacer()
                     
                     Text("Total : \(menu.price + viewModel.totalOptionPrice())₩")
-                        .font(Font.system(size: 19, weight: .bold))
+                        .size19Bold()
                         .frame(maxWidth: .infinity, alignment: .trailing)
                         .padding(.bottom, 30)
                         .padding(.trailing, 16)
@@ -44,7 +44,7 @@ struct MenuOptionScreen: View {
                     }) {
                         Text("장바구니")
                             .frame(width: 227, height: 50)
-                            .font(Font.system(size: 20))
+                            .size20Regular()
                             .foregroundColor(Color.white)
                             .background(Capsule().fill(Color.black))
                             .padding(.bottom, 20)

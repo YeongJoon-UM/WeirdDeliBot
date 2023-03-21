@@ -30,11 +30,11 @@ struct SideMenuScreen: View {
     }
     
     var content: some View {
-        HStack(alignment: .top) {
+        HStack(alignment: .top, spacing: 0) {
             ZStack(alignment: .top) {
                 Color.white
-                VStack(alignment: .leading) {
-                    HStack {
+                VStack(alignment: .leading, spacing: 0) {
+                    HStack(spacing: 0) {
                         Image(systemName: "person.fill")
                             .foregroundColor(.gray)
                             .imageScale(.large)
@@ -48,7 +48,7 @@ struct SideMenuScreen: View {
                     .padding(.leading, 10)
                     Divider()
                     NavigationLink(destination: CartScreen()) {
-                        HStack {
+                        HStack(spacing: 0) {
                             Image(systemName: "cart.fill")
                                 .foregroundColor(.gray)
                                 .imageScale(.large)
@@ -62,7 +62,7 @@ struct SideMenuScreen: View {
                     }
                     Divider()
                     NavigationLink(destination: LocationScreen()) {
-                        HStack {
+                        HStack(spacing: 0) {
                             Image(systemName: "map.fill")
                                 .foregroundColor(.gray)
                                 .imageScale(.large)
@@ -85,5 +85,4 @@ struct SideMenuScreen: View {
         }
     }
 }
-
 

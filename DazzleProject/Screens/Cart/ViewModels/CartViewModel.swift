@@ -26,4 +26,13 @@ class CartViewModel: ObservableObject {
             }
         }
     }
+    
+    
+    func addOptionAmount(option: inout Option) {
+        option.amount += 1
+    }
+    
+    func subOptionAmount(option: inout Option) {
+        option.amount -= 1
+    }
 }

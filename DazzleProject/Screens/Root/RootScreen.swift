@@ -8,40 +8,27 @@
 import SwiftUI
 
 struct RootScreen: View {
-    @EnvironmentObject var locationViewModel : LocationViewModel
-    var body: some View {
-        NavigationView{
-            VStack{
-                
-                Text("App Name")
-                    .font(.system(size: 40, weight: .bold))
-                    .padding(EdgeInsets(top: 100, leading: 8, bottom: 8, trailing: 8))
-                
-                Spacer()
-                
-                Image(systemName: "circle")
-                    .resizable()
-                    .frame(width: 100, height: 100)
-                    .scaledToFit()
-                
-                Spacer()
-                
-
-                
-                NavigationLink(destination: MenuListView()){
-                    Text("주문하기")
-                        .frame(width: 227, height: 50)
-                        .font(Font.system(size: 20))
-                        .foregroundColor(Color.white)
-                        .background(Capsule().fill(Color.black))
-                        .padding(.bottom, 20)
-                }
-                 
-            }
-        }
-        .environmentObject(CartViewModel())
-        .environmentObject(SideMenuViewModel())
-        .environmentObject(LocationViewModel())
+    @ObservedObject var viewModel: RootViewModel
+    
+    init() {
+        self.viewModel = RootViewModel()
     }
     
+    var body: some View {
+        MenuListView()
+            .environmentObject(viewModel)
+            .environmentObject(CartViewModel())
+            .environmentObject(SideMenuViewModel())
+        /*if(viewModel.token != nil) {
+            MenuListView()
+                .environmentObject(viewModel)
+                .environmentObject(CartViewModel())
+                .environmentObject(SideMenuViewModel())
+        } else {
+            LogInScreen()
+                .environmentObject(viewModel)
+                .environmentObject(CartViewModel())
+                .environmentObject(SideMenuViewModel())
+        }*/
+    }
 }
