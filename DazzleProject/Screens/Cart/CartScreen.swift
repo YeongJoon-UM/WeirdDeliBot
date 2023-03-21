@@ -12,8 +12,11 @@ struct CartScreen: View {
     @Environment(\.presentationMode) var presentation
     
     var body: some View {
+        EmptyView()
+        /*
         ZStack {
             NavigationView {
+
                 if viewModel.cartTotalPrice != 0 {
                     VStack {
                         //TODO: 수정 버튼 추가.
@@ -57,5 +60,6 @@ struct CartScreen: View {
             .toolbar{ ToolBarBackButton(presentation: presentation) }
             .toolbar{ ToolBarSideMenu() }
         }
+         */
     }
 }

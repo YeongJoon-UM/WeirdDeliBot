@@ -9,10 +9,12 @@ import SwiftUI
 
 struct CartRow: View {
     @EnvironmentObject var viewModel: CartViewModel
-    var cart: Cart
+    //var cart: Cart
     @State var isOptionShow: Bool = false
     
     var body: some View {
+        EmptyView()
+        /*
         VStack(spacing: 0){
             HStack(spacing: 0) {
                 Image(cart.beverage.image)
@@ -97,6 +99,6 @@ struct CartRow: View {
                 .buttonStyle(.plain)
                 .frame(width: 12, height: 12)
             }
-        }
+        }*/
     }
 }

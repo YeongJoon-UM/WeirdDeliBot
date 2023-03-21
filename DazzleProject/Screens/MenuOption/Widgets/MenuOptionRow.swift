@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct MenuOptionRow : View {
-   
     @StateObject var viewModel: MenuOptionViewModel
     
     var body: some View {

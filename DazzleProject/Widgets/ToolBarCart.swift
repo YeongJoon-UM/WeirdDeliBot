@@ -16,6 +16,7 @@ struct ToolBarCart: ToolbarContent {
                 ZStack{ //ZStack을 사용해 장바구니 아이콘과 아이템이 장바구니에 담겼을 경우 알림을 뜨게 함
                     Image(systemName: "cart.fill")
                         .foregroundColor(.black)
+                    /*
                     if viewModel.carts.count > 0 && viewModel.carts.count < 10 {
                         Image(systemName: "\(viewModel.carts.count).circle.fill")
                             .resizable()
@@ -32,6 +33,7 @@ struct ToolBarCart: ToolbarContent {
                             .frame(width: 14, height: 14, alignment: .bottomTrailing)
                             .padding(EdgeInsets(top: 11, leading: 16, bottom: 0, trailing: 0))
                     }
+                     */
                 }
             }
         }

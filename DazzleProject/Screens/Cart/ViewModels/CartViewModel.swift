@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 class CartViewModel: ObservableObject {
+    /*
     @Published var carts: [Cart] = []
     @Published var cartTotalPrice: Int = 0
    
@@ -26,4 +27,5 @@ class CartViewModel: ObservableObject {
             }
         }
     }
+     */
 }

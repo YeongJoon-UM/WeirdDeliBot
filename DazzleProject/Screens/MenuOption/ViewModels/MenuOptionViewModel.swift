@@ -6,11 +6,21 @@
 //
 
 import Foundation
+import SwiftUI
 
 class MenuOptionViewModel: ObservableObject {
-    @Published var shot = Option(id: UUID(), name: "샷 추가", price: 500, amount: 0)
-    @Published var cream = Option(id: UUID(), name: "휘핑 크림 추가", price: 500, amount: 0)
-    @Published var sizeUp = Option(id: UUID(), name: "사이즈 업", price: 1000, amount: 0)
+    @Published var shot = Option(id: "1", name: "샷 추가", price: 500, amount: 0)
+    @Published var cream = Option(id: "2", name: "휘핑 크림 추가", price: 500, amount: 0)
+    @Published var sizeUp = Option(id: "3", name: "사이즈 업", price: 1000, amount: 0)
+    @Published var selectedMenu: Menu?
+    
+    func getSelectedMenu(meus: [Menu], id: String) {
+        for menu in meus {
+            if(menu.id == id) {
+                selectedMenu = menu
+            }
+        }
+    }
     
     func addToCart() {
         

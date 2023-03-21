@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct MenuDescRow: View {
-    var menu: Beverage
+    var menu: Menu
     
     var body: some View {
-        VStack{
-            HStack {
-                Image(menu.image)
+        VStack(spacing: 0) {
+            HStack(spacing: 0) {
+                Image(menu.image ?? "")
                     .resizable()
                     .frame(width: 150, height: 150)
                     .scaledToFit()

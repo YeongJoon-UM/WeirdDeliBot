@@ -6,10 +6,39 @@
 //
 
 import Foundation
+import Alamofire
 
 class MenuViewModel: ObservableObject {
-    let coffee : [Beverage] = [
-        Beverage(id: 1, image: "sample", name: "Americano", price: 3000, desc: "This is Americano"),
-        Beverage(id: 2, image: "sample", name: "Cafe Latte", price: 4500, desc: "This is Cafe Latte"),
-        Beverage(id: 3, image: "sample", name: "Caramel Macchiato", price: 4500, desc: "This is Caramel Macchiato")]
+    @Published var menu: [Menu]? = []
+    @Published var category: [Category]? = []
+    
+    func getCatList(token: String) {
+        let header: HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        StoreRepository.getCatList(token: header) { response in
+            switch(response) {
+            case .success(let value):
+                self.category = value.result
+                print(value)
+                break
+            case .failure(let error) :
+                print(error)
+                break
+            }
+        }
+    }
+    
+    func getItemList(token: String) {
+        let header: HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        StoreRepository.getItemList(token: header) { response in
+            switch(response) {
+            case .success(let value):
+                self.menu = value.result
+                print(value)
+                break
+            case .failure(let error) :
+                print(error)
+                break
+            }
+        }
+    }
 }

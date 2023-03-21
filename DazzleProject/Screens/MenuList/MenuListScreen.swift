@@ -11,13 +11,19 @@ import SwiftUI
 struct MenuListView: View {
     @State var currentTab: Int = 0
     @Environment(\.presentationMode) var presentation
+    @ObservedObject var viewModel: MenuViewModel
+    @EnvironmentObject var rootViewModel: RootViewModel
     
+    init() {
+        self.viewModel = MenuViewModel()
+    }
     
     var body: some View {
         ZStack{
             NavigationView {
                 ZStack(alignment: .top) {
                     TabBarView(currentTab: $currentTab)
+                        .environmentObject(viewModel)
                     TabView(selection: self.$currentTab) {
                         CoffeeTab().tag(0)
                         TeaBottleTab().tag(1)
@@ -26,6 +32,7 @@ struct MenuListView: View {
                         BubbleLatteTab().tag(4)
                         BakeryTab().tag(5)
                     }
+                    .environmentObject(viewModel)
                     .padding([.top], 40)
                     .tabViewStyle(PageTabViewStyle.init(indexDisplayMode: .never))
                     .animation(.default, value: currentTab)
@@ -40,24 +47,28 @@ struct MenuListView: View {
             .navigationBarBackButtonHidden()
             SideMenuScreen()
         }
+        .onAppear(){
+            viewModel.getCatList(token: rootViewModel.token?.token ?? "")
+            viewModel.getItemList(token: rootViewModel.token?.token ?? "")
+        }
     }
 }
 
 
 struct TabBarView: View {
-    @StateObject var viewModel = MenuListViewModel()
+    @EnvironmentObject var viewModel: MenuViewModel
     @Binding var currentTab: Int
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false){
             ScrollViewReader { scrollReader in
                 HStack(spacing: 20) {
-                    ForEach(Array(zip(viewModel.topicList.indices, viewModel.topicList)),
+                    ForEach(Array(zip(viewModel.category!.indices, viewModel.category!)),
                             id: \.0,
                             content: {
-                        index, name in
+                        index, category in
                         TabBarItem(currentTab: self.$currentTab,
-                                   tabBarItemName: name,
+                                   tabBarItemName: category.name,
                                    tab: index)
                     })
                     .onChange(of: currentTab){ value in

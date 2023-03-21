@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct MenuOptionScreen: View {
-    @StateObject var viewModel = MenuOptionViewModel()
+    @StateObject var viewModel: MenuOptionViewModel = MenuOptionViewModel()
     @EnvironmentObject var cartViewModel: CartViewModel
-    
-    let menu: Beverage
+    @EnvironmentObject var menuViewModel: MenuViewModel
+    let menu: Menu
+
     @Environment(\.presentationMode) var presentation
     
     var body: some View {
@@ -38,8 +39,8 @@ struct MenuOptionScreen: View {
                         .padding(.trailing, 16)
                     
                     Button(action: {
-                        cartViewModel.addToCart(beverage: menu, shot: viewModel.shot, cream: viewModel.cream, sizeUp: viewModel.sizeUp, totalPrice: (menu.price + viewModel.totalOptionPrice()))
-                        cartViewModel.getCartTotalPrice()
+                        //cartViewModel.addToCart(id: menu.id, menu: menu, shot: viewModel.shot, cream: viewModel.cream, sizeUp: viewModel.sizeUp, totalPrice: (menu.price + viewModel.totalOptionPrice()))
+                        //cartViewModel.getCartTotalPrice()
                         self.presentation.wrappedValue.dismiss()    //option 모두 고른 menu를 cart에 넣고 직전 화면으로 돌아감.
                     }) {
                         Text("장바구니")

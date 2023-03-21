@@ -2,18 +2,18 @@
 //  MenuRow.swift
 //  DazzleProject
 //
-//  Created by 정영준 on 2022/10/05.
+//  Created by 정영준 on 2023/03/20.
 //
 
 import SwiftUI
 
 struct MenuRow: View {
-    var menu: Beverage
+    var menu: Menu
     
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
-                Image(menu.image)
+                Image(menu.image ?? "")
                     .resizable()
                     .frame(width: 100, height: 100)
                     .scaledToFit()

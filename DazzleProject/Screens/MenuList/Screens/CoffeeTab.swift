@@ -8,22 +8,21 @@
 import SwiftUI
 
 struct CoffeeTab: View {
-    @StateObject var viewModel = MenuViewModel()
+    @EnvironmentObject var viewModel: MenuViewModel
     
     var body: some View {
-        List(viewModel.coffee) { coffee in
-            ZStack {    //ZStack을 사용해 MenuRow와 NavigationLink를 겹치고NavigationLink를 투명하게해 화살표를 지움
-                MenuRow(menu: coffee)
-                    
-                NavigationLink(destination:  MenuOptionScreen(menu: coffee),
-                               label: {})
-                .opacity(0)
+        List(viewModel.menu ?? []){ item in
+            if(item.category == "Coffee") {
+                ZStack {    //ZStack을 사용해 MenuRow와 NavigationLink를 겹치고NavigationLink를 투명하게해 화살표를 지움
+                    MenuRow(menu: item)
+                    NavigationLink(destination:  MenuOptionScreen(menu: item),
+                                   label: {})
+                    .opacity(0)
+                }
+                .listRowSeparator(.hidden)
             }
-            .listRowSeparator(.hidden)
         }
-        
         .listStyle(.plain)
-        
     }
 }
 
