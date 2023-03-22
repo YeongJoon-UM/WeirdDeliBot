@@ -10,36 +10,45 @@ import SwiftUI
 
 struct MenuListView: View {
     @State var currentTab: Int = 0
-    @Environment(\.presentationMode) var presentation
-    @ObservedObject var viewModel: MenuViewModel
+    @ObservedObject var viewModel: MenuViewModel = MenuViewModel()
     @EnvironmentObject var rootViewModel: RootViewModel
-    
-    init() {
-        self.viewModel = MenuViewModel()
-    }
-    
+  
     var body: some View {
         ZStack{
             NavigationView {
                 ZStack(alignment: .top) {
-                    TabBarView(currentTab: $currentTab)
+                    if(viewModel.category == nil || viewModel.menu == nil){
+                        if(viewModel.status == nil) {
+                            ProgressView(label: {
+                                VStack{
+                                    Text("로딩 중..")
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                }
+                            }
+                            ).progressViewStyle(CircularProgressViewStyle())
+                        } else if viewModel.status == false { //검색 실패 시 실패 메세지 출력.
+                            Spacer()
+                            Text("Search Failed.")
+                        }
+                    } else {
+                        TabBarView(currentTab: $currentTab)
+                            .environmentObject(viewModel)
+                        TabView(selection: self.$currentTab) {
+                            if(viewModel.category != nil) {
+                                ForEach(viewModel.category!) { category in
+                                    MenuListTab(category: category.name).tag(category.id)
+                                }
+                            }
+                        }
                         .environmentObject(viewModel)
-                    TabView(selection: self.$currentTab) {
-                        CoffeeTab().tag(0)
-                        TeaBottleTab().tag(1)
-                        JuiceAdeTab().tag(2)
-                        SmoothieFrapTab().tag(3)
-                        BubbleLatteTab().tag(4)
-                        BakeryTab().tag(5)
+                        .padding([.top], 40)
+                        .tabViewStyle(PageTabViewStyle.init(indexDisplayMode: .never))
+                        .animation(.default, value: currentTab)
                     }
-                    .environmentObject(viewModel)
-                    .padding([.top], 40)
-                    .tabViewStyle(PageTabViewStyle.init(indexDisplayMode: .never))
-                    .animation(.default, value: currentTab)
                 }
                 .navigationBarTitle(Text("Menu"))
                 .navigationBarTitleDisplayMode(.inline)
-                .toolbar{ ToolBarBackButton(presentation: presentation) }
                 .toolbar{ ToolBarSideMenu() }
                 .toolbar{ ToolBarCart() }
                 

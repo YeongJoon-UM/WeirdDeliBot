@@ -1,21 +1,23 @@
 //
-//  CoffeeScreen.swift
+//  MenuListTab.swift
 //  DazzleProject
 //
-//  Created by 정영준 on 2022/10/05.
+//  Created by 정영준 on 2023/03/21.
 //
+
 
 import SwiftUI
 
-struct CoffeeTab: View {
+struct MenuListTab: View {
     @EnvironmentObject var viewModel: MenuViewModel
+    let category: String
     
     var body: some View {
-        List(viewModel.menu ?? []){ item in
-            if(item.category == "Coffee") {
+        List(viewModel.menu ?? []){ menu in
+            if(menu.category == category) {
                 ZStack {    //ZStack을 사용해 MenuRow와 NavigationLink를 겹치고NavigationLink를 투명하게해 화살표를 지움
-                    MenuRow(menu: item)
-                    NavigationLink(destination:  MenuOptionScreen(menu: item),
+                    MenuRow(menu: menu)
+                    NavigationLink(destination:  MenuOptionScreen(menu: menu),
                                    label: {})
                     .opacity(0)
                 }
@@ -23,11 +25,5 @@ struct CoffeeTab: View {
             }
         }
         .listStyle(.plain)
-    }
-}
-
-struct CoffeeScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        CoffeeTab()
     }
 }

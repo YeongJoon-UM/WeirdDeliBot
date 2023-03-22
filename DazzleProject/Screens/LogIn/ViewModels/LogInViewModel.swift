@@ -11,7 +11,7 @@ import Foundation
 class LogInViewModel: NSObject, ObservableObject {
     @Published var account: String = ""
     @Published var password: String = ""
-    @Published var isAutoLogIn: Bool = true
+    @Published var isAutoLogIn: Bool = false
     @Published var isLogInFailed: Bool = false
     @Published var token: Token? = nil
     

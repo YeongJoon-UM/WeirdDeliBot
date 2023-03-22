@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SideMenuScreen: View {
     @EnvironmentObject var viewModel: SideMenuViewModel
+    @EnvironmentObject var rootViewModel: RootViewModel
     
     
     var sideBarWidth = UIScreen.main.bounds.size.width * 0.6
@@ -75,6 +76,22 @@ struct SideMenuScreen: View {
                         .padding(.leading, 10)
                     }
                     Divider()
+                    Spacer()
+                    Divider()
+                    Button(action: {rootViewModel.logOut()}) {
+                        HStack(spacing: 0) {
+                            Image(systemName: "door.left.hand.open")
+                                .foregroundColor(.red)
+                                .imageScale(.large)
+                            Text("Log Out")
+                                .foregroundColor(.red)
+                                .font(.headline)
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.vertical, 10)
+                        .padding(.leading, 10)
+                    }
+                    .padding(.bottom, 30)
                 }
             }
             .frame(width: sideBarWidth)

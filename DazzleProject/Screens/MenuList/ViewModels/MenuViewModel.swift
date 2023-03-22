@@ -9,8 +9,9 @@ import Foundation
 import Alamofire
 
 class MenuViewModel: ObservableObject {
-    @Published var menu: [Menu]? = []
-    @Published var category: [Category]? = []
+    @Published var menu: [Menu]? = nil
+    @Published var category: [Category]? = nil
+    @Published var status: Bool? = nil
     
     func getCatList(token: String) {
         let header: HTTPHeaders = ["Authorization" : "Bearer \(token)"]
@@ -19,9 +20,11 @@ class MenuViewModel: ObservableObject {
             case .success(let value):
                 self.category = value.result
                 print(value)
+                if(self.status != false) { self.status = true }
                 break
             case .failure(let error) :
                 print(error)
+                self.status = false
                 break
             }
         }
@@ -34,9 +37,11 @@ class MenuViewModel: ObservableObject {
             case .success(let value):
                 self.menu = value.result
                 print(value)
+                if(self.status != false) { self.status = true }
                 break
             case .failure(let error) :
                 print(error)
+                self.status = false
                 break
             }
         }

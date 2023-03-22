@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import Combine
+import Alamofire
 
 class RootViewModel: ObservableObject {
     @Published var user: User = User()          // 유저 정보
@@ -15,16 +16,18 @@ class RootViewModel: ObservableObject {
 
     
     init() {
-        loadToken()
+        //loadToken()
     }
     
     // 토큰 받아오기
     func setToken(token: Token, isSave: Bool) {
         self.token = token
+        /*
         if(isSave) {
             UserDefaults.standard.set(token.token, forKey: "token")
-            print(self.token)
+            
         }
+         */
     }
     
     // 토큰 불러오기
@@ -33,6 +36,7 @@ class RootViewModel: ObservableObject {
         if(token != nil) {
             self.token = Token(token: token!)
             print(self.token)
+
         }
     }
 
@@ -47,7 +51,6 @@ class RootViewModel: ObservableObject {
         UserDefaults.standard.removeObject(forKey: "token")
     }
     
-
 }
 
 struct User {

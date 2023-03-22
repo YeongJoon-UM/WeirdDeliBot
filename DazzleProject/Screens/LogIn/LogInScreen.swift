@@ -48,7 +48,7 @@ struct LogInScreen: View {
                         .frame(width: 227, height: 30)
                         .size12Regular()
                         .padding([.leading], 10)
-                        .background(Capsule().fill(Color.line))
+                        .background(Capsule().fill(Color.base))
 
 
                 SecureField("비밀번호", text: $viewModel.password)
@@ -57,8 +57,8 @@ struct LogInScreen: View {
                         .frame(width: 227, height: 30)
                         .size12Regular()
                         .padding([.leading], 10)
-                        .background(Capsule().fill(Color.line))
-
+                        .background(Capsule().fill(Color.base))
+                /*
                 HStack {
                     ZStack {
                         Capsule()
@@ -88,7 +88,7 @@ struct LogInScreen: View {
                                 self.rootViewModel.setToken(token: token!, isSave: viewModel.isAutoLogIn)
                             }
                         }
-
+                */
                 //isInfoNotEmpty가 True일 때만 작동.
                 Group {  //Extra argument in call Error 해결을 위한 Grouping
                     if viewModel.isInfoNotEmpty {
@@ -102,14 +102,17 @@ struct LogInScreen: View {
                                 .background(Capsule().fill(Color.main))
                                 .padding([.bottom], 7)
                         }
+                        .padding(.top, 50)
                     } else {
                         Text("로그인")
                             .frame(width: 227, height: 40)
                             .size14Regular()
                             .foregroundColor(.textSub)
                             .background(Capsule().fill(Color.sub))
+                            .padding(.top, 50)
                             .padding([.bottom], 7)
                     }
+                    
 
                     NavigationLink(destination:
                                     //SignUpScreen().environmentObject(viewModel)
@@ -119,6 +122,11 @@ struct LogInScreen: View {
                                 .size14Regular()
                                 .foregroundColor(.main)
                                 .background(Capsule().stroke(Color.main))
+                    }
+                }
+                .onChange(of: self.viewModel.token) { token in
+                    if (token != nil) {
+                        self.rootViewModel.setToken(token: token!, isSave: viewModel.isAutoLogIn)
                     }
                 }
 
