@@ -27,7 +27,6 @@ class LogInViewModel: NSObject, ObservableObject {
                 case .success(let value):
                     self.token = value
                     self.isLogInFailed = false
-                    print(value)
                     break
                 case .failure(let error):
                     self.isLogInFailed = true

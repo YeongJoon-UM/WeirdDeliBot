@@ -13,7 +13,7 @@ struct MenuDescRow: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
-                Image(menu.image ?? "")
+                Image(menu.image ?? "sample")
                     .resizable()
                     .frame(width: 150, height: 150)
                     .scaledToFit()
@@ -23,7 +23,7 @@ struct MenuDescRow: View {
                         .font(.system(size: 19, weight: .bold))
                         .frame(maxWidth: .infinity, alignment: .topLeading)
                         .padding(.bottom, 8)
-                    Text(menu.desc)
+                    Text(menu.desc ?? "Description")
                         .frame(maxWidth: .infinity, minHeight: 70 , alignment: .topLeading)
                     Text("\(menu.price)₩")
                         .font(Font.system(size: 19, weight: .bold))

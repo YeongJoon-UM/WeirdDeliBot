@@ -12,6 +12,7 @@ class MenuViewModel: ObservableObject {
     @Published var menu: [Menu]? = nil
     @Published var category: [Category]? = nil
     @Published var status: Bool? = nil
+    @Published var currentTab: Int = 0
     
     func getCatList(token: String) {
         let header: HTTPHeaders = ["Authorization" : "Bearer \(token)"]
@@ -19,7 +20,6 @@ class MenuViewModel: ObservableObject {
             switch(response) {
             case .success(let value):
                 self.category = value.result
-                print(value)
                 if(self.status != false) { self.status = true }
                 break
             case .failure(let error) :
@@ -36,7 +36,6 @@ class MenuViewModel: ObservableObject {
             switch(response) {
             case .success(let value):
                 self.menu = value.result
-                print(value)
                 if(self.status != false) { self.status = true }
                 break
             case .failure(let error) :

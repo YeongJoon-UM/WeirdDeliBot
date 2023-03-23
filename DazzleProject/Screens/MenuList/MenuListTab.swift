@@ -17,7 +17,7 @@ struct MenuListTab: View {
             if(menu.category == category) {
                 ZStack {    //ZStack을 사용해 MenuRow와 NavigationLink를 겹치고NavigationLink를 투명하게해 화살표를 지움
                     MenuRow(menu: menu)
-                    NavigationLink(destination:  MenuOptionScreen(menu: menu),
+                    NavigationLink(destination:  OptionScreen(menu: menu),
                                    label: {})
                     .opacity(0)
                 }

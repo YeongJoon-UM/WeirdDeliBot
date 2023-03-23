@@ -13,7 +13,7 @@ struct MenuRow: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
-                Image(menu.image ?? "")
+                Image(menu.image ?? "sample")
                     .resizable()
                     .frame(width: 100, height: 100)
                     .scaledToFit()

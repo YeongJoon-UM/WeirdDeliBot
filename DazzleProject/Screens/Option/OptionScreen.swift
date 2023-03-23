@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct MenuOptionScreen: View {
-    @StateObject var viewModel: MenuOptionViewModel = MenuOptionViewModel()
+struct OptionScreen: View {
+    @StateObject var viewModel: OptionViewModel = OptionViewModel()
     @EnvironmentObject var cartViewModel: CartViewModel
-    @EnvironmentObject var menuViewModel: MenuViewModel
+    @EnvironmentObject var rootViewModel: RootViewModel
     let menu: Menu
 
     @Environment(\.presentationMode) var presentation
@@ -27,20 +27,41 @@ struct MenuOptionScreen: View {
                         .font(.system(size: 19))
                         .padding(.leading, 16)
                         .padding(.top, 0)
-                        
-                    MenuOptionRow(viewModel: viewModel)
                     
+                    if(viewModel.option == nil){
+                        if(viewModel.status == nil) {
+                            ProgressView(label: {
+                                VStack{
+                                    Text("로딩 중..")
+                                        .font(.caption)
+                                        .foregroundColor(.secondary)
+                                }
+                            }
+                            ).progressViewStyle(CircularProgressViewStyle())
+                        } else if viewModel.status == false { //로딩 실패 시 실패 메세지 출력.
+                            Spacer()
+                            Text("Loading Failed.")
+                        }
+                    } else {
+                        ScrollView() {
+                            ForEach(viewModel.option!){ option in
+                                OptionRow(option: option)
+                                    .environmentObject(viewModel)
+                            }
+                        }
+                    }
+
                     Spacer()
                     
-                    Text("Total : \(menu.price + viewModel.totalOptionPrice())₩")
+                    Text("Total : \(viewModel.totalPrice())₩")
                         .font(Font.system(size: 19, weight: .bold))
                         .frame(maxWidth: .infinity, alignment: .trailing)
                         .padding(.bottom, 30)
                         .padding(.trailing, 16)
                     
                     Button(action: {
-                        //cartViewModel.addToCart(id: menu.id, menu: menu, shot: viewModel.shot, cream: viewModel.cream, sizeUp: viewModel.sizeUp, totalPrice: (menu.price + viewModel.totalOptionPrice()))
-                        //cartViewModel.getCartTotalPrice()
+                        viewModel.setUserMenu()
+                        cartViewModel.userOrderList.append(viewModel.userMenu!)
                         self.presentation.wrappedValue.dismiss()    //option 모두 고른 menu를 cart에 넣고 직전 화면으로 돌아감.
                     }) {
                         Text("장바구니")
@@ -50,6 +71,11 @@ struct MenuOptionScreen: View {
                             .background(Capsule().fill(Color.black))
                             .padding(.bottom, 20)
                     }
+                }
+                .onAppear() {
+                    viewModel.getSelectedMenu(menu: menu)
+                    viewModel.getOptionList(token: rootViewModel.token?.token ?? "")
+                    print(viewModel.userMenu)
                 }
             }
             .navigationBarTitle(Text("Option"))

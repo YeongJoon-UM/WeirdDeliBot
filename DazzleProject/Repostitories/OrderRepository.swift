@@ -1,19 +1,19 @@
 //
-//  StoreRepository.swift
+//  OrderRepository.swift
 //  DazzleProject
 //
-//  Created by 정영준 on 2023/03/20.
+//  Created by 정영준 on 2023/03/23.
 //
 
 import Foundation
 import Alamofire
 
-class StoreRepository {
+class OrderRepository {
     static let url: String = "https://delibot.kro.kr"
     static let storeCode: String = "STR-000000000001"
     
-    static func getCatList(token: HTTPHeaders, completion: @escaping (Result<CatResponse, AFError>) -> Void) {
-        AF.request("\(url)/store/getCatList", method: .post, parameters: StoreCode(storeCode: storeCode), encoder: .json(), headers: token)
+    static func sendOrderList(order: Order,token: HTTPHeaders, completion: @escaping (Result<CatResponse, AFError>) -> Void) {
+        AF.request("\(url)/order/addOrderList", method: .put, parameters: order, encoder: .json(), headers: token)
                 .responseDecodable(of: CatResponse.self) { response in
                     switch (response.result) {
                     case .success(let value):
@@ -26,7 +26,7 @@ class StoreRepository {
                 }
     }
     
-    static func getItemList(token: HTTPHeaders, completion: @escaping (Result<MenuResponse, AFError>) -> Void) {
+    static func getOrderInfo(orderCode: String, token: HTTPHeaders, completion: @escaping (Result<MenuResponse, AFError>) -> Void) {
         AF.request("\(url)/store/getItemList", method: .post, parameters: StoreCode(storeCode: storeCode), encoder: .json(), headers: token)
                 .responseDecodable(of: MenuResponse.self) { response in
                     switch (response.result) {
@@ -39,7 +39,7 @@ class StoreRepository {
                     }
                 }
     }
-    static func getOptionList(itemCode: String, token:HTTPHeaders, completion: @escaping (Result<OptionResponse, AFError>) -> Void) {
+    static func getOrderItem(itemCode: String, token:HTTPHeaders, completion: @escaping (Result<OptionResponse, AFError>) -> Void) {
         AF.request("\(url)/store/getOptionList", method: .post, parameters: ItemCode(itemCode: itemCode), encoder: .json(), headers: token)
                 .responseDecodable(of: OptionResponse.self) { response in
                     switch (response.result) {

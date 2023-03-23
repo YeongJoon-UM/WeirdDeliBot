@@ -9,8 +9,8 @@
 import SwiftUI
 
 struct MenuListView: View {
-    @State var currentTab: Int = 0
-    @ObservedObject var viewModel: MenuViewModel = MenuViewModel()
+    //@State var currentTab: Int = 0
+    @StateObject var viewModel: MenuViewModel = MenuViewModel()
     @EnvironmentObject var rootViewModel: RootViewModel
   
     var body: some View {
@@ -27,24 +27,24 @@ struct MenuListView: View {
                                 }
                             }
                             ).progressViewStyle(CircularProgressViewStyle())
-                        } else if viewModel.status == false { //검색 실패 시 실패 메세지 출력.
+                        } else if viewModel.status == false { //로딩 실패 시 실패 메세지 출력.
                             Spacer()
-                            Text("Search Failed.")
+                            Text("Loading Failed.")
                         }
                     } else {
-                        TabBarView(currentTab: $currentTab)
+                        TabBarView(currentTab: $viewModel.currentTab)
                             .environmentObject(viewModel)
-                        TabView(selection: self.$currentTab) {
+                        TabView(selection: self.$viewModel.currentTab) {
                             if(viewModel.category != nil) {
-                                ForEach(viewModel.category!) { category in
-                                    MenuListTab(category: category.name).tag(category.id)
+                                ForEach(Array(zip(viewModel.category!.indices, viewModel.category!)), id: \.0) { index, category in
+                                    MenuListTab(category: category.name).tag(index)
                                 }
                             }
                         }
                         .environmentObject(viewModel)
                         .padding([.top], 40)
                         .tabViewStyle(PageTabViewStyle.init(indexDisplayMode: .never))
-                        .animation(.default, value: currentTab)
+                        .animation(.default, value: viewModel.currentTab)
                     }
                 }
                 .navigationBarTitle(Text("Menu"))
@@ -103,11 +103,12 @@ struct TabBarItem: View {
         Button {
             self.currentTab = tab
         } label: {
-            VStack {
+            VStack(spacing: 5) { //MARK: 선택된 탭 띄워지는 정도
                 Spacer()
                 Text(tabBarItemName)
+                    .foregroundColor((currentTab == tab) ? Color.main : Color.textMain)
                 if currentTab == tab {
-                    Color.black
+                    Color.main
                         .frame(height: 2)
                         .matchedGeometryEffect(id: "underline",
                                                in: namespace,

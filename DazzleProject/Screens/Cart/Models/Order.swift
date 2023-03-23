@@ -1,24 +1,25 @@
 //
-//  Order.swift
+//  OrderList.swift
 //  DazzleProject
 //
-//  Created by 정영준 on 2023/01/02.
+//  Created by 정영준 on 2023/03/20.
 //
 
 import Foundation
 
-struct Orders: Codable{
-    var orders: [Order]
-}
-
 struct Order: Codable {
     var id: String
-    var amount: Int
-    var options: Options
+    var address: String
+    var addressDesc: String
+    var phone: String
+    var orderReq: String
+    var writeNm: String
+    var storeCode: String
+    var orderList: OrderList
     
     enum CodingKeys: String, CodingKey {
-        case id = "itemCode"
-        case amount = "itemCount"
-        case options
+        case id = "writeID"
+        case address, addressDesc, phone, orderReq, writeNm, storeCode, orderList
     }
 }
+
