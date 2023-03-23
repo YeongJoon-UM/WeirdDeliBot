@@ -15,5 +15,8 @@ class CartViewModel: ObservableObject {
     
     func addOrderItem(item: OrderItem) {
         self.userOrderList.append(item)
+        self.userOrderList[userOrderList.endIndex - 1].options.removeAll { option in
+            option.amount == 0
+        }
     }
 }

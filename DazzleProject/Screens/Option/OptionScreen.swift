@@ -60,8 +60,9 @@ struct OptionScreen: View {
                         .padding(.trailing, 16)
                     
                     Button(action: {
-                        viewModel.setUserMenu()
-                        cartViewModel.userOrderList.append(viewModel.userMenu!)
+                        viewModel.setUserOption()
+                        cartViewModel.addOrderItem(item: viewModel.userMenu!)
+                        print(cartViewModel.userOrderList)
                         self.presentation.wrappedValue.dismiss()    //option 모두 고른 menu를 cart에 넣고 직전 화면으로 돌아감.
                     }) {
                         Text("장바구니")
@@ -75,7 +76,6 @@ struct OptionScreen: View {
                 .onAppear() {
                     viewModel.getSelectedMenu(menu: menu)
                     viewModel.getOptionList(token: rootViewModel.token?.token ?? "")
-                    print(viewModel.userMenu)
                 }
             }
             .navigationBarTitle(Text("Option"))

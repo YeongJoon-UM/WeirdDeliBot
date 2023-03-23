@@ -50,14 +50,7 @@ class OptionViewModel: ObservableObject {
         self.userMenu = OrderItem(id: selectedMenu!.id, amount: 1, options: self.userOptionList)
     }
     
-    func setUserOptionList() {
-        self.userOptionList.removeAll { option in
-            option.amount == 0
-        }
-    }
-    
-    func setUserMenu() {
-        setUserOptionList()
+    func setUserOption() {
         self.userMenu?.options = self.userOptionList
     }
     
@@ -71,12 +64,22 @@ class OptionViewModel: ObservableObject {
         self.userOptionList[index!].amount -= 1
     }
     
+    func addItemAmount() {
+        self.userMenu?.amount += 1
+    }
+    
+    func subItemAmount() {
+        if(self.userMenu?.amount ?? 0 > 1) {
+            self.userMenu?.amount -= 1
+        }
+    }
+    
     func totalPrice() -> Int {
         let itemPrice: Int = (selectedMenu?.price ?? 0) * (userMenu?.amount ?? 0)
         var optionPrice: Int = 0
         if(self.option != nil) {
             for option in self.option! {
-                let price: Int = option.price * self.userOptionList[self.userOptionList.firstIndex(where: { $0.id == option.id })!].amount
+                let price: Int = option.price * self.userOptionList[self.userOptionList.firstIndex(where: { $0.id == option.id }) ?? 0].amount
                 optionPrice += price
             }
         }
