@@ -52,4 +52,32 @@ class StoreRepository {
                     }
                 }
     }
+    
+    static func getItemInfo(itemCode: String, token:HTTPHeaders, completion: @escaping (Result<MenuResponse, AFError>) -> Void) {
+        AF.request("\(url)/store/getItemList", method: .post, parameters: ItemCode(itemCode: itemCode), encoder: .json(), headers: token)
+                .responseDecodable(of: MenuResponse.self) { response in
+                    switch (response.result) {
+                    case .success(let value):
+                        completion(.success(value))
+                        break
+                    case .failure(let error):
+                        completion(.failure(error))
+                        break
+                    }
+                }
+    }
+    
+    static func getOptionInfo(optionCode: String, token:HTTPHeaders, completion: @escaping (Result<OptionResponse, AFError>) -> Void) {
+        AF.request("\(url)/store/getOptionList", method: .post, parameters: OptionCode(optionCode: optionCode), encoder: .json(), headers: token)
+                .responseDecodable(of: OptionResponse.self) { response in
+                    switch (response.result) {
+                    case .success(let value):
+                        completion(.success(value))
+                        break
+                    case .failure(let error):
+                        completion(.failure(error))
+                        break
+                    }
+                }
+    }
 }

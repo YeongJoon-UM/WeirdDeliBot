@@ -14,10 +14,11 @@ struct OptionRow : View {
     var body: some View {
         VStack{
             HStack {
-                Text(option.name)
+                Text("\(option.name) Max Count : \(option.maxCount)")
                     .frame(width: 100)
                     .font(.system(size: 16))
                     .padding(.leading, 8)
+        
                 HStack {
                     if(viewModel.userOptionList[viewModel.userOptionList.firstIndex(where: { $0.id == option.id })!].amount != 0) {
                         Text("+\(option.price * viewModel.userOptionList[viewModel.userOptionList.firstIndex(where: { $0.id == option.id })!].amount)₩")

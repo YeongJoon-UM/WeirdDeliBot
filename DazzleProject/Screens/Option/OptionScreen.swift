@@ -61,7 +61,7 @@ struct OptionScreen: View {
                     
                     Button(action: {
                         viewModel.setUserOption()
-                        cartViewModel.addOrderItem(item: viewModel.userMenu!)
+                        cartViewModel.addOrderItem(item: viewModel.userMenu!, price: viewModel.totalPrice())
                         print(cartViewModel.userOrderList)
                         self.presentation.wrappedValue.dismiss()    //option 모두 고른 menu를 cart에 넣고 직전 화면으로 돌아감.
                     }) {

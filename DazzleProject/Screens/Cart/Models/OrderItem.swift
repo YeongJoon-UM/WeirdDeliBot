@@ -11,7 +11,16 @@ struct OrderList: Codable{
     var orderList: [OrderItem]
 }
 
-struct OrderItem: Codable {
+struct OrderItem: Codable, Hashable {
+    static func == (lhs: OrderItem, rhs: OrderItem) -> Bool {
+        return lhs.id == rhs.id
+        
+        
+    }
+    func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+        }
+    
     var id: String
     var amount: Int
     var options: [OrderItemOption]
@@ -23,7 +32,16 @@ struct OrderItem: Codable {
     }
 }
 
-struct OrderItemOption: Codable {
+struct OrderItemOption: Codable, Hashable {
+    static func == (lhs: OrderItemOption, rhs: OrderItemOption) -> Bool {
+        return lhs.id == rhs.id
+        
+        
+    }
+    func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+        }
+
     var id: String
     var amount: Int
 

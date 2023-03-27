@@ -12,27 +12,24 @@ struct CartScreen: View {
     @Environment(\.presentationMode) var presentation
     
     var body: some View {
-        EmptyView()
-        /*
         ZStack {
             NavigationView {
-
-                if viewModel.cartTotalPrice != 0 {
-                    VStack {
+                if !viewModel.userOrderList.isEmpty {
+                    VStack(spacing: 0) {
                         //TODO: 수정 버튼 추가.
                         List {
-                            ForEach(viewModel.carts, id: \.self) { cart in
-                                CartRow(cart: cart)
-                            }.onDelete{ index in
-                                viewModel.carts.remove(atOffsets: index)
-                                viewModel.getCartTotalPrice()
+                            ForEach(viewModel.userOrderList, id: \.self) { order in
+                                CartItemRow(order: order)
+                            }
+                            .onDelete{ index in
+                                viewModel.removeOrderItem(index: index)
                             }
                         }
                         .listStyle(.plain)
                         
                         Spacer()
                         
-                        Text("Total Price : \(viewModel.cartTotalPrice)₩")
+                        Text("Total Price : \(viewModel.totalPrice)₩")
                             .font(Font.system(size: 19, weight: .bold))
                             .frame(maxWidth: .infinity, alignment: .trailing)
                             .padding(.bottom, 30)
@@ -60,6 +57,5 @@ struct CartScreen: View {
             .toolbar{ ToolBarBackButton(presentation: presentation) }
             .toolbar{ ToolBarSideMenu() }
         }
-         */
     }
 }
