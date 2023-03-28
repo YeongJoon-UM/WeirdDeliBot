@@ -14,8 +14,6 @@ struct OrderList: Codable{
 struct OrderItem: Codable, Hashable {
     static func == (lhs: OrderItem, rhs: OrderItem) -> Bool {
         return lhs.id == rhs.id
-        
-        
     }
     func hash(into hasher: inout Hasher) {
             hasher.combine(id)

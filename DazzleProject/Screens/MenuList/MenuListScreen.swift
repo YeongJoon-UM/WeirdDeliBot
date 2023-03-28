@@ -20,7 +20,7 @@ struct MenuListView: View {
                     if(viewModel.category == nil || viewModel.menu == nil){
                         if(viewModel.status == nil) {
                             ProgressView(label: {
-                                VStack{
+                                VStack(spacing : 0) {
                                     Text("로딩 중..")
                                         .font(.caption)
                                         .foregroundColor(.secondary)

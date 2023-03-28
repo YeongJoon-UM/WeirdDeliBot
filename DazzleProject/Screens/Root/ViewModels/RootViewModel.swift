@@ -51,8 +51,6 @@ class RootViewModel: ObservableObject {
         UserDefaults.standard.removeObject(forKey: "token")
     }
     
+    //TODO: getInfo root에 반환값 함수 만들기
 }
 
-struct User {
-    
-}

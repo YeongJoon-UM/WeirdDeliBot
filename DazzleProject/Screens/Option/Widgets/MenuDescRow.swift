@@ -18,7 +18,7 @@ struct MenuDescRow: View {
                     .frame(width: 150, height: 150)
                     .scaledToFit()
                 
-                VStack {
+                VStack(spacing: 0) {
                     Text(menu.name)
                         .font(.system(size: 19, weight: .bold))
                         .frame(maxWidth: .infinity, alignment: .topLeading)

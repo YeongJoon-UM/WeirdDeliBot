@@ -13,9 +13,9 @@ struct LogInScreen: View {
 
     var body: some View {
         NavigationView {
-            VStack {
+            VStack(spacing: 0) {
                 Spacer()
-                HStack {
+                HStack(spacing: 0) {
                     Image(systemName: "circle.fill") //임시 로고
                             .sizeCustom(30)
                             .padding([.trailing], 7)
@@ -24,7 +24,7 @@ struct LogInScreen: View {
                 }
 
 
-                HStack {
+                HStack(spacing: 0) {
                     if viewModel.isLogInFailed {
                         Image(systemName: "exclamationmark.triangle")
                         Text("회원이 아니시거나, 아이디 또는 비밀번호를 잘못 입력했습니다.")
@@ -59,7 +59,7 @@ struct LogInScreen: View {
                         .padding([.leading], 10)
                         .background(Capsule().fill(Color.base))
                 /*
-                HStack {
+                HStack(spacing: 0) {
                     ZStack {
                         Capsule()
                                 .frame(width: 24, height: 12)

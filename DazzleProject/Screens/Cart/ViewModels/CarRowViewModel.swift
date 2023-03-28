@@ -11,14 +11,14 @@ import Alamofire
 
 class CartRowViewModel: ObservableObject {
     @Published var menuResponse: [Menu] = []
-    @Published var optionResponse: [Option] = []
+    @Published var option: [Option] = []
     @Published var status: Bool? = nil
     @Published var menu: Menu?
-    @Published var option: Option?
+    @Published var isOptionShow: Bool = false
     
-    func getItemInfo(item: OrderItem, token: String) {
+    func getItemInfo(itemCode: String, token: String) {
         let header: HTTPHeaders = ["Authorization" : "Bearer \(token)"]
-        StoreRepository.getItemInfo(itemCode: item.id, token: header) { response in
+        StoreRepository.getItemInfo(itemCode: itemCode, token: header) { response in
             switch(response) {
             case .success(let value):
                 self.menuResponse = value.result
@@ -33,16 +33,30 @@ class CartRowViewModel: ObservableObject {
         }
     }
     
-
-    
-    func getOptionInfo(option: OrderItemOption, token: String) {
+    func getOptionInfo(itemCode: String, token: String) {
         let header: HTTPHeaders = ["Authorization" : "Bearer \(token)"]
-        StoreRepository.getOptionInfo(optionCode: option.id, token: header) { response in
+        StoreRepository.getOptionList(itemCode: itemCode, token: header) { response in
             switch(response) {
             case .success(let value):
-                self.optionResponse = value.result
+                self.option = value.result
                 if(self.status != false) { self.status = true }
-                self.setOptionInfo()
+                //self.setOptionInfo()
+                break
+            case .failure(let error) :
+                print(error)
+                self.status = false
+                break
+            }
+        }
+    }
+    
+    func getOptionList(itemCode: String ,token: String) {
+        let header: HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        StoreRepository.getOptionList(itemCode: itemCode, token: header) { response in
+            switch(response) {
+            case .success(let value):
+                self.option = value.result
+                if(self.status != false) { self.status = true }
                 break
             case .failure(let error) :
                 print(error)
@@ -57,7 +71,10 @@ class CartRowViewModel: ObservableObject {
     }
     
     func setOptionInfo() {
-        self.option = self.optionResponse[0]
+        //self.option.append(self.optionResponse[0])
     }
     
+    func isOptionShowToggle() {
+        self.isOptionShow.toggle()
+    }
 }

@@ -1,14 +1,14 @@
 //
-//  MenuDescRow.swift
+//  EditOptionRow.swift
 //  DazzleProject
 //
-//  Created by 정영준 on 2022/10/05.
+//  Created by 정영준 on 2023/03/28.
 //
 
 import SwiftUI
 
-struct OptionRow : View {
-    @EnvironmentObject var viewModel: OptionViewModel
+struct EditOptionRow : View {
+    @EnvironmentObject var viewModel: EditViewModel
     var option: Option
     
     var body: some View {
@@ -20,7 +20,7 @@ struct OptionRow : View {
                     .padding(.leading, 8)
         
                 HStack(spacing: 0) {
-                    if(viewModel.userOptionList[viewModel.userOptionList.firstIndex(where: { $0.id == option.id })!].amount != 0) {
+                    if(viewModel.tempOrderItem?.options[viewModel.tempOrderItem?.options.firstIndex(where: { $0.id == option.id })! ?? <#default value#>].amount != 0) {
                         Text("+\(option.price * viewModel.userOptionList[viewModel.userOptionList.firstIndex(where: { $0.id == option.id })!].amount)₩")
                             .font(.system(size: 16))
                     }
@@ -66,4 +66,6 @@ struct OptionRow : View {
         }
     }
 }
+
+
 

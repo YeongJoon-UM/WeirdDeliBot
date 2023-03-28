@@ -16,11 +16,9 @@ class OptionViewModel: ObservableObject {
     @Published var userOptionList: [OrderItemOption] = []
     @Published var userMenu: OrderItem?
     
-    
     func getSelectedMenu(menu: Menu) {
         self.selectedMenu = menu
     }
-    
     
     func getOptionList(token: String) {
         let header: HTTPHeaders = ["Authorization" : "Bearer \(token)"]
@@ -54,16 +52,6 @@ class OptionViewModel: ObservableObject {
         self.userMenu?.options = self.userOptionList
     }
     
-    func addOptionAmount(option: Option) {
-        let index = self.userOptionList.firstIndex(where: { $0.id == option.id })
-        self.userOptionList[index!].amount += 1
-    }
-    
-    func subOptionAmount(option: Option) {
-        let index = self.userOptionList.firstIndex(where: { $0.id == option.id })
-        self.userOptionList[index!].amount -= 1
-    }
-    
     func addItemAmount() {
         self.userMenu?.amount += 1
     }
@@ -74,8 +62,19 @@ class OptionViewModel: ObservableObject {
         }
     }
     
+    func addOptionAmount(option: Option) {
+        let index = self.userOptionList.firstIndex(where: { $0.id == option.id })
+        self.userOptionList[index!].amount += 1
+    }
+    
+    func subOptionAmount(option: Option) {
+        let index = self.userOptionList.firstIndex(where: { $0.id == option.id })
+        self.userOptionList[index!].amount -= 1
+    }
+
+    
     func totalPrice() -> Int {
-        let itemPrice: Int = (selectedMenu?.price ?? 0) * (userMenu?.amount ?? 0)
+        let itemPrice: Int = (selectedMenu?.price ?? 0)
         var optionPrice: Int = 0
         if(self.option != nil) {
             for option in self.option! {
@@ -83,6 +82,6 @@ class OptionViewModel: ObservableObject {
                 optionPrice += price
             }
         }
-        return itemPrice + optionPrice
+        return (itemPrice + optionPrice) * (userMenu?.amount ?? 0)
     }
 }
