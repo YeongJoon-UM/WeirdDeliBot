@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PopupView
 
 struct SideMenuScreen: View {
     @EnvironmentObject var viewModel: SideMenuViewModel
@@ -34,46 +35,62 @@ struct SideMenuScreen: View {
         HStack(alignment: .top) {
             ZStack(alignment: .top) {
                 Color.white
-                VStack(alignment: .leading) {
-                    HStack(spacing: 0) {
-                        Image(systemName: "person.fill")
-                            .foregroundColor(.gray)
-                            .imageScale(.large)
-                        Text("Profile")
-                            .foregroundColor(.gray)
-                            .font(.headline)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.top, 60)
-                    .padding(.bottom, 10)
-                    .padding(.leading, 10)
-                    Divider()
-                    NavigationLink(destination: CartScreen()) {
+                Group {
+                    VStack(alignment: .leading) {
                         HStack(spacing: 0) {
-                            Image(systemName: "cart.fill")
+                            Image(systemName: "person.fill")
                                 .foregroundColor(.gray)
                                 .imageScale(.large)
-                            Text("Cart")
+                            Text("Profile")
                                 .foregroundColor(.gray)
                                 .font(.headline)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.vertical, 10)
+                        .padding(.top, 60)
+                        .padding(.bottom, 10)
                         .padding(.leading, 10)
-                    }
-                    Divider()
-                    NavigationLink(destination: LocationScreen()) {
-                        HStack(spacing: 0) {
-                            Image(systemName: "map.fill")
-                                .foregroundColor(.gray)
-                                .imageScale(.large)
-                            Text("Location")
-                                .foregroundColor(.gray)
-                                .font(.headline)
+                        Divider()
+                        NavigationLink(destination: CartScreen()) {
+                            HStack(spacing: 0) {
+                                Image(systemName: "cart.fill")
+                                    .foregroundColor(.gray)
+                                    .imageScale(.large)
+                                Text("Cart")
+                                    .foregroundColor(.gray)
+                                    .font(.headline)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.vertical, 10)
+                            .padding(.leading, 10)
                         }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.vertical, 10)
-                        .padding(.leading, 10)
+                        Divider()
+                        NavigationLink(destination: CartScreen()) {
+                            HStack(spacing: 0) {
+                                Image(systemName: "clock.arrow.circlepath")
+                                    .foregroundColor(.gray)
+                                    .imageScale(.large)
+                                Text("Ordered")
+                                    .foregroundColor(.gray)
+                                    .font(.headline)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.vertical, 10)
+                            .padding(.leading, 10)
+                        }
+                        Divider()
+                        NavigationLink(destination: LocationScreen()) {
+                            HStack(spacing: 0) {
+                                Image(systemName: "map.fill")
+                                    .foregroundColor(.gray)
+                                    .imageScale(.large)
+                                Text("Location")
+                                    .foregroundColor(.gray)
+                                    .font(.headline)
+                            }
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.vertical, 10)
+                            .padding(.leading, 10)
+                        }
                     }
                     Divider()
                     Spacer()

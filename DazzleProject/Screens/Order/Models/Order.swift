@@ -8,18 +8,19 @@
 import Foundation
 
 struct Order: Codable {
-    var id: String
+    var account: String
     var address: String
     var addressDesc: String
     var phone: String
     var orderReq: String
-    var writeNm: String
+    var name: String
     var storeCode: String
-    var orderList: OrderList
+    var orderList: [OrderItem]
     
     enum CodingKeys: String, CodingKey {
-        case id = "writeID"
-        case address, addressDesc, phone, orderReq, writeNm, storeCode, orderList
+        case account = "writeId"
+        case name = "writeNm"
+        case address, addressDesc, phone, orderReq, storeCode, orderList
     }
 }
 

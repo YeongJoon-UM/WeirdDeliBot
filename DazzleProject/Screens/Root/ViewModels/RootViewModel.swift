@@ -11,9 +11,9 @@ import Combine
 import Alamofire
 
 class RootViewModel: ObservableObject {
-    @Published var user: User = User()          // 유저 정보
+    //@Published var user: User = User()          // 유저 정보
     @Published var token: Token? = nil           // 토큰
-
+    @Published var user: User?
     
     init() {
         //loadToken()
@@ -22,6 +22,7 @@ class RootViewModel: ObservableObject {
     // 토큰 받아오기
     func setToken(token: Token, isSave: Bool) {
         self.token = token
+        loadUser()
         /*
         if(isSave) {
             UserDefaults.standard.set(token.token, forKey: "token")
@@ -43,7 +44,17 @@ class RootViewModel: ObservableObject {
     
     // 유저 정보 불러오기
     func loadUser() {
-        
+        UserRepository.getUserInfo(token: self.token?.token ?? "") { result in
+            switch(result) {
+            case .success(let value):
+                self.user = value.result
+                //print(value)
+                break
+            case .failure(let error):
+                print(error)
+                break
+            }
+        }
     }
     
     func logOut() {

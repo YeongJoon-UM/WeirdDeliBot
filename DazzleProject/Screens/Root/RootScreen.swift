@@ -17,7 +17,7 @@ struct RootScreen: View {
             .environmentObject(CartViewModel())
             .environmentObject(SideMenuViewModel())
          */
-        if(viewModel.token != nil) {
+        if(viewModel.token != nil && viewModel.user?.name != nil) {
             MenuListView()
                 .environmentObject(viewModel)
                 .environmentObject(CartViewModel())

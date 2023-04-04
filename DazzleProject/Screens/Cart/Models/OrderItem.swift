@@ -7,9 +7,6 @@
 
 import Foundation
 
-struct OrderList: Codable{
-    var orderList: [OrderItem]
-}
 
 struct OrderItem: Codable, Hashable {
     static func == (lhs: OrderItem, rhs: OrderItem) -> Bool {

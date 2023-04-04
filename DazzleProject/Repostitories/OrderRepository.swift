@@ -12,9 +12,10 @@ class OrderRepository {
     static let url: String = "https://delibot.kro.kr"
     static let storeCode: String = "STR-000000000001"
     
-    static func sendOrderList(order: Order,token: HTTPHeaders, completion: @escaping (Result<CatResponse, AFError>) -> Void) {
-        AF.request("\(url)/order/addOrderList", method: .put, parameters: order, encoder: .json(), headers: token)
-                .responseDecodable(of: CatResponse.self) { response in
+    static func sendOrder(order: Order, token: String, completion: @escaping (Result<OrderResponse, AFError>) -> Void) {
+        let header: HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        AF.request("\(url)/order/addOrderList", method: .put, parameters: order, encoder: .json(), headers: header)
+                .responseDecodable(of: OrderResponse.self) { response in
                     switch (response.result) {
                     case .success(let value):
                         completion(.success(value))

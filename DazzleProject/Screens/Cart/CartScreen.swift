@@ -13,7 +13,6 @@ struct CartScreen: View {
     
     var body: some View {
         ZStack {
-            
             if !viewModel.userOrderList.isEmpty {
                 VStack(spacing: 0) {
                     //TODO: 수정 버튼 추가.
@@ -38,9 +37,7 @@ struct CartScreen: View {
                         .padding(.trailing, 16)
                     
                     //TODO: NavigationLink로 변경. OrderScreen()
-                    Button(action: {
-                        self.presentation.wrappedValue.dismiss()
-                    }) {
+                    NavigationLink(destination: OrderScreen()) {
                         Text("주문하기")
                             .frame(width: 227, height: 50)
                             .font(Font.system(size: 20))

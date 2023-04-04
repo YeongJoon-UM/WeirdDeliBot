@@ -23,4 +23,20 @@ class UserRepository {
                     }
                 }
     }
+    
+    static func getUserInfo(token: String, completion: @escaping (Result<UserResponse, AFError>) -> Void) {
+        let header: HTTPHeaders = ["Authorization" : "Bearer \(token)"]
+        AF.request("\(url)/user/getUserInfo", method: .post, headers: header)
+                .responseDecodable(of: UserResponse.self) { response in
+                    switch (response.result) {
+                    case .success(let value):
+                        completion(.success(value))
+                        break
+                    case .failure(let error):
+                        completion(.failure(error))
+                        break
+                    }
+                }
+    }
+    
 }

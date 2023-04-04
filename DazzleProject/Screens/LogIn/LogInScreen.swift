@@ -27,7 +27,8 @@ struct LogInScreen: View {
                 HStack(spacing: 0) {
                     if viewModel.isLogInFailed {
                         Image(systemName: "exclamationmark.triangle")
-                        Text("회원이 아니시거나, 아이디 또는 비밀번호를 잘못 입력했습니다.")
+                            .padding(.trailing, 8)
+                        Text("회원이 아니시거나,\n아이디 또는 비밀번호를 잘못 입력했습니다.")
                     }
                 }
                         .size11Regular()
@@ -40,23 +41,25 @@ struct LogInScreen: View {
                 Text("로그인")
                         .size14Regular()
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(EdgeInsets(top: 24, leading: 82, bottom: 0, trailing: 0))
+                        .padding(EdgeInsets(top: 24, leading: 82, bottom: 8, trailing: 0))
 
                 TextField("아이디", text: $viewModel.account)
                         .autocorrectionDisabled(true)
                         .autocapitalization(.none)
                         .frame(width: 227, height: 30)
                         .size12Regular()
-                        .padding([.leading], 10)
+                        .padding(.leading, 10)
                         .background(Capsule().fill(Color.base))
-
+                
+                HStack(spacing: 0){}
+                    .padding(.bottom, 8)
 
                 SecureField("비밀번호", text: $viewModel.password)
                         .autocorrectionDisabled(true)
                         .autocapitalization(.none)
                         .frame(width: 227, height: 30)
                         .size12Regular()
-                        .padding([.leading], 10)
+                        .padding(.leading, 10)
                         .background(Capsule().fill(Color.base))
                 /*
                 HStack(spacing: 0) {

@@ -12,6 +12,8 @@ struct EditOptionRow : View {
     var option: Option
     
     var body: some View {
+        EmptyView()
+        /*
         VStack(spacing: 0) {
             HStack(spacing: 0) {
                 Text("\(option.name)")
@@ -63,7 +65,7 @@ struct EditOptionRow : View {
                 .frame(width: 20)
                 .padding(.trailing, 8)
             }
-        }
+        }*/
     }
 }
 

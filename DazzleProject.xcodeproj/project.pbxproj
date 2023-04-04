@@ -32,6 +32,12 @@
 		1B47B7F328F6B26F007E929B /* ToolBarSideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B47B7F228F6B26F007E929B /* ToolBarSideMenu.swift */; };
 		1B7EDEDB295953A600DDBA82 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1B7EDEDA295953A600DDBA82 /* Alamofire */; };
 		1B97BD412962AE880089DA67 /* CartItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B97BD402962AE880089DA67 /* CartItemRow.swift */; };
+		1BD81C4729DA51EB00F8AFD4 /* OrderScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD81C4629DA51EB00F8AFD4 /* OrderScreen.swift */; };
+		1BD81C4B29DA592400F8AFD4 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD81C4A29DA592400F8AFD4 /* OrderViewModel.swift */; };
+		1BD81C4E29DA693100F8AFD4 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 1BD81C4D29DA693100F8AFD4 /* PopupView */; };
+		1BD81C5129DA6B7D00F8AFD4 /* TraceScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD81C5029DA6B7D00F8AFD4 /* TraceScreen.swift */; };
+		1BD81FE829DBAE7000F8AFD4 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD81FE729DBAE7000F8AFD4 /* UserResponse.swift */; };
+		1BD81FEA29DBE64000F8AFD4 /* OrderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD81FE929DBE64000F8AFD4 /* OrderResponse.swift */; };
 		1BEBF0A129C9D984001369F0 /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEBF0A029C9D984001369F0 /* RootViewModel.swift */; };
 		1BEBF0A529C9D9BE001369F0 /* LogInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEBF0A429C9D9BE001369F0 /* LogInViewModel.swift */; };
 		1BEBF0A729C9D9D4001369F0 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEBF0A629C9D9D4001369F0 /* Token.swift */; };
@@ -107,6 +113,11 @@
 		1B47B7F228F6B26F007E929B /* ToolBarSideMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarSideMenu.swift; sourceTree = "<group>"; };
 		1B5842D6297283EE0014DAC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1B97BD402962AE880089DA67 /* CartItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemRow.swift; sourceTree = "<group>"; };
+		1BD81C4629DA51EB00F8AFD4 /* OrderScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderScreen.swift; sourceTree = "<group>"; };
+		1BD81C4A29DA592400F8AFD4 /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
+		1BD81C5029DA6B7D00F8AFD4 /* TraceScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceScreen.swift; sourceTree = "<group>"; };
+		1BD81FE729DBAE7000F8AFD4 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
+		1BD81FE929DBE64000F8AFD4 /* OrderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderResponse.swift; sourceTree = "<group>"; };
 		1BEBF0A029C9D984001369F0 /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		1BEBF0A429C9D9BE001369F0 /* LogInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewModel.swift; sourceTree = "<group>"; };
 		1BEBF0A629C9D9D4001369F0 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
@@ -140,6 +151,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BD81C4E29DA693100F8AFD4 /* PopupView in Frameworks */,
 				1B7EDEDB295953A600DDBA82 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -236,6 +248,8 @@
 			children = (
 				1B47B7F42906110B007E929B /* Location */,
 				1B47B7EB28F6B028007E929B /* SideMenu */,
+				1BD81C4F29DA6B1500F8AFD4 /* Trace */,
+				1BD81C4529DA501F00F8AFD4 /* Order */,
 				1BEBF0D029D17B10001369F0 /* Edit */,
 				1B47B7B628ED00A1007E929B /* Cart */,
 				1B47B7B528ED008C007E929B /* Option */,
@@ -401,7 +415,6 @@
 			isa = PBXGroup;
 			children = (
 				1BEBF0B029C9DBCB001369F0 /* OrderItem.swift */,
-				1BEBF0B229C9DBDF001369F0 /* Order.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -413,6 +426,41 @@
 				1BEBF0CC29D11757001369F0 /* CartOptionRow.swift */,
 			);
 			path = Widgets;
+			sourceTree = "<group>";
+		};
+		1BD81C4529DA501F00F8AFD4 /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				1BD81C4929DA529000F8AFD4 /* Models */,
+				1BD81C4829DA528900F8AFD4 /* ViewModels */,
+				1BD81C4629DA51EB00F8AFD4 /* OrderScreen.swift */,
+			);
+			path = Order;
+			sourceTree = "<group>";
+		};
+		1BD81C4829DA528900F8AFD4 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1BD81C4A29DA592400F8AFD4 /* OrderViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		1BD81C4929DA529000F8AFD4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1BEBF0B229C9DBDF001369F0 /* Order.swift */,
+				1BD81FE929DBE64000F8AFD4 /* OrderResponse.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1BD81C4F29DA6B1500F8AFD4 /* Trace */ = {
+			isa = PBXGroup;
+			children = (
+				1BD81C5029DA6B7D00F8AFD4 /* TraceScreen.swift */,
+			);
+			path = Trace;
 			sourceTree = "<group>";
 		};
 		1BEBF09F29C9D979001369F0 /* ViewModels */ = {
@@ -436,6 +484,7 @@
 			children = (
 				1BEBF0A629C9D9D4001369F0 /* Token.swift */,
 				1BEBF0A829C9D9F8001369F0 /* LogInRequest.swift */,
+				1BD81FE729DBAE7000F8AFD4 /* UserResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -528,6 +577,7 @@
 			name = DazzleProject;
 			packageProductDependencies = (
 				1B7EDEDA295953A600DDBA82 /* Alamofire */,
+				1BD81C4D29DA693100F8AFD4 /* PopupView */,
 			);
 			productName = DazzleProject;
 			productReference = 1B47B77428E562C7007E929B /* DazzleProject.app */;
@@ -603,6 +653,7 @@
 			mainGroup = 1B47B76B28E562C7007E929B;
 			packageReferences = (
 				1B7EDED9295953A600DDBA82 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				1BD81C4C29DA693100F8AFD4 /* XCRemoteSwiftPackageReference "PopupView" */,
 			);
 			productRefGroup = 1B47B77528E562C7007E929B /* Products */;
 			projectDirPath = "";
@@ -651,6 +702,7 @@
 				1B47B7BE28ED0285007E929B /* CartViewModel.swift in Sources */,
 				1B463C5D2959617500B9FE80 /* OptionRow.swift in Sources */,
 				1B47B7DB28ED5525007E929B /* OptionScreen.swift in Sources */,
+				1BD81FEA29DBE64000F8AFD4 /* OrderResponse.swift in Sources */,
 				1BEBF0B329C9DBDF001369F0 /* Order.swift in Sources */,
 				1BEBF0AD29C9DABA001369F0 /* Category.swift in Sources */,
 				1B47B7D928ED5466007E929B /* MenuViewModel.swift in Sources */,
@@ -658,6 +710,7 @@
 				1B47B7B928ED00E4007E929B /* MenuListScreen.swift in Sources */,
 				1B47B77A28E562C7007E929B /* RootScreen.swift in Sources */,
 				1BEBF0CB29D03E75001369F0 /* OptionCode.swift in Sources */,
+				1BD81C4729DA51EB00F8AFD4 /* OrderScreen.swift in Sources */,
 				1BFAC89B2910EDC800188F82 /* LocationScreen.swift in Sources */,
 				1B47B7D428ED0F4A007E929B /* MenuRow.swift in Sources */,
 				1BEBF0BF29C9DE77001369F0 /* String+Regex.swift in Sources */,
@@ -672,6 +725,7 @@
 				1BEBF0B929C9DC80001369F0 /* StoreRepository.swift in Sources */,
 				1B47B7F128F6B056007E929B /* SideMenuViewModel.swift in Sources */,
 				1B47B7F328F6B26F007E929B /* ToolBarSideMenu.swift in Sources */,
+				1BD81C5129DA6B7D00F8AFD4 /* TraceScreen.swift in Sources */,
 				1B47B7C128ED052A007E929B /* CartScreen.swift in Sources */,
 				1BFAC8A52910EE8C00188F82 /* LocationViewModel.swift in Sources */,
 				1BEBF0B729C9DC6D001369F0 /* UserRepository.swift in Sources */,
@@ -680,8 +734,10 @@
 				1B47B77828E562C7007E929B /* DazzleProjectApp.swift in Sources */,
 				1BFAC8A22910EE4300188F82 /* UserLocation.swift in Sources */,
 				1BEBF0A929C9D9F8001369F0 /* LogInRequest.swift in Sources */,
+				1BD81C4B29DA592400F8AFD4 /* OrderViewModel.swift in Sources */,
 				1B47B7BB28ED025E007E929B /* ToolBarCart.swift in Sources */,
 				1BEBF0B129C9DBCB001369F0 /* OrderItem.swift in Sources */,
+				1BD81FE829DBAE7000F8AFD4 /* UserResponse.swift in Sources */,
 				1B47B7E128ED5E53007E929B /* OptionViewModel.swift in Sources */,
 				1BEBF0AB29C9DA72001369F0 /* Menu.swift in Sources */,
 				1B47B7D128ED0A1E007E929B /* ToolBarBackButton.swift in Sources */,
@@ -1056,6 +1112,14 @@
 				kind = branch;
 			};
 		};
+		1BD81C4C29DA693100F8AFD4 /* XCRemoteSwiftPackageReference "PopupView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/PopupView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1063,6 +1127,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1B7EDED9295953A600DDBA82 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		1BD81C4D29DA693100F8AFD4 /* PopupView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1BD81C4C29DA693100F8AFD4 /* XCRemoteSwiftPackageReference "PopupView" */;
+			productName = PopupView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
