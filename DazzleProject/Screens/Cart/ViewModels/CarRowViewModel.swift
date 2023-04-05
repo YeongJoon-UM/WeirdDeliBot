@@ -15,9 +15,8 @@ class CartRowViewModel: ObservableObject {
     @Published var menu: Menu?
     @Published var isOptionShow: Bool = false
     
-    func getItemInfo(itemCode: String, token: String) {
-        let header: HTTPHeaders = ["Authorization" : "Bearer \(token)"]
-        StoreRepository.getItemInfo(itemCode: itemCode, token: header) { response in
+    func getItemInfo(itemCode: String) {
+        StoreRepository.getItemInfo(itemCode: itemCode) { response in
             switch(response) {
             case .success(let value):
                 self.menuResponse = value.result
@@ -32,9 +31,8 @@ class CartRowViewModel: ObservableObject {
         }
     }
     
-    func getOptionInfo(itemCode: String, token: String) {
-        let header: HTTPHeaders = ["Authorization" : "Bearer \(token)"]
-        StoreRepository.getOptionList(itemCode: itemCode, token: header) { response in
+    func getOptionInfo(itemCode: String) {
+        StoreRepository.getOptionList(itemCode: itemCode) { response in
             switch(response) {
             case .success(let value):
                 self.option = value.result
@@ -49,9 +47,8 @@ class CartRowViewModel: ObservableObject {
         }
     }
     
-    func getOptionList(itemCode: String ,token: String) {
-        let header: HTTPHeaders = ["Authorization" : "Bearer \(token)"]
-        StoreRepository.getOptionList(itemCode: itemCode, token: header) { response in
+    func getOptionList(itemCode: String) {
+        StoreRepository.getOptionList(itemCode: itemCode) { response in
             switch(response) {
             case .success(let value):
                 self.option = value.result

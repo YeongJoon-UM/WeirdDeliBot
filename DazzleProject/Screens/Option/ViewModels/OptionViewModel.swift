@@ -20,9 +20,8 @@ class OptionViewModel: ObservableObject {
         self.selectedMenu = menu
     }
     
-    func getOptionList(token: String) {
-        let header: HTTPHeaders = ["Authorization" : "Bearer \(token)"]
-        StoreRepository.getOptionList(itemCode: self.selectedMenu!.id, token: header) { response in
+    func getOptionList() {
+        StoreRepository.getOptionList(itemCode: self.selectedMenu!.id) { response in
             switch(response) {
             case .success(let value):
                 self.option = value.result

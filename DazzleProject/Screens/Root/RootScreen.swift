@@ -21,12 +21,11 @@ struct RootScreen: View {
             MenuListView()
                 .environmentObject(viewModel)
                 .environmentObject(CartViewModel())
-                .environmentObject(SideMenuViewModel())
+                
         } else {
             LogInScreen()
                 .environmentObject(viewModel)
-                .environmentObject(CartViewModel())
-                .environmentObject(SideMenuViewModel())
+               
         }
     }
     

@@ -48,10 +48,10 @@ class OrderViewModel: ObservableObject {
         self.order?.orderReq = self.newRequest
     }
     
-    func sendOrder(token: String) {
-        removeEmptyOmption()
+    func sendOrder() {
+        removeEmptyOption()
         
-        OrderRepository.sendOrder(order: self.order!, token: token) { response in
+        OrderRepository.sendOrder(order: self.order!) { response in
             switch(response) {
             case .success(let value):
                 self.orderCode = value.result
@@ -70,7 +70,7 @@ class OrderViewModel: ObservableObject {
     }
  
     
-    func removeEmptyOmption() {
+    func removeEmptyOption() {
         if !(self.order?.orderList.isEmpty ?? false) {
             self.order?.orderList[(self.order!.orderList.endIndex) - 1].options.removeAll { option in
                 option.amount == 0

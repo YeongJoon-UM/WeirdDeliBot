@@ -7,18 +7,13 @@
 
 import SwiftUI
 
-struct ToolBarSideMenu: ToolbarContent {
-    @EnvironmentObject var sideBarViewModel: SideMenuViewModel
-    
+struct ToolBarInformation: ToolbarContent {
     var body: some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
-            Button(action : {
-                sideBarViewModel.toggleIsSideMenu()
-            }){
-                Image(systemName: "line.3.horizontal")
+            NavigationLink(destination: InfoScreen()) {
+                Image(systemName: "person.fill")
                     .foregroundColor(.black)
             }
-            
         }
     }
 }

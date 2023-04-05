@@ -18,9 +18,8 @@ class EditViewModel: ObservableObject {
         self.tempOrderItem = orderItem
     }
     
-    func getItemInfo(token: String) {
-        let header: HTTPHeaders = ["Authorization" : "Bearer \(token)"]
-        StoreRepository.getItemInfo(itemCode: self.tempOrderItem?.id ?? "", token: header) { response in
+    func getItemInfo() {
+        StoreRepository.getItemInfo(itemCode: self.tempOrderItem?.id ?? "") { response in
             switch(response) {
             case .success(let value):
                 self.menu = value.result
@@ -34,9 +33,8 @@ class EditViewModel: ObservableObject {
         }
     }
     
-    func getOptionList(token: String) {
-        let header: HTTPHeaders = ["Authorization" : "Bearer \(token)"]
-        StoreRepository.getOptionList(itemCode: self.tempOrderItem?.id ?? "", token: header) { response in
+    func getOptionList() {
+        StoreRepository.getOptionList(itemCode: self.tempOrderItem?.id ?? "") { response in
             switch(response) {
             case .success(let value):
                 self.option = value.result
@@ -51,7 +49,6 @@ class EditViewModel: ObservableObject {
     }
     
     func totalPrice() -> Int {
-
         let itemPrice: Int = self.menu?[0].price ?? 0
         var optionPrice: Int = 0
         if(self.option != nil) {

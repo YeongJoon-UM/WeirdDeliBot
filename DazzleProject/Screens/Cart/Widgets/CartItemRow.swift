@@ -25,8 +25,8 @@ struct CartItemRow: View {
                     }
                 }
                 .onAppear() {
-                    viewModel.getItemInfo(itemCode: order.id, token: rootViewModel.token?.token ?? "")
-                    viewModel.getOptionInfo(itemCode: order.id, token: rootViewModel.token?.token ?? "")
+                    viewModel.getItemInfo(itemCode: order.id)
+                    viewModel.getOptionInfo(itemCode: order.id)
                 }
                 .progressViewStyle(CircularProgressViewStyle())
             } else if viewModel.status == false { //로딩 실패 시 실패 메세지 출력.

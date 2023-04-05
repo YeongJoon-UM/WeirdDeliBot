@@ -22,7 +22,10 @@ class RootViewModel: ObservableObject {
     // 토큰 받아오기
     func setToken(token: Token, isSave: Bool) {
         self.token = token
+        UserDefaults.standard.set(token.token, forKey: "token")
         loadUser()
+        print(token)
+        
         /*
         if(isSave) {
             UserDefaults.standard.set(token.token, forKey: "token")
@@ -44,7 +47,7 @@ class RootViewModel: ObservableObject {
     
     // 유저 정보 불러오기
     func loadUser() {
-        UserRepository.getUserInfo(token: self.token?.token ?? "") { result in
+        UserRepository.getUserInfo() { result in
             switch(result) {
             case .success(let value):
                 self.user = value.result

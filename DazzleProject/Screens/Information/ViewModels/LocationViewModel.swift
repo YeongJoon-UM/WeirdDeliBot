@@ -9,13 +9,13 @@ import Foundation
 import CoreLocation
 
 class LocationViewModel: ObservableObject {
-    let locationDazzle = UserLocation(id: UUID(), name: "Dazzle", locate: CLLocationCoordinate2D(latitude: 36.7632, longitude: 127.2812))
-    let location2Gong = UserLocation(id: UUID(), name: "2공학관", locate: CLLocationCoordinate2D(latitude: 36.7666, longitude: 127.2819))
-    let locationDamhun = UserLocation(id: UUID(), name: "담헌실학관", locate: CLLocationCoordinate2D(latitude: 36.7659, longitude: 127.2825))
-    let locationDomitory = UserLocation(id: UUID(), name: "기숙사동", locate: CLLocationCoordinate2D(latitude: 36.7618, longitude: 127.2835))
-    let locationBot = UserLocation(id: UUID(), name: "BOT", locate: CLLocationCoordinate2D(latitude: 0, longitude: 0))
+    let locationDazzle = Location(id: UUID(), name: "Dazzle", locate: CLLocationCoordinate2D(latitude: 36.7632, longitude: 127.2812))
+    let location2Gong = Location(id: UUID(), name: "2공학관", locate: CLLocationCoordinate2D(latitude: 36.7666, longitude: 127.2819))
+    let locationDamhun = Location(id: UUID(), name: "담헌실학관", locate: CLLocationCoordinate2D(latitude: 36.7659, longitude: 127.2825))
+    let locationDomitory = Location(id: UUID(), name: "기숙사동", locate: CLLocationCoordinate2D(latitude: 36.7618, longitude: 127.2835))
+    let locationBot = Location(id: UUID(), name: "BOT", locate: CLLocationCoordinate2D(latitude: 0, longitude: 0))
     
-    var locations = [UserLocation]()
+    var locations = [Location]()
     
     func setLocationDazzle() {
         locations.append(locationDazzle)

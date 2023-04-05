@@ -9,9 +9,8 @@ import Foundation
 import Alamofire
 
 class UserRepository {
-    static let url: String = "https://delibot.kro.kr"
     static func logIn(account: String, password: String, completion: @escaping (Result<Token, AFError>) -> Void) {
-        AF.request("\(url)/user/login", method: .post, parameters: LogInRequest(account: account, password: password), encoder: .json())
+        ApiFactory.getApi(url: "user/login", type: .post, parameters: LogInRequest(account: account, password: password))
                 .responseDecodable(of: Token.self) { response in
                     switch (response.result) {
                     case .success(let value):
@@ -24,9 +23,8 @@ class UserRepository {
                 }
     }
     
-    static func getUserInfo(token: String, completion: @escaping (Result<UserResponse, AFError>) -> Void) {
-        let header: HTTPHeaders = ["Authorization" : "Bearer \(token)"]
-        AF.request("\(url)/user/getUserInfo", method: .post, headers: header)
+    static func getUserInfo(completion: @escaping (Result<UserResponse, AFError>) -> Void) {
+        ApiFactory.getApi(url: "user/getUserInfo", type: .post)
                 .responseDecodable(of: UserResponse.self) { response in
                     switch (response.result) {
                     case .success(let value):
@@ -38,5 +36,4 @@ class UserRepository {
                     }
                 }
     }
-    
 }

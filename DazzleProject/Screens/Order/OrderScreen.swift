@@ -103,7 +103,7 @@ struct OrderScreen: View {
                 
                 Button(action: {
                     //viewModel.setOrderInfo(user: rootViewModel.user, orderList: cartViewModel.userOrderList)
-                    viewModel.sendOrder(token: rootViewModel.token?.token ?? "")}) {
+                    viewModel.sendOrder()}) {
                         Text("결제하기")
                             .frame(width: 227, height: 50)
                             .font(Font.system(size: 20))
@@ -115,7 +115,6 @@ struct OrderScreen: View {
         }
         .onAppear() {
             viewModel.setOrderInfo(user: rootViewModel.user, orderList: cartViewModel.userOrderList)
-            //TODO: 이거 문제인듯
             //print(viewModel.order?.account)
         }
         .navigationBarTitle(Text("Order"))

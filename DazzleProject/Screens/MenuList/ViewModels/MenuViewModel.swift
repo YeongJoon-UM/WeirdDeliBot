@@ -15,8 +15,7 @@ class MenuViewModel: ObservableObject {
     @Published var currentTab: Int = 0
     
     func getCatList(token: String) {
-        let header: HTTPHeaders = ["Authorization" : "Bearer \(token)"]
-        StoreRepository.getCatList(token: header) { response in
+        StoreRepository.getCatList() { response in
             switch(response) {
             case .success(let value):
                 self.category = value.result
@@ -31,8 +30,7 @@ class MenuViewModel: ObservableObject {
     }
     
     func getItemList(token: String) {
-        let header: HTTPHeaders = ["Authorization" : "Bearer \(token)"]
-        StoreRepository.getItemList(token: header) { response in
+        StoreRepository.getItemList() { response in
             switch(response) {
             case .success(let value):
                 self.menu = value.result

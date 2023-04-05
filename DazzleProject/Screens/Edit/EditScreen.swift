@@ -110,8 +110,8 @@ struct EditScreen: View {
         }
         .onAppear() {
             viewModel.setOrderItem(orderItem: cartViewModel.userOrderList[index])
-            viewModel.getItemInfo(token: rootViewModel.token?.token ?? "")
-            viewModel.getOptionList(token: rootViewModel.token?.token ?? "")
+            viewModel.getItemInfo()
+            viewModel.getOptionList()
         }
         .navigationBarTitle(Text("Edit"))
         .navigationBarTitleDisplayMode(.inline)
