@@ -17,6 +17,7 @@ struct MenuDescRow: View {
                     .resizable()
                     .frame(width: 150, height: 150)
                     .scaledToFit()
+                    .padding(.trailing, 8)
                 
                 VStack(spacing: 0) {
                     Text(menu.name)

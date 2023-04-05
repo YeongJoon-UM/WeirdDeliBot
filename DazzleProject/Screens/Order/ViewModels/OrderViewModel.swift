@@ -62,11 +62,6 @@ class OrderViewModel: ObservableObject {
                 break
             }
         }
-        /*
-        self.order?.orderList[(self.order?.orderList.endIndex) - 1].options.removeAll { option in
-            option.amount == 0
-        }
-         */ //TODO: option.amount == 0 인 요소 다 지우기
     }
  
     
@@ -76,16 +71,5 @@ class OrderViewModel: ObservableObject {
                 option.amount == 0
             }
         }
-        /*
-        if !(self.order?.orderList.isEmpty ?? false) {
-            for order in self.order!.orderList {
-                if !(order.options.isEmpty) {
-                    for option in order.options {
-                        option.amount
-                    }
-                }
-            }
-        }
-         */
     }
 }

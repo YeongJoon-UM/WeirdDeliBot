@@ -14,8 +14,6 @@ struct CartScreen: View {
     var body: some View {
         VStack(spacing: 0) {
             if !viewModel.userOrderList.isEmpty {
-                
-                
                 List {
                     ForEach(Array(zip(viewModel.userOrderList.indices, viewModel.userOrderList)), id: \.0) { index, order in
                         //ForEach(viewModel.userOrderList, id: \.self) { order in

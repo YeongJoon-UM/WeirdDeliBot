@@ -28,9 +28,10 @@ struct OrderScreen: View {
             } else {
                 Text("배달정보")
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(.system(size: 19))
+                    .sizeCustom(30, .bold)
                     .padding(.leading, 16)
-                    .padding(.top, 0)
+                    .padding(.bottom, 16)
+                
                 Text("\(viewModel.order?.address ?? "")")
                 
                 TextField("\(viewModel.order?.addressDesc ?? "")", text: $viewModel.newAddress)
