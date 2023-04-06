@@ -19,11 +19,11 @@ struct MenuRow: View {
                     .scaledToFit()
                 VStack(spacing: 0) {
                     Text(menu.name)
-                        .size18Regular()
+                        .font(Font.system(size: 18))
                         .frame(maxWidth: .infinity, alignment: .trailing)
                         .padding(.vertical, 10)
                     Text("\(menu.price)₩")
-                        .size18Regular()
+                        .font(Font.system(size: 18))
                         .frame(maxWidth: .infinity, alignment: .trailing)
                         .padding(.vertical, 10)
                 }
