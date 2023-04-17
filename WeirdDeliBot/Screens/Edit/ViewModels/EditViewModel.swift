@@ -8,7 +8,13 @@
 import Foundation
 import Alamofire
 
-class EditViewModel: ObservableObject {
+class EditViewModel: ObservableObject, OptionProtocol {
+    //@Published var isOptionSelected: Bool = false
+    
+    
+    
+    
+
     @Published var tempOrderItem: OrderItem?
     @Published var menu: [Menu]? = nil
     @Published var option: [Option]? = nil
@@ -47,6 +53,26 @@ class EditViewModel: ObservableObject {
             }
         }
     }
+    
+    func isOptionSelected(option: Option) -> Bool {
+        let index = self.tempOrderItem?.options.firstIndex(where: { $0.id == option.id })
+        return self.tempOrderItem?.options[index!].amount == 1
+    }
+    
+    
+    
+    func addOptionAmount(option: Option) {
+        let index = self.tempOrderItem?.options.firstIndex(where: { $0.id == option.id })
+        self.tempOrderItem?.options[index!].amount += 1
+        //self.isOptionSelected.toggle()
+    }
+    
+    func subOptionAmount(option: Option) {
+        let index = self.tempOrderItem?.options.firstIndex(where: { $0.id == option.id })
+        self.tempOrderItem?.options[index!].amount -= 1
+        //self.isOptionSelected.toggle()
+    }
+
     
     func totalPrice() -> Int {
         let itemPrice: Int = self.menu?[0].price ?? 0

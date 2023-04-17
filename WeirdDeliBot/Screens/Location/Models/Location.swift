@@ -6,8 +6,6 @@
 //
 
 import Foundation
-
-import Foundation
 import CoreLocation
 
 struct Location: Identifiable {
@@ -15,3 +13,4 @@ struct Location: Identifiable {
     var name: String
     var locate: CLLocationCoordinate2D
 }
+

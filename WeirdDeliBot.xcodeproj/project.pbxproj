@@ -30,6 +30,8 @@
 		1B47B7F328F6B26F007E929B /* ToolBarInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B47B7F228F6B26F007E929B /* ToolBarInformation.swift */; };
 		1B7EDEDB295953A600DDBA82 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1B7EDEDA295953A600DDBA82 /* Alamofire */; };
 		1B97BD412962AE880089DA67 /* CartItemRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B97BD402962AE880089DA67 /* CartItemRow.swift */; };
+		1BA8505E29E931FC00A80737 /* ImageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA8505D29E931FC00A80737 /* ImageStyle.swift */; };
+		1BA8506329E9367A00A80737 /* OptionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA8506229E9367A00A80737 /* OptionProtocol.swift */; };
 		1BD81C4729DA51EB00F8AFD4 /* OrderScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD81C4629DA51EB00F8AFD4 /* OrderScreen.swift */; };
 		1BD81C4B29DA592400F8AFD4 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD81C4A29DA592400F8AFD4 /* OrderViewModel.swift */; };
 		1BD81C4E29DA693100F8AFD4 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 1BD81C4D29DA693100F8AFD4 /* PopupView */; };
@@ -66,7 +68,6 @@
 		1BEBF0CD29D11757001369F0 /* CartOptionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEBF0CC29D11757001369F0 /* CartOptionRow.swift */; };
 		1BEBF0CF29D132DF001369F0 /* EditScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEBF0CE29D132DF001369F0 /* EditScreen.swift */; };
 		1BEBF0D429D17B34001369F0 /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEBF0D329D17B34001369F0 /* EditViewModel.swift */; };
-		1BEBF0D729D27B60001369F0 /* EditOptionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEBF0D629D27B60001369F0 /* EditOptionRow.swift */; };
 		1BFAC8A52910EE8C00188F82 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFAC8A42910EE8C00188F82 /* LocationViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -115,6 +116,8 @@
 		1B47B7F228F6B26F007E929B /* ToolBarInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarInformation.swift; sourceTree = "<group>"; };
 		1B5842D6297283EE0014DAC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1B97BD402962AE880089DA67 /* CartItemRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemRow.swift; sourceTree = "<group>"; };
+		1BA8505D29E931FC00A80737 /* ImageStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStyle.swift; sourceTree = "<group>"; };
+		1BA8506229E9367A00A80737 /* OptionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionProtocol.swift; sourceTree = "<group>"; };
 		1BD81C4629DA51EB00F8AFD4 /* OrderScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderScreen.swift; sourceTree = "<group>"; };
 		1BD81C4A29DA592400F8AFD4 /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		1BD81FE729DBAE7000F8AFD4 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
@@ -151,7 +154,6 @@
 		1BEBF0CC29D11757001369F0 /* CartOptionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartOptionRow.swift; sourceTree = "<group>"; };
 		1BEBF0CE29D132DF001369F0 /* EditScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditScreen.swift; sourceTree = "<group>"; };
 		1BEBF0D329D17B34001369F0 /* EditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
-		1BEBF0D629D27B60001369F0 /* EditOptionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOptionRow.swift; sourceTree = "<group>"; };
 		1BFAC8A42910EE8C00188F82 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -213,6 +215,7 @@
 		1B47B77628E562C7007E929B /* WeirdDeliBot */ = {
 			isa = PBXGroup;
 			children = (
+				1BA8505F29E935BA00A80737 /* Core */,
 				1B5842D6297283EE0014DAC7 /* Info.plist */,
 				1BD8200729DD91A100F8AFD4 /* InfoPlist.strings */,
 				1BEBF0B529C9DC5B001369F0 /* Repostitories */,
@@ -256,6 +259,7 @@
 		1B47B7A228E563FB007E929B /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				1BA8505929E6900700A80737 /* Location */,
 				1BD81FEF29DD0A8400F8AFD4 /* Information */,
 				1BD81C4529DA501F00F8AFD4 /* Order */,
 				1BEBF0D029D17B10001369F0 /* Edit */,
@@ -325,7 +329,6 @@
 			children = (
 				1B463C5E2959622100B9FE80 /* Models */,
 				1B47B7DF28ED5E3F007E929B /* ViewModels */,
-				1B47B7DC28ED59F6007E929B /* Widgets */,
 				1B47B7DA28ED5525007E929B /* OptionScreen.swift */,
 			);
 			path = Option;
@@ -376,15 +379,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		1B47B7DC28ED59F6007E929B /* Widgets */ = {
-			isa = PBXGroup;
-			children = (
-				1B47B7DD28ED5A58007E929B /* MenuDescRow.swift */,
-				1B463C5C2959617500B9FE80 /* OptionRow.swift */,
-			);
-			path = Widgets;
-			sourceTree = "<group>";
-		};
 		1B47B7DF28ED5E3F007E929B /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,6 +402,58 @@
 				1BEBF0CC29D11757001369F0 /* CartOptionRow.swift */,
 			);
 			path = Widgets;
+			sourceTree = "<group>";
+		};
+		1BA8505929E6900700A80737 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				1BA8505C29E6905F00A80737 /* Models */,
+				1BA8505A29E6901600A80737 /* ViewModels */,
+				1BD81FFF29DD13D700F8AFD4 /* LocationScreen.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		1BA8505A29E6901600A80737 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1BFAC8A42910EE8C00188F82 /* LocationViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		1BA8505C29E6905F00A80737 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1BD81FFD29DD134400F8AFD4 /* Location.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1BA8505F29E935BA00A80737 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				1BA8506129E9366B00A80737 /* Protocols */,
+				1BA8506029E935C300A80737 /* Widgets */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		1BA8506029E935C300A80737 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				1B47B7DD28ED5A58007E929B /* MenuDescRow.swift */,
+				1B463C5C2959617500B9FE80 /* OptionRow.swift */,
+			);
+			path = Widgets;
+			sourceTree = "<group>";
+		};
+		1BA8506129E9366B00A80737 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				1BA8506229E9367A00A80737 /* OptionProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		1BD81C4529DA501F00F8AFD4 /* Order */ = {
@@ -452,7 +498,6 @@
 			isa = PBXGroup;
 			children = (
 				1BD81FF529DD0E9C00F8AFD4 /* InfoViewModel.swift */,
-				1BFAC8A42910EE8C00188F82 /* LocationViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -461,7 +506,6 @@
 			isa = PBXGroup;
 			children = (
 				1BD81FF929DD0FD200F8AFD4 /* UserInfoScreen.swift */,
-				1BD81FFF29DD13D700F8AFD4 /* LocationScreen.swift */,
 				1BD8200129DD148E00F8AFD4 /* HistoryScreen.swift */,
 			);
 			path = Screens;
@@ -470,7 +514,6 @@
 		1BD81FF429DD0E7B00F8AFD4 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1BD81FFD29DD134400F8AFD4 /* Location.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -507,6 +550,7 @@
 				1BEBF0BA29C9DE5A001369F0 /* TextStyle.swift */,
 				1BEBF0BC29C9DE6C001369F0 /* Color.swift */,
 				1BEBF0BE29C9DE77001369F0 /* String+Regex.swift */,
+				1BA8505D29E931FC00A80737 /* ImageStyle.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -551,7 +595,6 @@
 		1BEBF0D529D27B4E001369F0 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
-				1BEBF0D629D27B60001369F0 /* EditOptionRow.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -719,6 +762,7 @@
 				1BEBF0A529C9D9BE001369F0 /* LogInViewModel.swift in Sources */,
 				1B47B7B328ECFFCA007E929B /* LogInScreen.swift in Sources */,
 				1BEBF0A729C9D9D4001369F0 /* Token.swift in Sources */,
+				1BA8506329E9367A00A80737 /* OptionProtocol.swift in Sources */,
 				1BD81FEC29DCF2A300F8AFD4 /* ApiFactory.swift in Sources */,
 				1B97BD412962AE880089DA67 /* CartItemRow.swift in Sources */,
 				1BEBF0C929D03CC1001369F0 /* CarRowViewModel.swift in Sources */,
@@ -730,7 +774,6 @@
 				1B47B7C128ED052A007E929B /* CartScreen.swift in Sources */,
 				1BFAC8A52910EE8C00188F82 /* LocationViewModel.swift in Sources */,
 				1BEBF0B729C9DC6D001369F0 /* UserRepository.swift in Sources */,
-				1BEBF0D729D27B60001369F0 /* EditOptionRow.swift in Sources */,
 				1B47B77828E562C7007E929B /* WeirdDeliBotApp.swift in Sources */,
 				1BD8200229DD148E00F8AFD4 /* HistoryScreen.swift in Sources */,
 				1BEBF0A929C9D9F8001369F0 /* LogInRequest.swift in Sources */,
@@ -741,6 +784,7 @@
 				1BD81FE829DBAE7000F8AFD4 /* UserResponse.swift in Sources */,
 				1B47B7E128ED5E53007E929B /* OptionViewModel.swift in Sources */,
 				1BEBF0AB29C9DA72001369F0 /* Menu.swift in Sources */,
+				1BA8505E29E931FC00A80737 /* ImageStyle.swift in Sources */,
 				1BD81FFA29DD0FD200F8AFD4 /* UserInfoScreen.swift in Sources */,
 				1B47B7D128ED0A1E007E929B /* ToolBarBackButton.swift in Sources */,
 				1BEBF0CF29D132DF001369F0 /* EditScreen.swift in Sources */,
@@ -922,6 +966,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeirdDeliBot/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "\"위치 정보 사용을 허용하시겠습니까?\"";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -962,6 +1007,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WeirdDeliBot/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "\"위치 정보 사용을 허용하시겠습니까?\"";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

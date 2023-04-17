@@ -12,7 +12,6 @@ class OrderRepository {
     static let storeCode: String = "STR-000000000001"
     
     static func sendOrder(order: Order, completion: @escaping (Result<OrderResponse, AFError>) -> Void) {
-        //AF.request("\(url)/order/addOrderList", method: .put, parameters: order, encoder: .json(), headers: header)
         ApiFactory.getApi(url: "order/addOrderList", type: .put, parameters: order)
                 .responseDecodable(of: OrderResponse.self) { response in
                     switch (response.result) {

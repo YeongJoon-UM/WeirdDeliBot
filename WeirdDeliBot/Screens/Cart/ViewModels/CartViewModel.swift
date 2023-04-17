@@ -10,7 +10,6 @@ import SwiftUI
 
 class CartViewModel: ObservableObject {
     @Published var userOrderList: [OrderItem] = []
-    //@Published var userOrder: Order?
     @Published var totalPrice: Int = 0
     @Published var itemPrice: [Int] = []
     
@@ -18,11 +17,6 @@ class CartViewModel: ObservableObject {
         self.totalPrice += price
         self.itemPrice.append(price)
         self.userOrderList.append(item)
-        /*
-        self.userOrderList[userOrderList.endIndex - 1].options.removeAll { option in
-            option.amount == 0
-        }
-         */ //TODO: order func 이전에 삭제
         self.getTotalPrice()
     }
     
@@ -32,10 +26,17 @@ class CartViewModel: ObservableObject {
         self.getTotalPrice()
     }
     
+    func editOrderItem(index: Int, newOrderItem: OrderItem, price: Int) {
+        self.userOrderList[index] = newOrderItem
+        self.itemPrice[index] = price
+        self.getTotalPrice()
+    }
+    
     func getTotalPrice() {
         self.totalPrice = 0
         for price in itemPrice {
             totalPrice += price
         }
+        print("total : \(totalPrice)")
     }
 }

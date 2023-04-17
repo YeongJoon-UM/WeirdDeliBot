@@ -10,7 +10,7 @@ import SwiftUI
 struct OptionScreen: View {
     @StateObject var viewModel: OptionViewModel = OptionViewModel()
     @EnvironmentObject var cartViewModel: CartViewModel
-    @EnvironmentObject var rootViewModel: RootViewModel
+
     let menu: Menu
     @Environment(\.presentationMode) var presentation
     
@@ -42,8 +42,8 @@ struct OptionScreen: View {
             } else {
                 ScrollView() {
                     ForEach(viewModel.option!){ option in
-                        OptionRow(option: option)
-                            .environmentObject(viewModel)
+                        OptionRow(viewModel: viewModel, option: option)
+                            //.environmentObject(viewModel)
                     }
                 }
             }

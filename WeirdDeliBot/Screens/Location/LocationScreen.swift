@@ -36,6 +36,7 @@ struct MapView: UIViewRepresentable {
         let annotation = MKPointAnnotation()
         mapView.delegate = context.coordinator
         mapView.region = region
+        mapView.showsUserLocation = true
         
         annotation.title = "Dazzle"
         annotation.coordinate = start
@@ -45,10 +46,8 @@ struct MapView: UIViewRepresentable {
         return mapView
     }
     
-    // We don't need to worry about this as the view will never be updated.
     func updateUIView(_ view: MKMapView, context: Context) {}
     
-    // Link it to the coordinator which is defined below.
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }

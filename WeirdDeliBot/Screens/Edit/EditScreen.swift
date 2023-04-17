@@ -42,8 +42,8 @@ struct EditScreen: View {
                 
                 ScrollView() {
                     ForEach(viewModel.option!){ option in
-                        EditOptionRow(option: option)
-                            .environmentObject(viewModel)
+                        OptionRow(viewModel: viewModel, option: option)
+                            
                     }
                 }
             }
@@ -95,8 +95,7 @@ struct EditScreen: View {
                     .padding(.trailing, 16)
             }
             Button(action: {
-                //viewModel.setUserOption()
-                //cartViewModel.addOrderItem(item: viewModel.userMenu!, price: viewModel.totalPrice())
+                cartViewModel.editOrderItem(index: index, newOrderItem: viewModel.tempOrderItem!, price: viewModel.totalPrice())
                 self.presentation.wrappedValue.dismiss()    //option 모두 고른 menu를 cart에 넣고 직전 화면으로 돌아감.
             }) {
                 Text("장바구니")
