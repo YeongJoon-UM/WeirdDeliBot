@@ -13,14 +13,17 @@ struct LocationScreen: View {
     @Environment(\.presentationMode) var presentation
     
     var body: some View {
-        VStack(spacing: 0) {
-            MapView(start: viewModel.locationDazzle.locate, region: viewModel.region, lineCoordinates: viewModel.convertCoord(viewModel.coordinates))
-            
+        ZStack {
+            VStack(spacing: 0) {
+                MapView(start: viewModel.locationDazzle.locate, region: viewModel.region, lineCoordinates: viewModel.convertCoord(viewModel.coordinates))
+                
+            }
+            OrderProgressView()
         }
-            .navigationBarTitle(Text("Location"))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar{ ToolBarBackButton(presentation: presentation) }
-            .navigationBarBackButtonHidden()
+        .navigationBarTitle(Text("Location"))
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar{ ToolBarBackButton(presentation: presentation) }
+        .navigationBarBackButtonHidden()
     }
 }
 

@@ -61,7 +61,7 @@ struct EditScreen: View {
                             .font(.system(size: 20))
                             .foregroundColor(.black)
                             .onTapGesture {
-                                //viewModel.addItemAmount()
+                                viewModel.addItemAmount()
                             }
                     }
                 }
@@ -82,7 +82,7 @@ struct EditScreen: View {
                             .font(.system(size: 20))
                             .foregroundColor(.black)
                             .onTapGesture {
-                                //viewModel.subItemAmount()
+                                viewModel.subItemAmount()
                             }
                     }
                 }

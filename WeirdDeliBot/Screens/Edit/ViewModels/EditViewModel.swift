@@ -59,7 +59,15 @@ class EditViewModel: ObservableObject, OptionProtocol {
         return self.tempOrderItem?.options[index!].amount == 1
     }
     
+    func addItemAmount() {
+        self.tempOrderItem?.amount += 1
+    }
     
+    func subItemAmount() {
+        if(self.tempOrderItem?.amount ?? 0 > 1) {
+            self.tempOrderItem?.amount -= 1
+        }
+    }
     
     func addOptionAmount(option: Option) {
         let index = self.tempOrderItem?.options.firstIndex(where: { $0.id == option.id })

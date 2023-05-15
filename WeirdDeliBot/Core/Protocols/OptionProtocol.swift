@@ -20,8 +20,8 @@ protocol OptionProtocol: ObservableObject {
     //func getUserOptionList()
     //func getUserMenu()
     //func setUserOption()
-    //func addItemAmount()
-    //func subItemAmount()
+    func addItemAmount()
+    func subItemAmount()
     func isOptionSelected(option: Option) -> Bool
     func addOptionAmount(option: Option)
     func subOptionAmount(option: Option)

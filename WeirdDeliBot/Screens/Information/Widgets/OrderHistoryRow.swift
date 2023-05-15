@@ -1,20 +1,20 @@
 //
-//  HistoryScreen.swift
+//  OrderHistoryRow.swift
 //  WeirdDeliBot
 //
-//  Created by 정영준 on 2023/04/05.
+//  Created by 정영준 on 2023/05/15.
 //
 
 import SwiftUI
 
-struct HistoryScreen: View {
+struct OrderHistoryRow: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
-struct HistoryScreen_Previews: PreviewProvider {
+struct OrderHistoryRow_Previews: PreviewProvider {
     static var previews: some View {
-        HistoryScreen()
+        OrderHistoryRow()
     }
 }
