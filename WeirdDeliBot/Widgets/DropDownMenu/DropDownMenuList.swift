@@ -19,21 +19,17 @@ struct DropdownMenuList: View {
             LazyVStack(alignment: .leading, spacing: 2) {
                 ForEach(options) { option in
                     DropdownMenuListRow(option: option, onSelectedAction: self.onSelectedAction)
+                    
                 }
             }
         }
-        // Check first if number of options * 32 (Option height - CONSTANT - YOU
-        // MAY CHANGE IT) is greater than 300 (MAX HEIGHT - ALSO, YOU MAY CHANGE
-        // IT), if true, then make it options list scroll, if not set frame only
-        // for available options.
-        .frame(height: CGFloat(self.options.count * 32) > 300
-               ? 300
-               : CGFloat(self.options.count * 32)
-        )
-        .padding(.vertical, 5)
+        .frame(height: 189)
+        .background(Color.myWhite)
+        .cornerRadius(10)
         .overlay {
-            RoundedRectangle(cornerRadius: 5)
-                .stroke(.gray, lineWidth: 2)
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(Color.basic, lineWidth: 1)
+                
         }
     }
 }

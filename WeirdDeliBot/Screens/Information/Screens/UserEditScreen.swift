@@ -11,6 +11,7 @@ struct UserEditScreen: View {
     @Environment(\.presentationMode) var presentation
     @EnvironmentObject var rootViewModel: RootViewModel
     @State var selectedOption: DropdownMenuOption? = nil
+    @State var phoneNumber: String = ""
     
     var body: some View {
         VStack(spacing: 0) {
@@ -57,19 +58,62 @@ struct UserEditScreen: View {
             }
             .padding(.bottom, 22)
             .padding(.horizontal, 32)
+            ZStack(alignment: .top) {
+                VStack(spacing: 0) {
+                    PhoneNumberFormatter(placeholder: "\(rootViewModel.user?.phone ?? "")", text: $phoneNumber)
+                        .placeholder(when: phoneNumber.isEmpty) {
+                            Text("\(rootViewModel.user?.phone ?? "")")
+                                .foregroundColor(.myBlack)
+                        }
+                    /*
+                    TextField("\(rootViewModel.user?.phone ?? "")", text: $phoneNumber)
+                        .phoneNumberFormat("\(rootViewModel.user?.phone ?? "")", text: $phoneNumber)
+                    
+                        .onChange(of: phoneNumber){ value in
+                            let formattedNumber = format(phoneNumber: value)
+                            phoneNumber = formattedNumber
+                        }*/
+                        
+                        .frame(height: 63)
+                        .size18Regular()
+                        .padding(.leading, 23)
+                        .background(Rectangle().fill(Color.myWhite).cornerRadius(10))
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.basic, lineWidth: 1)
+                                
+                        }
+                        
+                        .padding(.bottom, 16)
+                        .padding(.horizontal, 28)
+                    
+                    CustomButton(action: { print(phoneNumber) },
+                                 text: "완료",
+                                 textColor: .myWhite,
+                                 height: 63,
+                                 backgroundColor: .basic)
+                    
+                    
+                    Divider()
+                        .background(Color.basic)
+                        .padding(24)
+                    
+                    CustomButton(action: { rootViewModel.logOut() },
+                                 text: "로그아웃",
+                                 textColor: .myWhite,
+                                 height: 63,
+                                 backgroundColor: .myRed)
+                }
+                .padding(.top, 79)
+                DropdownMenu(selectedOption: self.$selectedOption, placeholder: rootViewModel.user?.addressDesc ?? "", options: DropdownMenuOption.locations)
+            }
             
-            DropdownMenu(selectedOption: self.$selectedOption, placeholder: rootViewModel.user?.addressDesc ?? "", options: DropdownMenuOption.locations)
-                .padding(.bottom, 16)
-            
-            Divider()
-                .background(Color.basic)
-                .padding(.horizontal, 24)
-                .padding(.bottom, 24)
             Spacer()
         }
         .navigationBarTitle(Text("Edit Info"))
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
+        
         .toolbar{ ToolBarBackButton(presentation: presentation) }
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DropdownMenuListRow: View {
     let option: DropdownMenuOption
-    
+
     /// An action called when user select an action.
     let onSelectedAction: (_ option: DropdownMenuOption) -> Void
     
@@ -17,12 +17,16 @@ struct DropdownMenuListRow: View {
         Button(action: {
             self.onSelectedAction(option)
         }) {
-            Text(option.option)
-                .frame(maxWidth: .infinity, alignment: .leading)
+            HStack(spacing: 0) {
+                Text(option.option)
+                    .size18Regular()
+                    .frame(height: 63, alignment: .leading)
+                    .padding(.horizontal, 20)
+                Spacer()
+            }
         }
         .foregroundColor(.black)
-        .padding(.vertical, 5)
-        .padding(.horizontal)
+        
     }
 }
 

@@ -39,6 +39,10 @@
 		1BA8512A2A10DF6F00A80737 /* DropDownMenuOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA851292A10DF6F00A80737 /* DropDownMenuOption.swift */; };
 		1BA8512C2A1116E800A80737 /* OrderProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA8512B2A1116E800A80737 /* OrderProgressView.swift */; };
 		1BA8512F2A11D0A200A80737 /* OrderHistoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA8512E2A11D0A200A80737 /* OrderHistoryRow.swift */; };
+		1BA851312A11DC4F00A80737 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA851302A11DC4F00A80737 /* CustomButton.swift */; };
+		1BA851332A130E3800A80737 /* OrderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA851322A130E3800A80737 /* OrderListView.swift */; };
+		1BA851352A1341AF00A80737 /* PhoneNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA851342A1341AF00A80737 /* PhoneNumberFormatter.swift */; };
+		1BA851392A1367E600A80737 /* Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA851382A1367E600A80737 /* Placeholder.swift */; };
 		1BD81C4729DA51EB00F8AFD4 /* OrderScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD81C4629DA51EB00F8AFD4 /* OrderScreen.swift */; };
 		1BD81C4B29DA592400F8AFD4 /* OrderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD81C4A29DA592400F8AFD4 /* OrderViewModel.swift */; };
 		1BD81C4E29DA693100F8AFD4 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 1BD81C4D29DA693100F8AFD4 /* PopupView */; };
@@ -130,6 +134,10 @@
 		1BA851292A10DF6F00A80737 /* DropDownMenuOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownMenuOption.swift; sourceTree = "<group>"; };
 		1BA8512B2A1116E800A80737 /* OrderProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderProgressView.swift; sourceTree = "<group>"; };
 		1BA8512E2A11D0A200A80737 /* OrderHistoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderHistoryRow.swift; sourceTree = "<group>"; };
+		1BA851302A11DC4F00A80737 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		1BA851322A130E3800A80737 /* OrderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListView.swift; sourceTree = "<group>"; };
+		1BA851342A1341AF00A80737 /* PhoneNumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberFormatter.swift; sourceTree = "<group>"; };
+		1BA851382A1367E600A80737 /* Placeholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Placeholder.swift; sourceTree = "<group>"; };
 		1BD81C4629DA51EB00F8AFD4 /* OrderScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderScreen.swift; sourceTree = "<group>"; };
 		1BD81C4A29DA592400F8AFD4 /* OrderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewModel.swift; sourceTree = "<group>"; };
 		1BD81FE729DBAE7000F8AFD4 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
@@ -300,6 +308,7 @@
 				1B47B7BA28ED025E007E929B /* ToolBarCart.swift */,
 				1B47B7D028ED0A1E007E929B /* ToolBarBackButton.swift */,
 				1B47B7F228F6B26F007E929B /* ToolBarInformation.swift */,
+				1BA851302A11DC4F00A80737 /* CustomButton.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -455,6 +464,7 @@
 			children = (
 				1B47B7DD28ED5A58007E929B /* MenuDescRow.swift */,
 				1B463C5C2959617500B9FE80 /* OptionRow.swift */,
+				1BA851322A130E3800A80737 /* OrderListView.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -582,6 +592,8 @@
 				1BEBF0BC29C9DE6C001369F0 /* Color.swift */,
 				1BEBF0BE29C9DE77001369F0 /* String+Regex.swift */,
 				1BA8505D29E931FC00A80737 /* ImageStyle.swift */,
+				1BA851342A1341AF00A80737 /* PhoneNumberFormatter.swift */,
+				1BA851382A1367E600A80737 /* Placeholder.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -785,6 +797,7 @@
 				1BEBF0AD29C9DABA001369F0 /* Category.swift in Sources */,
 				1B47B7D928ED5466007E929B /* MenuViewModel.swift in Sources */,
 				1BEBF0D429D17B34001369F0 /* EditViewModel.swift in Sources */,
+				1BA851392A1367E600A80737 /* Placeholder.swift in Sources */,
 				1B47B7B928ED00E4007E929B /* MenuListScreen.swift in Sources */,
 				1B47B77A28E562C7007E929B /* RootScreen.swift in Sources */,
 				1BEBF0CB29D03E75001369F0 /* OptionCode.swift in Sources */,
@@ -794,10 +807,12 @@
 				1BA8512F2A11D0A200A80737 /* OrderHistoryRow.swift in Sources */,
 				1BEBF0BF29C9DE77001369F0 /* String+Regex.swift in Sources */,
 				1BEBF0AF29C9DACA001369F0 /* StoreCode.swift in Sources */,
+				1BA851352A1341AF00A80737 /* PhoneNumberFormatter.swift in Sources */,
 				1BEBF0A529C9D9BE001369F0 /* LogInViewModel.swift in Sources */,
 				1B47B7B328ECFFCA007E929B /* LogInScreen.swift in Sources */,
 				1BEBF0A729C9D9D4001369F0 /* Token.swift in Sources */,
 				1BA8506329E9367A00A80737 /* OptionProtocol.swift in Sources */,
+				1BA851332A130E3800A80737 /* OrderListView.swift in Sources */,
 				1BD81FEC29DCF2A300F8AFD4 /* ApiFactory.swift in Sources */,
 				1B97BD412962AE880089DA67 /* CartItemRow.swift in Sources */,
 				1BEBF0C929D03CC1001369F0 /* CarRowViewModel.swift in Sources */,
@@ -814,6 +829,7 @@
 				1BA851282A10DF5D00A80737 /* DropDownMenu.swift in Sources */,
 				1BD81C4B29DA592400F8AFD4 /* OrderViewModel.swift in Sources */,
 				1BD8200029DD13D700F8AFD4 /* LocationScreen.swift in Sources */,
+				1BA851312A11DC4F00A80737 /* CustomButton.swift in Sources */,
 				1B47B7BB28ED025E007E929B /* ToolBarCart.swift in Sources */,
 				1BEBF0B129C9DBCB001369F0 /* OrderItem.swift in Sources */,
 				1BA8512A2A10DF6F00A80737 /* DropDownMenuOption.swift in Sources */,

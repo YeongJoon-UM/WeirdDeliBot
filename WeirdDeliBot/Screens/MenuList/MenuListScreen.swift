@@ -46,12 +46,14 @@ struct MenuListView: View {
                     .animation(.default, value: viewModel.currentTab)
                 }
             }
+            
             .navigationBarBackButtonHidden()
             .navigationBarTitle(Text("Menu"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar{ ToolBarInformation() }
             .toolbar{ ToolBarCart() }
         }
+        
         .onAppear(){
             viewModel.getCatList(token: rootViewModel.token?.token ?? "")
             viewModel.getItemList(token: rootViewModel.token?.token ?? "")

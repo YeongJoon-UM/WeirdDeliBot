@@ -21,9 +21,6 @@ struct InfoScreen: View {
                     .clipShape(Circle())
                     .padding(.trailing, 16)
                 
-                
-                
-                
                 VStack(alignment: .leading, spacing: 0) {
                     HStack(spacing: 0) {
                         Text("\(rootViewModel.user?.name ?? "")")
@@ -46,23 +43,31 @@ struct InfoScreen: View {
                 }
                 Spacer()
             }
-            .padding(EdgeInsets(top: 43, leading: 24, bottom: 34, trailing: 24))
+            .padding(EdgeInsets(top: 40, leading: 24, bottom: 34, trailing: 24))
            
         }
         VStack(spacing: 0) {
-            NavigationLink(destination: LocationScreen()) {
-                Text("주문 내역")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .sizeCustom(18, .bold)
-                    .foregroundColor(.myWhite)
-                    .padding(.leading, 24)
-                    .padding(.top, 16)
+            Text("주문 내역")
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .sizeCustom(18, .bold)
+                .foregroundColor(.myWhite)
+                .padding(.leading, 24)
+                .padding(.top, 16)
+                .padding(.bottom, 4)
+            ScrollView {
+                ForEach(0..<5) { index in
+                    OrderHistoryRow(status: (index == 0 ? 1 : 3))
+                }
             }
+            
+            
             Spacer()
         }
         .background(Color.basic)
         .cornerRadius(10)
+        .shadow(radius: 8)
         .edgesIgnoringSafeArea(.all)
+        
         .navigationBarTitle(Text("User Info"))
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()

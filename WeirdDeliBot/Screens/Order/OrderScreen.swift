@@ -52,22 +52,9 @@ struct OrderScreen: View {
                         .background(Rectangle().fill(Color.base).cornerRadius(20))
                         .padding(.bottom, 8)
                     
-                    TextField("\(viewModel.order?.phone ?? "")", text: $viewModel.newPhone)
-                        .onChange(of: viewModel.newPhone) { phone in
-                            var formatted = phone
-                            if formatted.count > 3 {
-                                formatted.insert("-", at: formatted.index(formatted.startIndex, offsetBy: 3))
-                            }
-                            if formatted.count > 8 {
-                                formatted.insert("-", at: formatted.index(formatted.startIndex, offsetBy: 8))
-                            }
-                            if formatted.count > 13 {
-                                formatted = String(formatted.prefix(13))
-                                viewModel.setNewPhone()
-                            }
-                            viewModel.newPhone = formatted
-                        }
-                        .disabled(!viewModel.isPhoneEditable)
+                    PhoneNumberFormatter(placeholder: "전화 번호를 입력하세요.", text: $viewModel.newPhone)
+                        //.phoneNumberFormat((viewModel.order?.phone ?? ""), text: $viewModel.newPhone)
+                        //.disabled(!viewModel.isPhoneEditable)
                         .keyboardType(.phonePad)
                         .autocorrectionDisabled(true)
                         .autocapitalization(.none)

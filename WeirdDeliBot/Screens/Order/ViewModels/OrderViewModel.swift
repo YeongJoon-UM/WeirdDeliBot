@@ -39,11 +39,11 @@ class OrderViewModel: ObservableObject {
     func setNewAddress() {
         self.order?.addressDesc = self.newAddress
     }
-    
+    /*
     func setNewPhone() {
         self.order?.phone = self.newPhone
     }
-    
+    */
     func setNewRequest() {
         self.order?.orderReq = self.newRequest
     }
