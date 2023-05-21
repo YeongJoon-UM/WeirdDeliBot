@@ -9,26 +9,27 @@ import SwiftUI
 import MapKit
 
 struct LocationScreen: View {
-    @StateObject var viewModel : LocationViewModel = LocationViewModel()
+    @ObservedObject var viewModel : LocationViewModel = LocationViewModel()
+    @EnvironmentObject var historyViewModel: OrderHistoryViewModel
     @Environment(\.presentationMode) var presentation
     
     var body: some View {
         ZStack {
             VStack(spacing: 0) {
-                MapView(start: viewModel.locationDazzle.locate, region: viewModel.region, lineCoordinates: viewModel.convertCoord(viewModel.coordinates))
+                MapView(destination: CLLocationCoordinate2D(latitude: Double(historyViewModel.orderHistory.latitude) ?? 0, longitude: Double(historyViewModel.orderHistory.longitude) ?? 0), region: viewModel.region, lineCoordinates: viewModel.convertCoord(viewModel.coordinates))
                 
             }
-            OrderProgressView()
+            OrderProgressView().environmentObject(historyViewModel)
         }
-        .navigationBarTitle(Text("Location"))
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar{ ToolBarBackButton(presentation: presentation) }
-        .navigationBarBackButtonHidden()
+        .onAppear() {
+            viewModel.getDestinLocation(latitude: Double(historyViewModel.orderHistory.latitude) ?? 0, longitude: Double(historyViewModel.orderHistory.longitude) ?? 0)
+        }
+        .customToolBar("Location", showCartButton: false, showInfoButton: false)
     }
 }
 
 struct MapView: UIViewRepresentable {
-    let start: CLLocationCoordinate2D
+    let destination: CLLocationCoordinate2D
     let region: MKCoordinateRegion
     let lineCoordinates: [CLLocationCoordinate2D]
     
@@ -41,8 +42,9 @@ struct MapView: UIViewRepresentable {
         mapView.region = region
         mapView.showsUserLocation = true
         
-        annotation.title = "Dazzle"
-        annotation.coordinate = start
+        annotation.title = "목적지"
+        annotation.coordinate = destination
+        //print(destination)
         mapView.addAnnotation(annotation)
         mapView.addOverlay(polyline)
 
@@ -67,7 +69,7 @@ class Coordinator: NSObject, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if let routePolyline = overlay as? MKPolyline {
             let renderer = MKPolylineRenderer(polyline: routePolyline)
-            renderer.strokeColor = UIColor(Color.main)
+            renderer.strokeColor = UIColor(Color.basic)
             renderer.lineWidth = 6
             return renderer
         }

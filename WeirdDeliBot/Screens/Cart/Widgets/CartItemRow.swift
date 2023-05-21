@@ -26,7 +26,7 @@ struct CartItemRow: View {
                 }
                 .task {
                     viewModel.getItemInfo(itemCode: order.id, amount: cartViewModel.userOrderList[index].amount)
-                    viewModel.getOptionInfo(itemCode: order.id)
+                    viewModel.getOptionList(itemCode: order.id)
                     
                 }
                 .progressViewStyle(CircularProgressViewStyle())
@@ -35,54 +35,47 @@ struct CartItemRow: View {
                 Text("Loading Failed.")
             }
         } else {
-            
             VStack(spacing: 0) {
                 HStack(spacing: 0) {
-                    Image(viewModel.menu?.image ?? "sample")
-                        .resizable()
-                        .frame(width: 80, height: 80)
-                        .scaledToFit()
-                        .padding(.trailing, 8)
-                        .padding(.trailing, 8)
-                    
-                    
                     Text(viewModel.menu?.name ?? "")
-                        .font(.system(size: 19))
-                        .frame(width: 110, height: 65, alignment: .leading)
-                        .lineLimit(nil)
-                    
-                    
-                    Spacer()
-                    
-                    Text("\(viewModel.menuAmount)잔")
-                        .font(.system(size: 19))
+                        .size18Bold()
+                        .foregroundColor(.myBlack)
+                        .padding(.trailing, 8)
+     
+                    if viewModel.menuAmount > 1 {
+                        Text("×\(viewModel.menuAmount)")
+                            .size16Bold()
+                            .foregroundColor(.myGray)
+                    }
                     
                     Spacer()
                     
                     Text("\(viewModel.menu?.price ?? 0)₩")
-                        .font(.system(size: 19))
-                        .padding(.trailing, 8)
-                    
+                        .size18Bold()
+                        .foregroundColor(.myBlack)
                 }
+                
+                
                 if(!(order.options.firstIndex(where: { $0.amount != 0 }) == nil)) {
-                    if(viewModel.isOptionShow) {
-                        //ForEach(order.options.indices, id: \.self) { index in
-                        ForEach(Array(zip(order.options.indices, order.options)), id: \.0) { index, option in
-                            CartOptionRow(index: index, orderOption: option)
-                                .environmentObject(viewModel)
+                    ForEach(viewModel.option.indices, id: \.self) { index in
+                        if order.options[index].amount == 1 {
+                            HStack(spacing: 0) {
+                                Text("+")
+                                    .size16Bold()
+                                    .padding(.trailing, 8)
+                                Text("\(viewModel.option[index].name)")
+                                    .size16Bold()
+                                Spacer()
+                                Text("\(viewModel.option[index].price)₩")
+                                    .size18Bold()
+                            }
+                            .foregroundColor(.myBlack)
+                            .padding(.top, 7)
                         }
                     }
-                    Button(action: { viewModel.isOptionShowToggle() }) {
-                        if(viewModel.isOptionShow) {
-                            Image(systemName: "chevron.up")
-                        } else {
-                            Image(systemName: "chevron.down")
-                        }
-                    }
-                    .buttonStyle(.plain)
-                    .frame(width: 12, height: 12)
                 }
             }
+            .padding(16)
         }
     }
 }

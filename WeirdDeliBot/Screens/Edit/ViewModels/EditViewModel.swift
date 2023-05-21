@@ -9,6 +9,8 @@ import Foundation
 import Alamofire
 
 class EditViewModel: ObservableObject, OptionProtocol {
+    
+    
     //@Published var isOptionSelected: Bool = false
     
     
@@ -59,6 +61,9 @@ class EditViewModel: ObservableObject, OptionProtocol {
         return self.tempOrderItem?.options[index!].amount == 1
     }
     
+    func getItemAmount() -> Int {
+        return tempOrderItem?.amount ?? 0
+    }
     func addItemAmount() {
         self.tempOrderItem?.amount += 1
     }

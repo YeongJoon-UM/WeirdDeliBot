@@ -10,20 +10,22 @@ import SwiftUI
 struct OptionScreen: View {
     @StateObject var viewModel: OptionViewModel = OptionViewModel()
     @EnvironmentObject var cartViewModel: CartViewModel
-
+    @Binding var path: NavigationPath
     let menu: Menu
     @Environment(\.presentationMode) var presentation
     
     var body: some View {
         VStack(spacing: 0) {
-            MenuDescRow(menu: menu)
-                .padding()
+            MenuDescRow(viewModel: viewModel, menu: menu)
+                
+            CustomDivider(top: 16, bottom: 16)
             
-            Text("Options")
+            Text("추가 옵션")
+                .size16Bold()
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .font(.system(size: 19))
-                .padding(.leading, 16)
-                .padding(.top, 0)
+                .padding(.leading, 36)
+                .padding(.bottom, 16)
+
             
             if(viewModel.option == nil){
                 if(viewModel.status == nil) {
@@ -40,83 +42,45 @@ struct OptionScreen: View {
                     Text("Loading Failed.")
                 }
             } else {
-                ScrollView() {
+                ScrollView(showsIndicators: false) {
                     ForEach(viewModel.option!){ option in
                         OptionRow(viewModel: viewModel, option: option)
-                            //.environmentObject(viewModel)
                     }
                 }
+                .frame(height: 153)
+                .padding(.leading, 40)
+                .padding(.trailing, 27)
             }
             
-            Spacer()
+            CustomDivider(top: 16, bottom: 16)
+            
             HStack(spacing: 0) {
-                
-                HStack(spacing: 0) {
-                    if(viewModel.userMenu?.amount ?? 100 >= 99) {
-                        Image(systemName: "plus.square")
-                            .font(.system(size: 20))
-                            .foregroundColor(.gray)
-                    } else {
-                        Image(systemName: "plus.square")
-                            .font(.system(size: 20))
-                            .foregroundColor(.black)
-                            .onTapGesture {
-                                viewModel.addItemAmount()
-                            }
-                    }
-                }
-                .frame(width: 20)
-                .padding(.leading, 16)
-                
-                
-                Text("\(viewModel.userMenu?.amount ?? 0)잔")
-                    .frame(width: 40)
-                
-                HStack(spacing: 0) {
-                    if(viewModel.userMenu?.amount ?? 0 == 0) {
-                        Image(systemName: "minus.square")
-                            .font(.system(size: 20))
-                            .foregroundColor(.gray)
-                    } else {
-                        Image(systemName: "minus.square")
-                            .font(.system(size: 20))
-                            .foregroundColor(.black)
-                            .onTapGesture {
-                                viewModel.subItemAmount()
-                            }
-                    }
-                }
-                .frame(width: 20)
-                .padding(.trailing, 8)
-                Text("Total : \(viewModel.totalPrice())₩")
-                    .font(Font.system(size: 19, weight: .bold))
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                    .padding(.bottom, 30)
-                    .padding(.trailing, 16)
+                Text("총 금액")
+                    .size16Bold()
+                    .foregroundColor(.myBlack)
+                Spacer()
+                Text("\(viewModel.totalPrice())₩")
+                    .size18Bold()
+                    .foregroundColor(.myBlack)
             }
-            Button(action: {
+            .padding(.leading, 36)
+            .padding(.trailing, 44)
+            
+            CustomDivider(top: 16, bottom: 24)
+            
+            CustomButton(action: {
                 viewModel.setUserOption()
                 cartViewModel.addOrderItem(item: viewModel.userMenu!, price: viewModel.totalPrice())
-                self.presentation.wrappedValue.dismiss()    //option 모두 고른 menu를 cart에 넣고 직전 화면으로 돌아감.
-            }) {
-                Text("장바구니")
-                    .frame(width: 227, height: 50)
-                    .font(Font.system(size: 20))
-                    .foregroundColor(Color.white)
-                    .background(Capsule().fill(Color.black))
-                    .padding(.bottom, 20)
-            }
+                self.presentation.wrappedValue.dismiss()
+            }, text: "장바구니", textColor: .myWhite, height: 63, backgroundColor: .basic)
+            .padding(.bottom, 74)
+            
         }
         .onAppear() {
             viewModel.getSelectedMenu(menu: menu)
             viewModel.getOptionList()
         }
-        .navigationBarTitle(Text("Option"))
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden()
-        .toolbar{ ToolBarBackButton(presentation: presentation) }
-        .toolbar{ ToolBarInformation() }
-        .toolbar{ ToolBarCart() }
+        .customToolBar("Option", path: $path)
     }
 }
 

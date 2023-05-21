@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 class LogInViewModel: NSObject, ObservableObject {
@@ -25,8 +26,12 @@ class LogInViewModel: NSObject, ObservableObject {
             UserRepository.logIn(account: account, password: password) { result in
                 switch(result) {
                 case .success(let value):
-                    self.token = value
-                    self.isLogInFailed = false
+                    if value.token != "" {
+                        self.token = value
+                        self.isLogInFailed = false
+                    } else {
+                        self.isLogInFailed = true
+                    }
                     break
                 case .failure(let error):
                     self.isLogInFailed = true

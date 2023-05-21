@@ -67,4 +67,8 @@ extension View {
     public func sizeCustom(_ size: CGFloat, _ weight: Font.Weight = .regular) -> some View {
         self.font(.system(size: size, weight: weight))
     }
+    
+    public func sizeCustomJUA(_ size: CGFloat) -> some View {
+        self.font(.custom("BMJUAOTF", size: size))
+    }
 }

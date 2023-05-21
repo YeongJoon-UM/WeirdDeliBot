@@ -16,44 +16,41 @@ struct OptionRow<ViewModel: OptionProtocol>: View {
         self.viewModel = viewModel
         self.option = option
     }
-
+    
     var body: some View {
-        VStack(spacing: 0) {
-            HStack(spacing: 0) {
-                Text("\(option.name)")
-                    .frame(width: 100)
-                    .font(.system(size: 16))
-                    .padding(.leading, 8)
-
-                HStack(spacing: 0) {
-                    if isSelected {
-                        Text("+\(option.price)₩")
-                            .font(.system(size: 16))
+        HStack(spacing: 0) {
+            Text("\(option.name)")
+                .size16Regular()
+                .foregroundColor(.myBlack)
+                
+            Spacer()
+            
+            Text("\(option.price)₩")
+                .size16Regular()
+                .foregroundColor(.myBlack)
+                .frame(width: 60, alignment: .trailing)
+                .padding(.trailing, 24)
+            
+            if isSelected {
+                Image(systemName: "checkmark.circle.fill")
+                    .imageSize(24)
+                    .foregroundColor(.basic)
+                    .onTapGesture() {
+                        viewModel.subOptionAmount(option: option)
+                        isSelected.toggle()
                     }
-                }.frame(width: 170, height: 50)
-
-                ZStack {
-                    Circle()
-                        .fill(Color.base)
-                        .frame(width: 20, height: 20)
-                        .onTapGesture() {
-                            if !isSelected {
-                                viewModel.addOptionAmount(option: option)
-                                isSelected.toggle()
-                            }
-                        }
-                    if viewModel.isOptionSelected(option: option) {
-                        Circle()
-                            .fill(Color.main)
-                            .frame(width: 15, height: 15)
-                            .onTapGesture() {
-                                viewModel.subOptionAmount(option: option)
-                                isSelected.toggle()
-                            }
+            } else {
+                Image(systemName: "circle.fill")
+                    .imageSize(24)
+                    .foregroundColor(.myGray.opacity(0.5))
+                    .onTapGesture() {
+                        viewModel.addOptionAmount(option: option)
+                        isSelected.toggle()
                     }
-                }
             }
+
         }
+        .padding(.bottom, 14)
         .onAppear() {
             isSelected = viewModel.isOptionSelected(option: option)
         }

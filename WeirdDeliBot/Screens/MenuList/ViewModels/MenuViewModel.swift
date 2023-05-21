@@ -14,7 +14,7 @@ class MenuViewModel: ObservableObject {
     @Published var status: Bool? = nil
     @Published var currentTab: Int = 0
     
-    func getCatList(token: String) {
+    func getCatList() {
         StoreRepository.getCatList() { response in
             switch(response) {
             case .success(let value):
@@ -29,7 +29,7 @@ class MenuViewModel: ObservableObject {
         }
     }
     
-    func getItemList(token: String) {
+    func getItemList() {
         StoreRepository.getItemList() { response in
             switch(response) {
             case .success(let value):

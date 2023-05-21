@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct OrderProgressView: View {
+    @EnvironmentObject var viewModel: OrderHistoryViewModel
     @State private var isExpanded = false
     
     var body: some View {
@@ -21,33 +22,39 @@ struct OrderProgressView: View {
                     .padding(.top, 8)
                 
                 HStack(spacing: 0) {
-                    Text("13 : 00")
-                        .sizeCustom(36, .bold)
+                    Text("\(viewModel.getTimeDifference())")
+                        .sizeCustomJUA(30)
+                        .foregroundColor(.basic)
                         .padding(.trailing, 12)
-                    Text(" 도착예정")
-                        .sizeCustom(24, .regular)
                     Spacer()
+                    Text(hourFormatter(viewModel.getEstimatedTime()))
+                        .size18Regular()
+                        .foregroundColor(.myGray.opacity(0.5))
+                        .padding(.trailing, 8)
+                    Text("도착예정")
+                        .size18Regular()
+                        .foregroundColor(.myGray.opacity(0.5))
                 }
-                .foregroundColor(.basic)
-                .padding(.leading, 24)
-                .padding(.bottom, isExpanded ? 8 : 0)
+                
+                .padding(.horizontal, 24)
+                .padding(.bottom, isExpanded ? 16 : 0)
                 
                 let statusLayout = isExpanded ? AnyLayout(VStackLayout(spacing: 0)) : AnyLayout(HStackLayout(spacing: 0))
-                
+                //MARK: HStack, VStack 가변 레이아웃
                 statusLayout {
-                    deliveryStepView(imageName: "cart.fill", stepText: "12:17", statusText: "주문 완료")
+                    deliveryStepView(imageName: "cart.fill", stepText: viewModel.getStepTime(state: 0), statusText: "주문 완료", state: viewModel.isStateStep(state: 0))
                     
-                    progressBar()
+                    progressBar(state: viewModel.isStateStep(state: 1))
                    
-                    deliveryStepView(imageName: "cup.and.saucer.fill", stepText: "12:20", statusText: "준비 중")
+                    deliveryStepView(imageName: "cup.and.saucer.fill", stepText: viewModel.getStepTime(state: 1), statusText: "준비 중", state: viewModel.isStateStep(state: 1))
                     
-                    progressBar()
+                    progressBar(state: viewModel.isStateStep(state: 2))
                     
-                    deliveryStepView(imageName: "box.truck.badge.clock.fill", stepText: "12:36", statusText: "배달 시작")
+                    deliveryStepView(imageName: "box.truck.badge.clock.fill", stepText: viewModel.getStepTime(state: 2), statusText: "배달 시작", state: viewModel.isStateStep(state: 2))
                     
-                    progressBar()
+                    progressBar(state: viewModel.isStateStep(state: 3))
                     
-                    deliveryStepView(imageName: "checkmark",  stepText: "13:00", statusText: "배달 완료")
+                    deliveryStepView(imageName: "checkmark",  stepText: viewModel.getStepTime(state: 3), statusText: "배달 완료", state: viewModel.isStateStep(state: 3))
                     
                 }
                 Spacer()
@@ -68,12 +75,12 @@ struct OrderProgressView: View {
         
     }
     
-    private func deliveryStepView(imageName: String, stepText: String, statusText: String) -> some View {
+    private func deliveryStepView(imageName: String, stepText: String, statusText: String, state: Bool) -> some View {
         HStack(spacing: 0) {
             ZStack {
                 RoundedRectangle(cornerRadius: 75)
                     .fill()
-                    .foregroundColor(.basic)
+                    .foregroundColor(state ? .basic : .myGray.opacity(0.5))
                     .frame(width: isExpanded ? 52 : 80, height: isExpanded ? 52 : 8)
                 
                 Image(systemName: imageName)
@@ -86,14 +93,14 @@ struct OrderProgressView: View {
             
             Text(stepText)
                 .sizeCustom(24, .medium)
-                .foregroundColor(.basic.opacity(isExpanded ? 1 : 0))
-                .frame(width: isExpanded ? 68 : 0, alignment: .leading)
+                .foregroundColor(state ? .basic.opacity(isExpanded ? 1 : 0) : .myGray.opacity(isExpanded ? 0.5 : 0))
+                .frame(width: isExpanded ? 75 : 0, alignment: .leading)
                 .padding(.leading, isExpanded ? 24 : 0)
                 .padding(.trailing, isExpanded ? 21 : 0)
             
             Text(statusText)
                 .sizeCustom(20, .regular)
-                .foregroundColor(.basic.opacity(isExpanded ? 1 : 0))
+                .foregroundColor(state ? .basic.opacity(isExpanded ? 1 : 0) : .myGray.opacity(isExpanded ? 0.5 : 0))
                 .frame(width: isExpanded ? 79 : 0, alignment: .leading)
             if isExpanded {
                 Spacer()
@@ -103,11 +110,11 @@ struct OrderProgressView: View {
         .padding(.leading, isExpanded ? 36 : 0)
     }
     
-    private func progressBar() -> some View {
+    private func progressBar(state: Bool) -> some View {
         HStack(spacing: 0) {
             Rectangle()
                 .fill()
-                .foregroundColor(.basic)
+                .foregroundColor(state ? .basic : .myGray.opacity(0.5))
                 .frame(width: isExpanded ? 2 : 0, height: isExpanded ? 20 : 0)
             if isExpanded {
                 Spacer()
@@ -122,9 +129,3 @@ struct OrderProgressView: View {
 
 
 
-
-struct OrderProgressView_Previews: PreviewProvider {
-    static var previews: some View {
-        OrderProgressView()
-    }
-}

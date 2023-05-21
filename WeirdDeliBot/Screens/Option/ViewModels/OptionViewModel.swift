@@ -9,6 +9,8 @@ import Foundation
 import Alamofire
 
 class OptionViewModel: ObservableObject, OptionProtocol {
+    
+    
     @Published var option: [Option]? = nil
     @Published var status: Bool? = nil
     @Published var selectedMenu: Menu?
@@ -51,13 +53,19 @@ class OptionViewModel: ObservableObject, OptionProtocol {
         self.userMenu?.options = self.userOptionList
     }
     
+    func getItemAmount() -> Int {
+        return userMenu?.amount ?? 1
+    }
+    
     func addItemAmount() {
-        self.userMenu?.amount += 1
+        if userMenu?.amount ?? 100 < 100 {
+            self.userMenu?.amount += 1
+        }
     }
     
     func subItemAmount() {
-        if(self.userMenu?.amount ?? 0 > 1) {
-            self.userMenu?.amount -= 1
+        if userMenu?.amount ?? 0 > 1 {
+            userMenu?.amount -= 1
         }
     }
     

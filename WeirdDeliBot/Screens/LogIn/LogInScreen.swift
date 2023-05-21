@@ -15,117 +15,119 @@ struct LogInScreen: View {
         NavigationView {
             VStack(spacing: 0) {
                 Spacer()
-                HStack(spacing: 0) {
-                    Image(systemName: "circle.fill") //임시 로고
-                            .sizeCustom(30)
-                            .padding([.trailing], 7)
-                    Text("이상한 배달봇")
-                            .size18Bold()
-                }
-
+                Image("Logo") //임시 로고
+                    .imageSize(100)
+                    .padding(.bottom, 16)
+                Text("이상한 배달봇")
+                    .sizeCustomJUA(30)
+                    .foregroundColor(.basic)
+                    .padding(.bottom, 22)
 
                 HStack(spacing: 0) {
                     if viewModel.isLogInFailed {
                         Image(systemName: "exclamationmark.triangle")
-                            .padding(.trailing, 8)
+                            .imageSize(15)
                         Text("회원이 아니시거나,\n아이디 또는 비밀번호를 잘못 입력했습니다.")
+                            .size11Regular()
                     }
                 }
-                        .size11Regular()
-                        .foregroundColor(.main)
-                        .frame(height: 35)
-                        .padding(.horizontal, 80)
-                        .padding(.top, 37)
-
-
-                Text("로그인")
-                        .size14Regular()
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(EdgeInsets(top: 24, leading: 82, bottom: 8, trailing: 0))
-
+                .foregroundColor(.myRed)
+                .frame(height: 27)
+                .padding(.bottom, 16)
+                
+                
+                    
+                    
+                    
                 TextField("아이디", text: $viewModel.account)
                         .autocorrectionDisabled(true)
                         .autocapitalization(.none)
-                        .frame(width: 227, height: 30)
-                        .size12Regular()
-                        .padding(.leading, 10)
-                        .background(Capsule().fill(Color.base))
+                        .placeholder(when: viewModel.account.isEmpty) {
+                            Text("아이디")
+                                .foregroundColor(.myGray.opacity(0.5))
+                        }
+                        .frame(height: 63)
+                        .size18Regular()
+                        .padding(.leading, 32)
+                        .background(Rectangle().fill(Color.myWhite).cornerRadius(10))
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.myGray.opacity(0.5), lineWidth: 1)
+                                
+                        }
+                        .padding(.bottom, 16)
+                        .padding(.horizontal, 28)
+                       
                 
-                HStack(spacing: 0){}
-                    .padding(.bottom, 8)
+              
 
-                SecureField("비밀번호", text: $viewModel.password)
+                SecureField("", text: $viewModel.password)
                         .autocorrectionDisabled(true)
                         .autocapitalization(.none)
-                        .frame(width: 227, height: 30)
-                        .size12Regular()
-                        .padding(.leading, 10)
-                        .background(Capsule().fill(Color.base))
-                /*
-                HStack(spacing: 0) {
-                    ZStack {
-                        Capsule()
-                                .frame(width: 24, height: 12)
-                                .foregroundColor(Color(viewModel.isAutoLogIn ? UIColor(.main) : UIColor(.base)))
-                        ZStack {
-                            Circle()
-                                    .frame(width: 10, height: 10)
-                                    .foregroundColor(.textSub)
+                        .placeholder(when: viewModel.password.isEmpty) {
+                            Text("비밀번호")
+                                .foregroundColor(.myGray.opacity(0.5))
                         }
-                                .offset(x: viewModel.isAutoLogIn ? 6 : -6)
-                                .animation(.spring())
-                    }
-                            .onTapGesture {
-                                self.viewModel.isAutoLogIn.toggle()
-                            }
-
-                    Text("자동 로그인")
-                            .size11Regular()
-                            .foregroundColor(Color(viewModel.isAutoLogIn ? UIColor(.main) : UIColor(.textMain)))
-
-                }
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(EdgeInsets(top: 7, leading: 85, bottom: 51, trailing: 0))
-                        .onChange(of: self.viewModel.token) { token in
-                            if (token != nil) {
-                                self.rootViewModel.setToken(token: token!, isSave: viewModel.isAutoLogIn)
-                            }
+                        .frame(height: 63)
+                        .size18Regular()
+                        .padding(.leading, 32)
+                        .background(Rectangle().fill(Color.myWhite).cornerRadius(10))
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.myGray.opacity(0.5), lineWidth: 1)
+                                
                         }
-                */
-                //isInfoNotEmpty가 True일 때만 작동.
+                        .padding(.bottom, 24)
+                        .padding(.horizontal, 28)
+                
+                
+                        //isInfoNotEmpty가 True일 때만 작동.
                 Group {  //Extra argument in call Error 해결을 위한 Grouping
                     if viewModel.isInfoNotEmpty {
-                        Button(action: {
-                            viewModel.logIn()
-                        }) {
-                            Text("로그인")          //button이 아닌 label에 frame을 줘서 버튼 클릭 범위를 늘림
-                                .frame(width: 227, height: 40)
-                                .size14Regular()
-                                .foregroundColor(.textSub)
-                                .background(Capsule().fill(Color.main))
-                                .padding([.bottom], 7)
-                        }
-                        .padding(.top, 50)
+                        CustomButton(action: {viewModel.logIn()}, text: "로그인", textColor: .myWhite, height: 63, backgroundColor: .basic)
+                            .padding(.bottom, 16)
                     } else {
-                        Text("로그인")
-                            .frame(width: 227, height: 40)
-                            .size14Regular()
-                            .foregroundColor(.textSub)
-                            .background(Capsule().fill(Color.sub))
-                            .padding(.top, 50)
-                            .padding([.bottom], 7)
+                        HStack(spacing: 0) {
+                            Spacer()
+                            Text("로그인")
+                            Spacer()
+                        }
+                            .size18Regular()
+                            .frame(height: 63)
+                            .foregroundColor(.myWhite)
+                            .background(RoundedRectangle(cornerRadius: 10).fill(Color.myGray.opacity(0.5)))
+                            .padding(.horizontal, 28)
+                            .padding(.bottom, 16)
                     }
                     
-
-                    NavigationLink(destination:
-                                    //SignUpScreen().environmentObject(viewModel)
-                    EmptyView()) {
-                        Text("회원가입")      //button이 아닌 label에 frame을 줘서 버튼 클릭 범위를 늘림
-                                .frame(width: 227, height: 40)
-                                .size14Regular()
-                                .foregroundColor(.main)
-                                .background(Capsule().stroke(Color.main))
+                    NavigationLink(destination: EmptyView()) {
+                        HStack(spacing: 0) {
+                            Spacer()
+                            Text("회원가입")
+                                .size18Regular()
+                                .foregroundColor(.basic)
+                            Spacer()
+                        }
                     }
+                    .frame(height: 63)
+                    .background(Color.myWhite)
+                    .cornerRadius(10)
+                    .shadow(radius: 3)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.basic, lineWidth: 1)
+                            
+                    }
+                    
+                    .padding(.horizontal, 28)
+                    .padding(.bottom, 60)
+                    
+                    NavigationLink(destination: EmptyView()) {
+                        Text("비밀번호를 잊으셨나요?")
+                            .size18Regular()
+                            .foregroundColor(.basic)
+                    }
+                    
                 }
                 .onChange(of: self.viewModel.token) { token in
                     if (token != nil) {

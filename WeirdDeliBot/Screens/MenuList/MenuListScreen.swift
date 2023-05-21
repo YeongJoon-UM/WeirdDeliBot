@@ -9,12 +9,18 @@
 import SwiftUI
 
 struct MenuListView: View {
-    //@State var currentTab: Int = 0
-    @StateObject var viewModel: MenuViewModel = MenuViewModel()
+    @ObservedObject var viewModel: MenuViewModel
     @EnvironmentObject var rootViewModel: RootViewModel
+    @State private var path: NavigationPath = .init()
+    
+    init() {
+        self.viewModel = MenuViewModel()
+        self.viewModel.getCatList()
+        self.viewModel.getItemList()
+    }
     
     var body: some View {
-        NavigationView {
+        NavigationStack(path: $path) {
             ZStack(alignment: .top) {
                 if(viewModel.category == nil || viewModel.menu == nil){
                     if(viewModel.status == nil) {
@@ -36,7 +42,7 @@ struct MenuListView: View {
                     TabView(selection: self.$viewModel.currentTab) {
                         if(viewModel.category != nil) {
                             ForEach(Array(zip(viewModel.category!.indices, viewModel.category!)), id: \.0) { index, category in
-                                MenuListTab(category: category.name).tag(index)
+                                MenuListTab(path: $path, category: category.name).tag(index)
                             }
                         }
                     }
@@ -46,17 +52,8 @@ struct MenuListView: View {
                     .animation(.default, value: viewModel.currentTab)
                 }
             }
-            
-            .navigationBarBackButtonHidden()
-            .navigationBarTitle(Text("Menu"))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar{ ToolBarInformation() }
-            .toolbar{ ToolBarCart() }
-        }
-        
-        .onAppear(){
-            viewModel.getCatList(token: rootViewModel.token?.token ?? "")
-            viewModel.getItemList(token: rootViewModel.token?.token ?? "")
+            .ignoresSafeArea(edges: .bottom)
+            .customToolBar("Menu", showBackButton: false, path: $path)
         }
     }
 }
@@ -69,7 +66,7 @@ struct TabBarView: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false){
             ScrollViewReader { scrollReader in
-                HStack(spacing: 20) {
+                HStack(spacing: 4) {
                     ForEach(Array(zip(viewModel.category!.indices, viewModel.category!)),
                             id: \.0,
                             content: {
@@ -101,17 +98,15 @@ struct TabBarItem: View {
         Button {
             self.currentTab = tab
         } label: {
-            VStack(spacing: 5) { //MARK: 선택된 탭 띄워지는 정도
+            VStack(spacing: 0) { //MARK: 선택된 탭 띄워지는 정도
                 Spacer()
                 Text(tabBarItemName)
-                    .foregroundColor((currentTab == tab) ? Color.main : Color.textMain)
-                if currentTab == tab {
-                    Color.main
-                        .frame(height: 2)
-                        .matchedGeometryEffect(id: "underline",
-                                               in: namespace,
-                                               properties: .frame)
-                }
+                    .size16Regular()
+                    .foregroundColor((currentTab == tab) ? Color.myWhite : Color.myGray)
+                    .padding(.vertical, 6)
+                    .padding(.horizontal, 9)
+                    .background(Capsule().fill((currentTab == tab) ? Color.basic : Color.myWhite))
+                
             }
             .animation(.spring(), value: self.currentTab)
         }

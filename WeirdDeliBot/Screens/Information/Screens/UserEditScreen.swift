@@ -65,15 +65,6 @@ struct UserEditScreen: View {
                             Text("\(rootViewModel.user?.phone ?? "")")
                                 .foregroundColor(.myBlack)
                         }
-                    /*
-                    TextField("\(rootViewModel.user?.phone ?? "")", text: $phoneNumber)
-                        .phoneNumberFormat("\(rootViewModel.user?.phone ?? "")", text: $phoneNumber)
-                    
-                        .onChange(of: phoneNumber){ value in
-                            let formattedNumber = format(phoneNumber: value)
-                            phoneNumber = formattedNumber
-                        }*/
-                        
                         .frame(height: 63)
                         .size18Regular()
                         .padding(.leading, 23)
@@ -110,11 +101,7 @@ struct UserEditScreen: View {
             
             Spacer()
         }
-        .navigationBarTitle(Text("Edit Info"))
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden()
-        
-        .toolbar{ ToolBarBackButton(presentation: presentation) }
+        .customToolBar("Edit Info", showCartButton: false, showInfoButton: false)
     }
 }
 

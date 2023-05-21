@@ -27,5 +27,7 @@ struct CustomButton: View {
         .background(backgroundColor)
         .cornerRadius(10)
         .padding(.horizontal, 28)
+        .shadow(radius: 3)
     }
 }
+

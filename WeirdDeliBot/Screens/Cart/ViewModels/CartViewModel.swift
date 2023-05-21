@@ -32,11 +32,15 @@ class CartViewModel: ObservableObject {
         self.getTotalPrice()
     }
     
+    func emptyOrderItem() {
+        userOrderList = []
+        totalPrice = 0
+    }
+    
     func getTotalPrice() {
         self.totalPrice = 0
         for price in itemPrice {
             totalPrice += price
         }
-        print("total : \(totalPrice)")
     }
 }

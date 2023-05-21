@@ -66,8 +66,8 @@ class StoreRepository {
                 }
     }
     
-    static func getOptionInfo(optionCode: String, token: String, completion: @escaping (Result<OptionResponse, AFError>) -> Void) {
-        ApiFactory.getApi(url: "user/getOptionList", type: .post, parameters: OptionCode(optionCode: optionCode))
+    static func getOptionInfo(optionCode: String, completion: @escaping (Result<OptionResponse, AFError>) -> Void) {
+        ApiFactory.getApi(url: "store/getOptionList", type: .post, parameters: OptionCode(optionCode: optionCode))
                 .responseDecodable(of: OptionResponse.self) { response in
                     switch (response.result) {
                     case .success(let value):

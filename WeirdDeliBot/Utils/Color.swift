@@ -20,12 +20,7 @@ extension Color {
         let b = Double((rgb >>  0) & 0xFF) / 255.0
         self.init(red: r, green: g, blue: b)
     }
-    
-    static let main = Color.brown
-    static let sub = Color.gray
-    static let textMain = Color.black
-    static let textSub = Color.white
-    static let base = Color(hex: "#eeeeee")
+
     static let basic = Color(hex: "#CA965C")
     static let myWhite = Color(hex: "#FFFFFF")
     static let myBlack = Color(hex: "#222222")

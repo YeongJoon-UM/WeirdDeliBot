@@ -25,9 +25,9 @@ class OrderRepository {
                 }
     }
     
-    static func getOrderInfo(orderCode: String, completion: @escaping (Result<MenuResponse, AFError>) -> Void) {
-        ApiFactory.getApi(url: "store/getItemList", type: .put, parameters: StoreCode(storeCode: storeCode))
-                .responseDecodable(of: MenuResponse.self) { response in
+    static func getOrderHistory(account: String, completion: @escaping (Result<OrderHistoryResponse, AFError>) -> Void) {
+        ApiFactory.getApi(url: "order/getOrderList", type: .post, parameters: Account(account: account))
+                .responseDecodable(of: OrderHistoryResponse.self) { response in
                     switch (response.result) {
                     case .success(let value):
                         completion(.success(value))
@@ -38,6 +38,21 @@ class OrderRepository {
                     }
                 }
     }
+    
+    static func getOrderDetail(orderCode: String, completion: @escaping (Result<OrderHistoryResponse, AFError>) -> Void) {
+        ApiFactory.getApi(url: "order/getOrderList", type: .post, parameters: OrderCode(orderCode: orderCode))
+                .responseDecodable(of: OrderHistoryResponse.self) { response in
+                    switch (response.result) {
+                    case .success(let value):
+                        completion(.success(value))
+                        break
+                    case .failure(let error):
+                        completion(.failure(error))
+                        break
+                    }
+                }
+    }
+    
     static func getOrderItem(itemCode: String, completion: @escaping (Result<MenuResponse, AFError>) -> Void) {
         ApiFactory.getApi(url: "store/getItemList", type: .put, parameters: StoreCode(storeCode: storeCode))
                 .responseDecodable(of: MenuResponse.self) { response in

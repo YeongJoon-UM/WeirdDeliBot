@@ -10,21 +10,12 @@ import CoreLocation
 import MapKit
 
 class LocationViewModel: NSObject ,ObservableObject {
-    let locationDazzle = Location(id: UUID(), name: "Dazzle", locate: CLLocationCoordinate2D(latitude: 36.7632, longitude: 127.2812))
-    let location2Gong = Location(id: UUID(), name: "2공학관", locate: CLLocationCoordinate2D(latitude: 36.7666, longitude: 127.2819))
-    let locationDamhun = Location(id: UUID(), name: "담헌실학관", locate: CLLocationCoordinate2D(latitude: 36.7659, longitude: 127.2825))
-    let locationDomitory = Location(id: UUID(), name: "기숙사동", locate: CLLocationCoordinate2D(latitude: 36.7618, longitude: 127.2835))
-    let locationBot = Location(id: UUID(), name: "BOT", locate: CLLocationCoordinate2D(latitude: 0, longitude: 0))
-    
-    var locations: [Location] {
-        return [location2Gong, locationDamhun, locationDomitory]
-    }
-    
     @Published var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 36.7635507, longitude: 127.281751),
         span: MKCoordinateSpan(latitudeDelta: 0.007, longitudeDelta: 0.007)
     )
-    
+    let locationDazzle = Location(id: UUID(), name: "Dazzle", locate: CLLocationCoordinate2D(latitude: 36.7632, longitude: 127.2812))
+    var destination = Location(id: UUID(), name: "목적지", locate: CLLocationCoordinate2D(latitude: 0, longitude: 0))
     private let locationManager = CLLocationManager()
         
     @Published var userLocation: Location = Location(id: UUID(), name: "내 위치", locate: CLLocationCoordinate2D(latitude: 0, longitude: 0))
@@ -49,6 +40,13 @@ class LocationViewModel: NSObject ,ObservableObject {
     
     func getBotLocation() {
         //TODO: get BOT GPS API
+    }
+    
+    func getDestinLocation(latitude: Double, longitude: Double) {
+        region.center.latitude = latitude
+        region.center.longitude = longitude
+        destination.locate.latitude = latitude
+        destination.locate.longitude = longitude
     }
     
 

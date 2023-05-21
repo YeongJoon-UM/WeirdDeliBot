@@ -31,92 +31,56 @@ struct EditScreen: View {
                     Text("Loading Failed.")
                 }
             } else {
-                MenuDescRow(menu: viewModel.menu![0])
-                    .padding()
+                MenuDescRow(viewModel: viewModel, menu: viewModel.menu![0])
+                  
                 
-                Text("Options")
+                CustomDivider(top: 16, bottom: 16)
+                
+                Text("추가 옵션")
+                    .size16Bold()
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .font(.system(size: 19))
-                    .padding(.leading, 16)
-                    .padding(.top, 0)
+                    .padding(.leading, 36)
+                    .padding(.bottom, 16)
                 
-                ScrollView() {
+                ScrollView(showsIndicators: false) {
                     ForEach(viewModel.option!){ option in
                         OptionRow(viewModel: viewModel, option: option)
-                            
                     }
                 }
+                .frame(height: 153)
+                .padding(.leading, 40)
+                .padding(.trailing, 27)
             }
             
-            Spacer()
+            CustomDivider(top: 16, bottom: 16)
+            
             HStack(spacing: 0) {
-                
-                HStack(spacing: 0) {
-                    if(viewModel.tempOrderItem?.amount ?? 100 >= 99) {
-                        Image(systemName: "plus.square")
-                            .font(.system(size: 20))
-                            .foregroundColor(.gray)
-                    } else {
-                        Image(systemName: "plus.square")
-                            .font(.system(size: 20))
-                            .foregroundColor(.black)
-                            .onTapGesture {
-                                viewModel.addItemAmount()
-                            }
-                    }
-                }
-                .frame(width: 20)
-                .padding(.leading, 16)
-                
-                
-                Text("\(viewModel.tempOrderItem?.amount ?? 0)잔")
-                    .frame(width: 40)
-                
-                HStack(spacing: 0) {
-                    if(viewModel.tempOrderItem?.amount ?? 0 == 0) {
-                        Image(systemName: "minus.square")
-                            .font(.system(size: 20))
-                            .foregroundColor(.gray)
-                    } else {
-                        Image(systemName: "minus.square")
-                            .font(.system(size: 20))
-                            .foregroundColor(.black)
-                            .onTapGesture {
-                                viewModel.subItemAmount()
-                            }
-                    }
-                }
-                .frame(width: 20)
-                .padding(.trailing, 8)
-                Text("Total : \(viewModel.totalPrice())₩")
-                    .font(Font.system(size: 19, weight: .bold))
-                    .frame(maxWidth: .infinity, alignment: .trailing)
-                    .padding(.bottom, 30)
-                    .padding(.trailing, 16)
+                Text("총 금액")
+                    .size16Bold()
+                    .foregroundColor(.myBlack)
+                Spacer()
+                Text("\(viewModel.totalPrice())₩")
+                    .size18Bold()
+                    .foregroundColor(.myBlack)
             }
-            Button(action: {
-                cartViewModel.editOrderItem(index: index, newOrderItem: viewModel.tempOrderItem!, price: viewModel.totalPrice())
-                self.presentation.wrappedValue.dismiss()    //option 모두 고른 menu를 cart에 넣고 직전 화면으로 돌아감.
-            }) {
-                Text("장바구니")
-                    .frame(width: 227, height: 50)
-                    .font(Font.system(size: 20))
-                    .foregroundColor(Color.white)
-                    .background(Capsule().fill(Color.black))
-                    .padding(.bottom, 20)
-            }
+            .padding(.leading, 36)
+            .padding(.trailing, 44)
             
+            CustomDivider(top: 16, bottom: 24)
+            
+            
+            CustomButton(action: {
+                cartViewModel.editOrderItem(index: index, newOrderItem: viewModel.tempOrderItem!, price: viewModel.totalPrice())
+                self.presentation.wrappedValue.dismiss()
+            }, text: "장바구니", textColor: .myWhite, height: 63, backgroundColor: .basic)
+            .padding(.bottom, 74)
         }
         .onAppear() {
             viewModel.setOrderItem(orderItem: cartViewModel.userOrderList[index])
             viewModel.getItemInfo()
             viewModel.getOptionList()
         }
-        .navigationBarTitle(Text("Edit"))
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden()
-        .toolbar{ ToolBarBackButton(presentation: presentation) }
-        
+        .customToolBar("Edit", showCartButton: false, showInfoButton: false)
     }
 }
 

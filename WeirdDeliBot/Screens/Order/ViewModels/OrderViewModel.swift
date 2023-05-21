@@ -7,9 +7,6 @@
 
 import Foundation
 
-import Foundation
-import Alamofire
-
 class OrderViewModel: ObservableObject {
     @Published var order: Order?
     @Published var isAddressEditable: Bool = false
@@ -18,15 +15,18 @@ class OrderViewModel: ObservableObject {
     @Published var newPhone: String = ""
     @Published var newRequest: String = ""
     @Published var orderCode: String = ""
+    @Published var orderDetail: OrderHistory?
     
     func setOrderList(orderList: [OrderItem]) {
-        
         order?.orderList = orderList
-        
     }
     
     func setOrderInfo(user: User?, orderList: [OrderItem]) {
-        self.order = Order(account: user?.account ?? "", address: user?.address ?? "", addressDesc: user?.addressDesc ?? "", phone: user?.phone ?? "", orderReq: "", name: user?.name ?? "", storeCode: "STR-000000000001", orderList: orderList)
+        self.order = Order(account: user?.account ?? "", address: user?.address ?? "", addressDesc: user?.addressDesc ?? "", phone: user?.phone ?? "", orderReq: "", name: user?.name ?? "", storeCode: "STR-000000000001", latitude: "", longitude: "", orderList: orderList)
+        if let selectedOption = DropdownMenuOption.locations.first(where: { $0.option == (user?.addressDesc ?? "") }) {
+            order?.latitude = selectedOption.latitude
+            order?.longitude = selectedOption.longitude
+            }
         /*
         order?.account = user?.account ?? ""
         order?.name = user?.name ?? ""
@@ -50,12 +50,11 @@ class OrderViewModel: ObservableObject {
     
     func sendOrder() {
         removeEmptyOption()
-        
         OrderRepository.sendOrder(order: self.order!) { response in
             switch(response) {
             case .success(let value):
                 self.orderCode = value.result
-                print(value)
+                self.getOrderDetail(orderCode: value.result)
                 break
             case .failure(let error) :
                 print(error)
@@ -66,9 +65,27 @@ class OrderViewModel: ObservableObject {
  
     
     func removeEmptyOption() {
-        if !(self.order?.orderList.isEmpty ?? false) {
-            self.order?.orderList[(self.order!.orderList.endIndex) - 1].options.removeAll { option in
-                option.amount == 0
+        if !(order?.orderList.isEmpty ?? false) {
+            for index in 0..<(order?.orderList.count)! {
+                order?.orderList[index].options.removeAll { option in
+                    option.amount == 0
+                }
+            }
+        }
+    }
+    
+    func getOrderDetail(orderCode: String) {
+        OrderRepository.getOrderDetail(orderCode: orderCode) { response in
+            print(orderCode)
+            switch(response) {
+            case .success(let value):
+                print(value)
+                self.orderDetail = value.result[0]
+                
+                break
+            case .failure(let error) :
+                print(error)
+                break
             }
         }
     }

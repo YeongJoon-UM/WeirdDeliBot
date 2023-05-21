@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct InfoScreen: View {
+    @ObservedObject var viewModel: InfoViewModel
     @Environment(\.presentationMode) var presentation
     @EnvironmentObject var rootViewModel: RootViewModel
+    
+    init() {
+        self.viewModel = InfoViewModel()
+    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -49,29 +54,29 @@ struct InfoScreen: View {
         VStack(spacing: 0) {
             Text("주문 내역")
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .sizeCustom(18, .bold)
+                .sizeCustomJUA(18)
                 .foregroundColor(.myWhite)
                 .padding(.leading, 24)
                 .padding(.top, 16)
                 .padding(.bottom, 4)
             ScrollView {
-                ForEach(0..<5) { index in
-                    OrderHistoryRow(status: (index == 0 ? 1 : 3))
+                ForEach(viewModel.orderHistories.indices, id: \.self) { index in
+                    OrderHistoryRow(orderHistory: viewModel.orderHistories[index])
                 }
             }
             
             
             Spacer()
         }
+        .onAppear() {
+            viewModel.getOrderHistory(account: rootViewModel.user?.account ?? "")
+        }
         .background(Color.basic)
         .cornerRadius(10)
         .shadow(radius: 8)
         .edgesIgnoringSafeArea(.all)
         
-        .navigationBarTitle(Text("User Info"))
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden()
-        .toolbar{ ToolBarBackButton(presentation: presentation) }
+        .customToolBar("User Info", showCartButton: false, showInfoButton: false)
         .toolbar{
             ToolbarItem(placement: .navigationBarTrailing) {
                 NavigationLink(destination: UserEditScreen().environmentObject(rootViewModel)) {
@@ -83,6 +88,6 @@ struct InfoScreen: View {
         }
         
     }
-         
+    
 }
 
