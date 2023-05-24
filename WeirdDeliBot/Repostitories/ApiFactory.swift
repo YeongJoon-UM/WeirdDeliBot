@@ -21,4 +21,15 @@ class ApiFactory {
 
         return AF.request("\(host)\(url)", method: type, parameters: parameters, encoder: JSONParameterEncoder.default, headers: header)
     }
+    
+    static func getImage(fileName: String) -> DataRequest {
+        var header: HTTPHeaders = []
+        let token: String? = UserDefaults.standard.string(forKey: "token")
+
+        if(token != nil) {
+            header.add(name: "Authorization", value: "Bearer \(token ?? "")")
+        }
+
+        return AF.request("\(host)/file/display?fileName=\(fileName)", method: .get, headers: header)
+    }
 }

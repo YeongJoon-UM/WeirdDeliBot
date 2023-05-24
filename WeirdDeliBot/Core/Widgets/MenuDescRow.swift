@@ -14,11 +14,23 @@ struct MenuDescRow<ViewModel: OptionProtocol>: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            Image(menu.image ?? "sample")
-                .resizable()
-                .frame(width: 120, height: 120)
-                .scaledToFit()
-            
+            if menu.image != nil {
+                AsyncImage(url: URL(string: "https://delibot.kro.kr/file/display?fileName=\(menu.image!)")) { image in
+                    image
+                        .resizable()
+                        .frame(width: 120, height: 120)
+                        .scaledToFit()
+                } placeholder: {
+                    HStack(spacing: 0) {
+                        ProgressView()
+                            
+                    }.frame(width: 120, height: 120)
+                }
+            } else {
+                ProgressView()
+                    .frame(width: 120, height: 120)
+            }
+        
             CustomDivider(top: 14, bottom: 16)
             
             Text(menu.name)

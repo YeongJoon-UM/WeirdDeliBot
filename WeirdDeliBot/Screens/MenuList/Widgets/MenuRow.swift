@@ -12,10 +12,23 @@ struct MenuRow: View {
     
     var body: some View {
         HStack(spacing: 0) {
-            Image(menu.image ?? "sample")
-                .resizable()
-                .frame(width: 90, height: 90)
-                .scaledToFit()
+            if menu.image != nil {
+                AsyncImage(url: URL(string: "https://delibot.kro.kr/file/display?fileName=\(menu.image!)")) { image in
+                    image
+                        .resizable()
+                        .frame(width: 90, height: 90)
+                        .scaledToFit()
+                } placeholder: {
+                    HStack(spacing: 0) {
+                        ProgressView()
+                    }
+                    .frame(width: 90, height: 90)
+                }
+            } else {
+                ProgressView()
+                    .frame(width: 90, height: 90)
+            }
+
             Spacer()
             VStack(alignment: .trailing, spacing: 0) {
                 Text(menu.name)

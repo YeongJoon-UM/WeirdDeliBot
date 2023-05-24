@@ -36,4 +36,18 @@ class UserRepository {
                     }
                 }
     }
+    
+    static func updateUserInfo(addressDesc: String, latitude: String, longitude: String, phone: String, completion: @escaping (Result<UserResponse, AFError>) -> Void) {
+        ApiFactory.getApi(url: "user/updateUserInfo", type: .put, parameters: UpdateInfo(addressDesc: addressDesc, latitude: latitude, longitude: longitude, phone: phone))
+                .responseDecodable(of: UserResponse.self) { response in
+                    switch (response.result) {
+                    case .success(let value):
+                        completion(.success(value))
+                        break
+                    case .failure(let error):
+                        completion(.failure(error))
+                        break
+                    }
+                }
+    }
 }

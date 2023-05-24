@@ -75,7 +75,6 @@ class OrderHistoryViewModel: ObservableObject {
         OrderRepository.cancelOrder(orderCode: orderHistory.orderCode){ response in
             switch(response) {
             case .success(let value):
-
                 print(value)
                 break
             case .failure(let error) :

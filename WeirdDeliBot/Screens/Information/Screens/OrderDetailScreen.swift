@@ -120,7 +120,7 @@ struct OrderDetailScreen: View {
                 .padding(.bottom, 24)
             
             if viewModel.orderHistory.orderState == 0 {
-                CustomButton(action: { isPopUpShow.toggle() }, text: "주문 취소", textColor: .myWhite, height: 63, backgroundColor: .myRed)
+                CustomButton(action: { isPopUpShow = true }, text: "주문 취소", textColor: .myWhite, height: 63, backgroundColor: .myRed)
                     .padding(.bottom, 74)
             } else {
                 Text("주문 취소")
@@ -162,7 +162,7 @@ struct OrderDetailScreen: View {
                     .padding(.bottom, 56)
                 Divider()
                 HStack(spacing: 0) {
-                    Button(action: {isPopUpShow.toggle()}) {
+                    Button(action: {isPopUpShow = false}) {
                         Spacer()
                         Text("아니요")
                             .sizeCustom(20)
@@ -173,7 +173,7 @@ struct OrderDetailScreen: View {
                     Divider()
                     Button(action: {
                         viewModel.cacelOrder()
-                        isPopUpShow.toggle()
+                        isPopUpShow = false
                         presentation.wrappedValue.dismiss()
                     }) {
                         Spacer()
