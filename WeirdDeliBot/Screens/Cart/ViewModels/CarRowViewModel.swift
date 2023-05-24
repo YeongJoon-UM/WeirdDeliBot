@@ -32,28 +32,13 @@ class CartRowViewModel: ObservableObject {
         }
     }
     
-    func getOptionInfo(itemCode: String) {
-        StoreRepository.getOptionList(itemCode: itemCode) { response in
-            switch(response) {
-            case .success(let value):
-                self.option = value.result
-                if(self.status != false) { self.status = true }
-                //self.setOptionInfo()
-                break
-            case .failure(let error) :
-                print(error)
-                self.status = false
-                break
-            }
-        }
-    }
-    
     func getOptionList(itemCode: String) {
         StoreRepository.getOptionList(itemCode: itemCode) { response in
             switch(response) {
             case .success(let value):
                 self.option = value.result
                 if(self.status != false) { self.status = true }
+                //self.setOptionInfo()
                 break
             case .failure(let error) :
                 print(error)

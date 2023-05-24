@@ -15,12 +15,15 @@ struct Order: Codable {
     var orderReq: String
     var name: String
     var storeCode: String
+    var latitude: String
+    var longitude: String
     var orderList: [OrderItem]
     
     enum CodingKeys: String, CodingKey {
         case account = "writeId"
         case name = "writeNm"
-        case address, addressDesc, phone, orderReq, storeCode, orderList
+        case address, addressDesc, phone, orderReq
+        case latitude, longitude, storeCode, orderList
     }
 }
 

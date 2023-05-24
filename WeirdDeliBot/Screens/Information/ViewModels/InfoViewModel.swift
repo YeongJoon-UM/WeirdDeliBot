@@ -6,3 +6,21 @@
 //
 
 import Foundation
+
+class InfoViewModel: ObservableObject {
+    @Published var orderHistories: [OrderHistory] = []
+    
+    func getOrderHistory(account: String) {
+        OrderRepository.getOrderHistory(account: account) { response in
+            switch(response) {
+            case .success(let value):
+                self.orderHistories = value.result
+                //print(value)
+                break
+            case .failure(let error) :
+                print(error)
+                break
+            }
+        }
+    }
+}

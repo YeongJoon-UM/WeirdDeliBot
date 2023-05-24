@@ -13,7 +13,7 @@ struct MenuResponse: Codable {
     let resultMsg: String
 }
 
-struct Menu: Codable, Identifiable {
+struct Menu: Codable, Identifiable, Hashable {
     let id: String
     let name: String
     let price: Int

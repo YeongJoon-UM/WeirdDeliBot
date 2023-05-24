@@ -12,10 +12,11 @@ struct OrderScreen: View {
     @EnvironmentObject var rootViewModel: RootViewModel
     @EnvironmentObject var cartViewModel: CartViewModel
     @Environment(\.presentationMode) var presentation
-    @State var isLoading: Bool = false
+    @State var selectedOption: DropdownMenuOption? = nil
+    @Binding var path: NavigationPath
     
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(alignment: .leading, spacing: 0) {
             if(viewModel.order?.name == nil || viewModel.order?.name == "") {
                 ProgressView(label: {
                     VStack(spacing : 0) {
@@ -26,113 +27,107 @@ struct OrderScreen: View {
                 }
                 ).progressViewStyle(CircularProgressViewStyle())
             } else {
-                Group {
-                    Text("배달정보")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .sizeCustom(25, .bold)
-                        .padding(.leading, 16)
-                        .padding(.top, 16)
-                        .padding(.bottom, 16)
-                    
-                    Text("\(viewModel.order?.address ?? "")")
-                        .size16Regular()
+                Text("주문자 정보")
+                    .size18Bold()
+                    .foregroundColor(.myBlack)
+                    .padding(.top, 16)
+                    .padding(.bottom, 8)
+                    .padding(.leading, 36)
+                
+                VStack(alignment: .leading, spacing: 0) {
+                    Text("\(viewModel.order?.name ?? "")")
                         .padding(.bottom, 8)
-                    
-                    TextField("\(viewModel.order?.addressDesc ?? "")", text: $viewModel.newAddress)
-                        .onChange(of: viewModel.newAddress) { address in
-                            viewModel.setNewAddress()
-                        }
-                        .disabled(!viewModel.isAddressEditable)
-                        .autocorrectionDisabled(true)
-                        .autocapitalization(.none)
-                        .frame(width: 260, height: 40)
-                        .size16Regular()
-                        .padding(.leading, 16)
-                        .foregroundColor(viewModel.isAddressEditable ? .textMain : .main)
-                        .background(Rectangle().fill(Color.base).cornerRadius(20))
+                    Text("\(viewModel.order?.account ?? "")")
                         .padding(.bottom, 8)
-                    
-                    TextField("\(viewModel.order?.phone ?? "")", text: $viewModel.newPhone)
-                        .onChange(of: viewModel.newPhone) { phone in
-                            var formatted = phone
-                            if formatted.count > 3 {
-                                formatted.insert("-", at: formatted.index(formatted.startIndex, offsetBy: 3))
-                            }
-                            if formatted.count > 8 {
-                                formatted.insert("-", at: formatted.index(formatted.startIndex, offsetBy: 8))
-                            }
-                            if formatted.count > 13 {
-                                formatted = String(formatted.prefix(13))
-                                viewModel.setNewPhone()
-                            }
-                            viewModel.newPhone = formatted
-                        }
-                        .disabled(!viewModel.isPhoneEditable)
-                        .keyboardType(.phonePad)
-                        .autocorrectionDisabled(true)
-                        .autocapitalization(.none)
-                        .frame(width: 260, height: 40)
-                        .size16Regular()
-                        .padding(.leading, 16)
-                        .foregroundColor(viewModel.isPhoneEditable ? .textMain : .main)
-                        .background(Rectangle().fill(Color.base).cornerRadius(20))
-                        .padding(.bottom, 16)
+                    Text("\(viewModel.order?.phone ?? "")")
                 }
-                Text("요청사항")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .sizeCustom(25, .bold)
-                    .padding(.leading, 16)
-                    .padding(.top, 0)
+                .size18Regular()
+                .foregroundColor(.myBlack)
+                .padding(.horizontal, 48)
                 
-                TextField("요청사항을 적어주세요.", text: $viewModel.newRequest)
-                    .onChange(of: viewModel.newRequest) { request in
-                        viewModel.setNewRequest()
-                    }
-                    .autocorrectionDisabled(true)
-                    .autocapitalization(.none)
-                    .multilineTextAlignment(.leading)
-                    .frame(width: 260, height: 100, alignment: .top)
-                    .size16Regular()
-                    .padding(.top, 10)
-                    .padding(.leading, 10)
-                    .foregroundColor(.sub)
-                    .background(Rectangle().fill(Color.base).cornerRadius(20))
-                    .padding(.bottom, 16)
+                CustomDivider(top: 16, bottom: 16)
                 
-                Spacer()
-                HStack(spacing: 0) {
-                    Text("최종 결제금액")
-                        .sizeCustom(25, .bold)
-                        .padding(.leading, 16)
+                Text("배달 주소")
+                    .size18Bold()
+                    .foregroundColor(.myBlack)
+                    .padding(.bottom, 8)
+                    .padding(.leading, 36)
+                
+                Text("\(viewModel.order?.address ?? "")")
+                    .size18Regular()
+                    .foregroundColor(.myBlack)
+                    .padding(.leading, 48)
+                    .padding(.bottom, 8)
+                
+                ZStack(alignment: .top) {
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text("요청 사항")
+                            .size18Bold()
+                            .foregroundColor(.myBlack)
+                            .padding(.bottom, 8)
+                            .padding(.leading, 36)
                         
+                        TextField("", text: $viewModel.newRequest)
+                            .onChange(of: viewModel.newRequest) { request in
+                                viewModel.setNewRequest()
+                            }
+                            .placeholder(when: viewModel.newRequest.isEmpty) {
+                                Text("예) 휘핑크림 빼주세요.")
+                                    .foregroundColor(.myGray.opacity(0.5))
+                            }
+
+                            .autocorrectionDisabled(true)
+                            .autocapitalization(.none)
+                            .frame(height: 126, alignment: .top)
+                            .size18Regular()
+                            .padding(.top, 18)
+                            .padding(.leading, 20)
+                            .background(Rectangle().fill(Color.myWhite).cornerRadius(10))
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color.basic, lineWidth: 1)
+                                    
+                            }
+                            .padding(.horizontal, 28)
+                    }
+                    .padding(.top, 79)
+                    
+                    DropdownMenu(selectedOption: self.$selectedOption, placeholder: rootViewModel.user?.addressDesc ?? "", options: DropdownMenuOption.locations)
+                }
+                
+                CustomDivider(top: 24, bottom: 24)
+                
+                HStack(spacing: 0) {
+                    Text("결제 금액")
                     
                     Spacer()
                     
                     Text("\(cartViewModel.totalPrice)₩")
-                        .sizeCustom(25, .bold)
-                        .padding(.trailing, 16)
+                        
                 }
-                .padding(.bottom, 16)
-                Button(action: {
-                    //viewModel.setOrderInfo(user: rootViewModel.user, orderList: cartViewModel.userOrderList)
-                    viewModel.sendOrder()}) {
-                        Text("결제하기")
-                            .frame(width: 227, height: 50)
-                            .font(Font.system(size: 20))
-                            .foregroundColor(Color.white)
-                            .background(Capsule().fill(Color.black))
-                            .padding(.bottom, 20)
-                    }
+                .size18Bold()
+                .foregroundColor(.myBlack)
+                .padding(.leading, 36)
+                .padding(.trailing, 41)
+                
+                CustomDivider(top: 24, bottom: 24)
+     
+                CustomButton(action: {
+                    viewModel.sendOrder()
+                    //viewModel.getOrderDetail()
+                    path.append(cartViewModel.totalPrice)
+                    cartViewModel.emptyOrderItem()
+                }, text: "결제하기", textColor: .myWhite, height: 63, backgroundColor: .myGreen)
+                    .padding(.bottom, 74)
             }
         }
         .onAppear() {
             viewModel.setOrderInfo(user: rootViewModel.user, orderList: cartViewModel.userOrderList)
-            //print(viewModel.order?.account)
         }
-        .navigationBarTitle(Text("Order"))
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden()
-        .toolbar{ ToolBarBackButton(presentation: presentation) }
-        
+        .navigationDestination(for: Int.self) { price in
+            OrderSuccessScreen(path: $path, orderDate: viewModel.orderDetail?.orderDate ?? "",totalPrice: price)
+        }
+        .customToolBar("Order", showCartButton: false, showInfoButton: false, path: $path)
     }
 }
+

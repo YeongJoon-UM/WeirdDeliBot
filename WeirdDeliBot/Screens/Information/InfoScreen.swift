@@ -8,72 +8,86 @@
 import SwiftUI
 
 struct InfoScreen: View {
+    @ObservedObject var viewModel: InfoViewModel
     @Environment(\.presentationMode) var presentation
     @EnvironmentObject var rootViewModel: RootViewModel
+    
+    init() {
+        self.viewModel = InfoViewModel()
+    }
     
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
-                Spacer()
+                Image(systemName: "person.fill")
+                    .imageSize(75)
+                    .foregroundColor(.myGray)
+                    .background(Color.myGray.opacity(0.2))
+                    .clipShape(Circle())
+                    .padding(.trailing, 16)
                 
-                NavigationLink(destination: UserInfoScreen()) {
-                    Text("사용자 정보")
-                        .multilineTextAlignment(.center)
-                        .frame(width: 150, height: 100)
-                        .foregroundColor(.textSub)
-                        .background(Rectangle()
-                            .fill(Color.main)
-                            .cornerRadius(20))
+                VStack(alignment: .leading, spacing: 0) {
+                    HStack(spacing: 0) {
+                        Text("\(rootViewModel.user?.name ?? "")")
+                            .foregroundColor(.myBlack)
+                            .padding(.trailing, 8)
+                        
+                        Text("\(rootViewModel.user?.account ?? "")")
+                            .foregroundColor(.myGray)
+                    }
+                    .size16Regular()
+                    .padding(.bottom, 8)
+                    
+                    Group {
+                        Text("\(rootViewModel.user?.address ?? "")")
+                        Text("\(rootViewModel.user?.addressDesc ?? "")")
+                        Text("\(rootViewModel.user?.phone ?? "")")
+                    }
+                    .size14Regular()
+                    .foregroundColor(.myGray)
                 }
-                
-                Spacer()
-                
-                NavigationLink(destination: LocationScreen()) {
-                    Text("배달 추적")
-                        .multilineTextAlignment(.center)
-                        .frame(width: 150, height: 100)
-                        .foregroundColor(.textSub)
-                        .background(Rectangle()
-                            .fill(Color.main)
-                            .cornerRadius(20))
-                }
-                
                 Spacer()
             }
-            .padding(.bottom, 20)
+            .padding(EdgeInsets(top: 40, leading: 24, bottom: 34, trailing: 24))
+           
+        }
+        VStack(spacing: 0) {
+            Text("주문 내역")
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .sizeCustomJUA(18)
+                .foregroundColor(.myWhite)
+                .padding(.leading, 24)
+                .padding(.top, 16)
+                .padding(.bottom, 4)
+            ScrollView {
+                ForEach(viewModel.orderHistories.indices, id: \.self) { index in
+                    OrderHistoryRow(orderHistory: viewModel.orderHistories[index])
+                }
+            }
             
-            HStack(spacing: 0) {
-                Spacer()
-                
-                NavigationLink(destination: HistoryScreen()) {
-                    Text("주문 내역")
-                        .multilineTextAlignment(.center)
-                        .frame(width: 150, height: 100)
-                        .foregroundColor(.textSub)
-                        .background(Rectangle()
-                            .fill(Color.main)
-                            .cornerRadius(20))
+            
+            Spacer()
+        }
+        .onAppear() {
+            viewModel.getOrderHistory(account: rootViewModel.user?.account ?? "")
+        }
+        .background(Color.basic)
+        .cornerRadius(10)
+        .shadow(radius: 8)
+        .edgesIgnoringSafeArea(.all)
+        
+        .customToolBar("User Info", showCartButton: false, showInfoButton: false)
+        .toolbar{
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavigationLink(destination: UserEditScreen().environmentObject(rootViewModel)) {
+                    Image(systemName: "gearshape.fill")
+                        .imageSize(25)
+                        .foregroundColor(.myBlack)
                 }
-                
-                Spacer()
-                
-                Button(action: rootViewModel.logOut) {
-                    Text("로그아웃")
-                        .multilineTextAlignment(.center)
-                        .frame(width: 150, height: 100)
-                        .foregroundColor(.textSub)
-                        .background(Rectangle()
-                            .fill(Color.red)
-                            .cornerRadius(20))
-                }
-                
-                Spacer()
             }
         }
-        .navigationBarTitle(Text("Info"))
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden()
-        .toolbar{ ToolBarBackButton(presentation: presentation) }
+        
     }
+    
 }
 
