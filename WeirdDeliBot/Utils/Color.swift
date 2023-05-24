@@ -27,6 +27,4 @@ extension Color {
     static let myGray = Color(hex: "#5A5A5A")
     static let myRed = Color(hex: "#FF4444")
     static let myGreen = Color(hex: "#269723")
-    //static let line = Color("LineColor")
-    //static let test = Color(red: 52 / 255, green: 152 / 255, blue: 219 / 255)
 }

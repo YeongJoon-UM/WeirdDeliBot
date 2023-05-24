@@ -14,3 +14,8 @@ struct OrderCode: Codable {
         case orderCode
     }
 }
+
+struct OrderState: Codable {
+    let orderCode: String
+    let orderState: String
+}

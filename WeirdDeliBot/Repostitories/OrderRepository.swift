@@ -67,6 +67,20 @@ class OrderRepository {
                 }
     }
     
+    static func cancelOrder(orderCode: String, completion: @escaping (Result<OrderResponse, AFError>) -> Void) {
+        ApiFactory.getApi(url: "order/updateOrderState", type: .put, parameters: OrderState(orderCode: orderCode, orderState: "-1"))
+                .responseDecodable(of: OrderResponse.self) { response in
+                    switch (response.result) {
+                    case .success(let value):
+                        completion(.success(value))
+                        break
+                    case .failure(let error):
+                        completion(.failure(error))
+                        break
+                    }
+                }
+    }
+    
     static func getOrderRoute(orderCode: String = "ORD-000000000001", completion: @escaping (Result<LocationResponse, AFError>) -> Void) {
         ApiFactory.getApi(url: "order/getNowPosition", type: .post, parameters: OrderCode(orderCode: orderCode))
                 .responseDecodable(of: LocationResponse.self) { response in

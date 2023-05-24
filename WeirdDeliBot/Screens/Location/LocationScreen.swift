@@ -33,26 +33,35 @@ struct LocationScreen: View {
 }
 
 struct MapView: UIViewRepresentable {
-    
-    
+
     let route: [CLLocationCoordinate2D]
     let nowPosition: [CLLocationCoordinate2D]
     private let mapZoomEdgeInsets = UIEdgeInsets(top: 30.0, left: 30.0, bottom: 30.0, right: 30.0)
     // Create the MKMapView using UIKit.
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
-        let destination = CustomAnnotation(image: "Destination", coordinate: route[route.endIndex - 1])
-        let nowLocation = CustomAnnotation(image: "Logo", coordinate: nowPosition[nowPosition.endIndex - 1])
+        if !route.isEmpty {
+            let destination = CustomAnnotation(image: "Destination", coordinate: route[route.endIndex - 1])
+            mapView.addAnnotation(destination)
+        }
+        if !nowPosition.isEmpty {
+            let nowLocation = CustomAnnotation(image: "Logo", coordinate: nowPosition[nowPosition.endIndex - 1])
+            mapView.addAnnotation(nowLocation)
+            mapView.region = MKCoordinateRegion(
+                center: nowPosition[nowPosition.endIndex - 1],
+                span: MKCoordinateSpan(latitudeDelta: 0.004, longitudeDelta: 0.004)
+            )
+        } else {
+            mapView.region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 36.7663, longitude: 127.2816),
+                                                span: MKCoordinateSpan(latitudeDelta: 0.004, longitudeDelta: 0.004))
+        }
         
         mapView.delegate = context.coordinator
-        mapView.region = MKCoordinateRegion(
-            center: nowPosition[nowPosition.endIndex - 1],
-            span: MKCoordinateSpan(latitudeDelta: 0.004, longitudeDelta: 0.004)
-        )
+        
         mapView.showsUserLocation = true
         
-        mapView.addAnnotation(destination)
-        mapView.addAnnotation(nowLocation)
+        
+       
 
         let routeLine = MKPolyline(coordinates: route, count: route.count)
         routeLine.color = UIColor(Color.basic)
