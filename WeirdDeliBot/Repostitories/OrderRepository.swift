@@ -5,7 +5,7 @@
 //  Created by 정영준 on 2023/03/23.
 //
 
-import Foundation
+import SwiftUI
 import Alamofire
 
 class OrderRepository {
@@ -56,6 +56,20 @@ class OrderRepository {
     static func getOrderItem(itemCode: String, completion: @escaping (Result<MenuResponse, AFError>) -> Void) {
         ApiFactory.getApi(url: "store/getItemList", type: .put, parameters: StoreCode(storeCode: storeCode))
                 .responseDecodable(of: MenuResponse.self) { response in
+                    switch (response.result) {
+                    case .success(let value):
+                        completion(.success(value))
+                        break
+                    case .failure(let error):
+                        completion(.failure(error))
+                        break
+                    }
+                }
+    }
+    
+    static func getOrderRoute(orderCode: String = "ORD-000000000001", completion: @escaping (Result<LocationResponse, AFError>) -> Void) {
+        ApiFactory.getApi(url: "order/getNowPosition", type: .post, parameters: OrderCode(orderCode: orderCode))
+                .responseDecodable(of: LocationResponse.self) { response in
                     switch (response.result) {
                     case .success(let value):
                         completion(.success(value))

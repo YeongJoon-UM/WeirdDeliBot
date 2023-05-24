@@ -27,6 +27,7 @@ struct LogInScreen: View {
                     if viewModel.isLogInFailed {
                         Image(systemName: "exclamationmark.triangle")
                             .imageSize(15)
+                            .padding(.trailing, 8)
                         Text("회원이 아니시거나,\n아이디 또는 비밀번호를 잘못 입력했습니다.")
                             .size11Regular()
                     }

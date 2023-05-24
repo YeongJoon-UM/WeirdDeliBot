@@ -66,7 +66,7 @@ class OrderHistoryViewModel: ObservableObject {
         if let log = orderHistory.orderLog.first(where: { $0.newState == state }) {
             return hourFormatter(log.updateDate)
         } else {
-            return "-- : --"
+            return " -- : --"
         }
         
     }

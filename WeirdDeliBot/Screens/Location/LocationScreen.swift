@@ -9,50 +9,83 @@ import SwiftUI
 import MapKit
 
 struct LocationScreen: View {
-    @ObservedObject var viewModel : LocationViewModel = LocationViewModel()
+    @StateObject var viewModel: LocationViewModel = LocationViewModel()
     @EnvironmentObject var historyViewModel: OrderHistoryViewModel
     @Environment(\.presentationMode) var presentation
-    
+
     var body: some View {
         ZStack {
-            VStack(spacing: 0) {
-                MapView(destination: CLLocationCoordinate2D(latitude: Double(historyViewModel.orderHistory.latitude) ?? 0, longitude: Double(historyViewModel.orderHistory.longitude) ?? 0), region: viewModel.region, lineCoordinates: viewModel.convertCoord(viewModel.coordinates))
-                
+            if viewModel.route.isEmpty {
+                ProgressView()
+                    .task {
+                        self.viewModel.getOrderRoute()
+                    }
+            } else {
+                VStack(spacing: 0) {
+                    MapView(route: viewModel.route, nowPosition: viewModel.nowPosition)
+                    
+                }
             }
             OrderProgressView().environmentObject(historyViewModel)
-        }
-        .onAppear() {
-            viewModel.getDestinLocation(latitude: Double(historyViewModel.orderHistory.latitude) ?? 0, longitude: Double(historyViewModel.orderHistory.longitude) ?? 0)
         }
         .customToolBar("Location", showCartButton: false, showInfoButton: false)
     }
 }
 
 struct MapView: UIViewRepresentable {
-    let destination: CLLocationCoordinate2D
-    let region: MKCoordinateRegion
-    let lineCoordinates: [CLLocationCoordinate2D]
     
+    
+    let route: [CLLocationCoordinate2D]
+    let nowPosition: [CLLocationCoordinate2D]
+    private let mapZoomEdgeInsets = UIEdgeInsets(top: 30.0, left: 30.0, bottom: 30.0, right: 30.0)
     // Create the MKMapView using UIKit.
     func makeUIView(context: Context) -> MKMapView {
-        let polyline = MKPolyline(coordinates: lineCoordinates, count: lineCoordinates.count)
         let mapView = MKMapView()
-        let annotation = MKPointAnnotation()
+        let destination = CustomAnnotation(image: "Destination", coordinate: route[route.endIndex - 1])
+        let nowLocation = CustomAnnotation(image: "Logo", coordinate: nowPosition[nowPosition.endIndex - 1])
+        
         mapView.delegate = context.coordinator
-        mapView.region = region
+        mapView.region = MKCoordinateRegion(
+            center: nowPosition[nowPosition.endIndex - 1],
+            span: MKCoordinateSpan(latitudeDelta: 0.004, longitudeDelta: 0.004)
+        )
         mapView.showsUserLocation = true
         
-        annotation.title = "목적지"
-        annotation.coordinate = destination
-        //print(destination)
-        mapView.addAnnotation(annotation)
-        mapView.addOverlay(polyline)
+        mapView.addAnnotation(destination)
+        mapView.addAnnotation(nowLocation)
+
+        let routeLine = MKPolyline(coordinates: route, count: route.count)
+        routeLine.color = UIColor(Color.basic)
+        mapView.addOverlay(routeLine)
+        
+        let nowPositionLine = MKPolyline(coordinates: nowPosition, count: nowPosition.count)
+        nowPositionLine.color = UIColor(Color.gray)
+        mapView.addOverlay(nowPositionLine)
 
         return mapView
     }
     
-    func updateUIView(_ view: MKMapView, context: Context) {}
+    func updateUIView(_ view: MKMapView, context: UIViewRepresentableContext<MapView>) {
+        //updateOverlays(from: view)
+    }
     
+    private func updateOverlays(from mapView: MKMapView) {
+
+        mapView.removeOverlays(mapView.overlays)
+        let routeLine = MKPolyline(coordinates: route, count: route.count)
+        routeLine.color = UIColor(Color.basic)
+        mapView.addOverlay(routeLine)
+        
+        let nowPositionLine = MKPolyline(coordinates: nowPosition, count: nowPosition.count)
+        nowPositionLine.color = UIColor(Color.myGray)
+        mapView.addOverlay(nowPositionLine)
+        setMapZoomArea(map: mapView, polyline: routeLine, edgeInsets: mapZoomEdgeInsets, animated: true)
+        
+    }
+    
+    private func setMapZoomArea(map: MKMapView, polyline: MKPolyline, edgeInsets: UIEdgeInsets, animated: Bool = false) {
+        map.setVisibleMapRect(polyline.boundingMapRect, edgePadding: edgeInsets, animated: animated)
+    }
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
@@ -67,12 +100,57 @@ class Coordinator: NSObject, MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        if let routePolyline = overlay as? MKPolyline {
-            let renderer = MKPolylineRenderer(polyline: routePolyline)
-            renderer.strokeColor = UIColor(Color.basic)
+        
+        if let overlay_ = overlay as? MKPolyline {
+            let renderer = MKPolylineRenderer(overlay: overlay)
+            renderer.strokeColor = overlay_.color
             renderer.lineWidth = 6
             return renderer
         }
         return MKOverlayRenderer()
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        guard let annotation = annotation as? CustomAnnotation else {
+            return nil
+        }
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: CustomAnnotationView.identifier)
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: CustomAnnotationView.identifier)
+            annotationView?.canShowCallout = false
+            annotationView?.contentMode = .scaleAspectFit
+            
+        } else {
+            annotationView?.annotation = annotation
+        }
+        
+        let pinImage: UIImage
+        let size = CGSize(width: 30, height: 30)
+        UIGraphicsBeginImageContext(size)
+        
+        pinImage = UIImage(named: annotation.image ?? "")!
+        pinImage.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        annotationView?.image = resizedImage
+        
+        return annotationView
+    }
+}
+
+extension MKPolyline {
+    struct ColorHolder {
+        static var _color: UIColor?
+    }
+    var color: UIColor? {
+        get {
+            return ColorHolder._color
+        }
+        set(newValue) {
+            ColorHolder._color = newValue
+        }
     }
 }

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1B2909B62A1A57D9003480CD /* BMJUAOTF.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1B2909B52A1A57D9003480CD /* BMJUAOTF.otf */; };
+		1B2909B82A1B03DF003480CD /* LocationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2909B72A1B03DF003480CD /* LocationResponse.swift */; };
+		1B2909BA2A1B568A003480CD /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2909B92A1B568A003480CD /* LocationViewModel.swift */; };
+		1B2909BC2A1D974F003480CD /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2909BB2A1D974F003480CD /* CustomAnnotationView.swift */; };
 		1B463C5D2959617500B9FE80 /* OptionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B463C5C2959617500B9FE80 /* OptionRow.swift */; };
 		1B463C602959622F00B9FE80 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B463C5F2959622F00B9FE80 /* Option.swift */; };
 		1B47B77828E562C7007E929B /* WeirdDeliBotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B47B77728E562C7007E929B /* WeirdDeliBotApp.swift */; };
@@ -84,7 +87,6 @@
 		1BEBF0CB29D03E75001369F0 /* OptionCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEBF0CA29D03E75001369F0 /* OptionCode.swift */; };
 		1BEBF0CF29D132DF001369F0 /* EditScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEBF0CE29D132DF001369F0 /* EditScreen.swift */; };
 		1BEBF0D429D17B34001369F0 /* EditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BEBF0D329D17B34001369F0 /* EditViewModel.swift */; };
-		1BFAC8A52910EE8C00188F82 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFAC8A42910EE8C00188F82 /* LocationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +108,9 @@
 
 /* Begin PBXFileReference section */
 		1B2909B52A1A57D9003480CD /* BMJUAOTF.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BMJUAOTF.otf; sourceTree = "<group>"; };
+		1B2909B72A1B03DF003480CD /* LocationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationResponse.swift; sourceTree = "<group>"; };
+		1B2909B92A1B568A003480CD /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
+		1B2909BB2A1D974F003480CD /* CustomAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
 		1B463C5C2959617500B9FE80 /* OptionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionRow.swift; sourceTree = "<group>"; };
 		1B463C5F2959622F00B9FE80 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		1B47B77428E562C7007E929B /* WeirdDeliBot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeirdDeliBot.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,7 +191,6 @@
 		1BEBF0CA29D03E75001369F0 /* OptionCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCode.swift; sourceTree = "<group>"; };
 		1BEBF0CE29D132DF001369F0 /* EditScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditScreen.swift; sourceTree = "<group>"; };
 		1BEBF0D329D17B34001369F0 /* EditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewModel.swift; sourceTree = "<group>"; };
-		1BFAC8A42910EE8C00188F82 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,6 +336,7 @@
 				1BA851302A11DC4F00A80737 /* CustomButton.swift */,
 				1BA8513C2A147F1C00A80737 /* CustomDivider.swift */,
 				1BA8513E2A14847A00A80737 /* CustomToolBar.swift */,
+				1B2909BB2A1D974F003480CD /* CustomAnnotationView.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -459,7 +464,7 @@
 		1BA8505A29E6901600A80737 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				1BFAC8A42910EE8C00188F82 /* LocationViewModel.swift */,
+				1B2909B92A1B568A003480CD /* LocationViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -468,6 +473,7 @@
 			isa = PBXGroup;
 			children = (
 				1BD81FFD29DD134400F8AFD4 /* Location.swift */,
+				1B2909B72A1B03DF003480CD /* LocationResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -813,6 +819,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BEBF0BB29C9DE5A001369F0 /* TextStyle.swift in Sources */,
+				1B2909B82A1B03DF003480CD /* LocationResponse.swift in Sources */,
 				1B47B7DE28ED5A58007E929B /* MenuDescRow.swift in Sources */,
 				1B47B7BE28ED0285007E929B /* CartViewModel.swift in Sources */,
 				1BA8512C2A1116E800A80737 /* OrderProgressView.swift in Sources */,
@@ -835,6 +842,7 @@
 				1BD81C4729DA51EB00F8AFD4 /* OrderScreen.swift in Sources */,
 				1BD81FEE29DCF4CC00F8AFD4 /* EmptyParameters.swift in Sources */,
 				1B47B7D428ED0F4A007E929B /* MenuRow.swift in Sources */,
+				1B2909BC2A1D974F003480CD /* CustomAnnotationView.swift in Sources */,
 				1BA8512F2A11D0A200A80737 /* OrderHistoryRow.swift in Sources */,
 				1BA851432A160AE900A80737 /* OrderHistoryViewModel.swift in Sources */,
 				1BA851492A161F4900A80737 /* DateFormatter.swift in Sources */,
@@ -856,10 +864,10 @@
 				1BEBF0BD29C9DE6C001369F0 /* Color.swift in Sources */,
 				1BEBF0B929C9DC80001369F0 /* StoreRepository.swift in Sources */,
 				1B47B7C128ED052A007E929B /* CartScreen.swift in Sources */,
-				1BFAC8A52910EE8C00188F82 /* LocationViewModel.swift in Sources */,
 				1BA851472A161B6F00A80737 /* OrderDetailResponse.swift in Sources */,
 				1BEBF0B729C9DC6D001369F0 /* UserRepository.swift in Sources */,
 				1B47B77828E562C7007E929B /* WeirdDeliBotApp.swift in Sources */,
+				1B2909BA2A1B568A003480CD /* LocationViewModel.swift in Sources */,
 				1BA8513F2A14847A00A80737 /* CustomToolBar.swift in Sources */,
 				1BA8513D2A147F1C00A80737 /* CustomDivider.swift in Sources */,
 				1BEBF0A929C9D9F8001369F0 /* LogInRequest.swift in Sources */,
