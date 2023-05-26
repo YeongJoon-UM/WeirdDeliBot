@@ -20,7 +20,19 @@ struct InsertCodeScreen: View {
                 .foregroundColor(.basic)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, 32)
-                .padding(.bottom, 44)
+                .padding(.bottom, 8)
+            
+            HStack(spacing: 0) {
+                Image(systemName: "exclamationmark.triangle")
+                    .imageSize(15)
+                    .padding(.trailing, 8)
+                Text("메일이 안왔다면, 스팸 메일함을 확인해주세요")
+                    .size11Regular()
+                Spacer()
+            }
+            .foregroundColor(.myRed)
+            .padding(.leading, 40)
+            .padding(.bottom, 23)
             
             Text(viewModel.user.account)
                 .size18Regular()
@@ -57,25 +69,27 @@ struct InsertCodeScreen: View {
                         .padding(.trailing, 20)
                 }
             }
-                .background(Rectangle().fill(Color.myWhite).cornerRadius(10))
-                .overlay {
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(viewModel.codeFieldColor(), lineWidth: 1)
-                }
-                .padding(.bottom, 12)
-                .padding(.horizontal, 28)
-            
-            HStack(spacing: 0) {
-                Image(systemName: "exclamationmark.triangle")
-                    .imageSize(15)
-                    .padding(.trailing, 8)
-                Text("메일이 안왔다면, 스팸 메일함을 확인해주세요")
-                    .size11Regular()
-                Spacer()
+            .background(Rectangle().fill(Color.myWhite).cornerRadius(10))
+            .overlay {
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(viewModel.codeFieldColor(), lineWidth: 1)
             }
-            .foregroundColor(.myRed)
-            .padding(.leading, 40)
-            .padding(.bottom, 70)
+            .padding(.bottom, 8)
+            .padding(.horizontal, 28)
+            
+            if let isVerified = viewModel.isCodeVerified {
+                let text: String = isVerified ? "인증이 완료되었습니다." : "입력하신 인증코드가 올바르지 않습니다."
+                Text(text)
+                    .size14Regular()
+                    .foregroundColor(isVerified ? .basic : .myRed)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 32)
+                    .padding(.bottom, 70)
+            } else {
+                EmptyView()
+                    .padding(.bottom, 87)
+            }
+            
             
             Button(action: { viewModel.signUp() }) {
                 HStack(spacing: 0) {
@@ -140,9 +154,3 @@ struct InsertCodeScreen: View {
     }
 }
 
-
-struct InsertCodeScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        InsertCodeScreen()
-    }
-}
