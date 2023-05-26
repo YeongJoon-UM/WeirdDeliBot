@@ -47,7 +47,7 @@ struct MenuListView: View {
                         }
                     }
                     .environmentObject(viewModel)
-                    .padding([.top], 40)
+                    .padding(.top, 48)
                     .tabViewStyle(PageTabViewStyle.init(indexDisplayMode: .never))
                     .animation(.default, value: viewModel.currentTab)
                 }

@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import PopupView
 
 struct OrderDetailScreen: View {
     @EnvironmentObject var viewModel: OrderHistoryViewModel
     @Environment(\.presentationMode) var presentation
+    @State var isPopUpShow: Bool = false
     
     var body: some View {
         VStack(spacing: 0) {
@@ -118,7 +120,7 @@ struct OrderDetailScreen: View {
                 .padding(.bottom, 24)
             
             if viewModel.orderHistory.orderState == 0 {
-                CustomButton(action: {()}, text: "주문 취소", textColor: .myWhite, height: 63, backgroundColor: .myRed)
+                CustomButton(action: { isPopUpShow = true }, text: "주문 취소", textColor: .myWhite, height: 63, backgroundColor: .myRed)
                     .padding(.bottom, 74)
             } else {
                 Text("주문 취소")
@@ -151,59 +153,50 @@ struct OrderDetailScreen: View {
                 }
             }
         }
-        .customToolBar("Order Details")
-    }
-}
-
-struct OrderListsView: View {
-    var body: some View {
-        VStack(spacing: 0) {
-            ScrollView {
-                ForEach(0..<2) { index in
-                    VStack(spacing: 0) {
-                        HStack(spacing: 0) {
-                            Text("아메리카노")
-                            Spacer()
-                            Text("3,300₩")
-                        }
-                        .size18Bold()
-                        if true { //Option이 있을 때,
-                            ForEach(0..<1) { index in
-                                HStack(spacing: 0) {
-                                    Image(systemName: "plus")
-                                        .imageSize(8)
-                                        .padding(.trailing, 8)
-                                    Text("1샷 추가")
-                                    Spacer()
-                                    Text("500₩")
-                                }
-                                .size16Bold()
-                                .padding(.top, 7)
-                            }
-                        }
+        .popup(isPresented: $isPopUpShow) {
+            VStack(spacing: 0) {
+                Text("주문 취소하시겠습니까?")
+                    .sizeCustom(20)
+                    .foregroundColor(.myBlack)
+                    .padding(.top, 48)
+                    .padding(.bottom, 56)
+                Divider()
+                HStack(spacing: 0) {
+                    Button(action: {isPopUpShow = false}) {
+                        Spacer()
+                        Text("아니요")
+                            .sizeCustom(20)
+                            .foregroundColor(.myBlack)
+                        Spacer()
                     }
-                    .padding(.leading, 36)
-                    .padding(.trailing, 44)
-                    .padding(.bottom, 16)
+                    
+                    Divider()
+                    Button(action: {
+                        viewModel.cacelOrder()
+                        isPopUpShow = false
+                        presentation.wrappedValue.dismiss()
+                    }) {
+                        Spacer()
+                        Text("네")
+                            .sizeCustom(20)
+                            .foregroundColor(.myBlack)
+                        Spacer()
+                    }
                 }
+                    
             }
-            .frame(height: 200)
+            .frame(height: 182)
+            .background(Color.myWhite)
+            .cornerRadius(10)
+            .padding(.horizontal, 24)
+            .shadow(radius: 3)
+        } customize: {
+            $0
+                .closeOnTapOutside(false)
+                .closeOnTap(false)
+                .backgroundColor(.myGray.opacity(0.5))
             
-            CustomDivider(bottom: 24)
-            
-            HStack(spacing: 0) {
-                Text("결제 금액")
-                
-                Spacer()
-                
-                Text("12,000₩")
-            }
-            .size18Bold()
-            .foregroundColor(.myBlack)
-            .padding(.leading, 36)
-            .padding(.trailing, 44)
-            
-            CustomDivider(top: 18, bottom: 16)
         }
+        .customToolBar("Order Details")
     }
 }

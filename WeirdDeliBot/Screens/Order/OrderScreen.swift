@@ -12,7 +12,6 @@ struct OrderScreen: View {
     @EnvironmentObject var rootViewModel: RootViewModel
     @EnvironmentObject var cartViewModel: CartViewModel
     @Environment(\.presentationMode) var presentation
-    @State var selectedOption: DropdownMenuOption? = nil
     @Binding var path: NavigationPath
     
     var body: some View {
@@ -68,7 +67,7 @@ struct OrderScreen: View {
                             .padding(.leading, 36)
                         
                         TextField("", text: $viewModel.newRequest)
-                            .onChange(of: viewModel.newRequest) { request in
+                            .onChange(of: viewModel.newRequest) { _ in
                                 viewModel.setNewRequest()
                             }
                             .placeholder(when: viewModel.newRequest.isEmpty) {
@@ -92,7 +91,10 @@ struct OrderScreen: View {
                     }
                     .padding(.top, 79)
                     
-                    DropdownMenu(selectedOption: self.$selectedOption, placeholder: rootViewModel.user?.addressDesc ?? "", options: DropdownMenuOption.locations)
+                    DropdownMenu(selectedOption: $viewModel.newLocation, placeholder: rootViewModel.user?.addressDesc ?? "", options: DropdownMenuOption.locations)
+                        .onChange(of: viewModel.newLocation) { _ in
+                            viewModel.setNewLocation()
+                        }
                 }
                 
                 CustomDivider(top: 24, bottom: 24)
@@ -114,7 +116,7 @@ struct OrderScreen: View {
      
                 CustomButton(action: {
                     viewModel.sendOrder()
-                    //viewModel.getOrderDetail()
+           
                     path.append(cartViewModel.totalPrice)
                     cartViewModel.emptyOrderItem()
                 }, text: "결제하기", textColor: .myWhite, height: 63, backgroundColor: .myGreen)

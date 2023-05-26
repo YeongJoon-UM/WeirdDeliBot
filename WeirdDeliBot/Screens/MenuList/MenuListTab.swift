@@ -24,18 +24,9 @@ struct MenuListTab: View {
                     }) {
                         MenuRow(menu: menu)
                     }
-                    CustomDivider(top: 8, bottom: 8)
-                    /*
-                    ZStack {    //ZStack을 사용해 MenuRow와 NavigationLink를 겹치고NavigationLink를 투명하게해 화살표를 지움
-                        MenuRow(menu: menu)
-                        NavigationLink(destination:  OptionScreen(path: $path, menu: menu),
-                                       label: {})
-                        .opacity(0)
-                    }*/
+                    CustomDivider()
                 }
             }
-            .listSectionSeparatorTint(Color.basic)
-            .listStyle(.plain)
         }
         .navigationDestination(for: Menu.self) { menu in
             OptionScreen(path: $path, menu: menu)

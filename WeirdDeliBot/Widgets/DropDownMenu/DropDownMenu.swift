@@ -25,7 +25,7 @@ struct DropdownMenu: View {
                 HStack {
                     Text(selectedOption == nil ? placeholder : selectedOption!.option)
                         .size18Regular()
-                        .foregroundColor(.myBlack)
+                        .foregroundColor(selectedOption != nil ? Color.myBlack : Color.myGray.opacity(0.5))
                     
                     Spacer()
                     
@@ -39,7 +39,7 @@ struct DropdownMenu: View {
             //.padding()
             .overlay {
                 RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.basic, lineWidth: 1)
+                    .stroke(selectedOption != nil ? Color.basic : Color.myGray.opacity(0.5), lineWidth: 1)
             }
             
             ZStack {

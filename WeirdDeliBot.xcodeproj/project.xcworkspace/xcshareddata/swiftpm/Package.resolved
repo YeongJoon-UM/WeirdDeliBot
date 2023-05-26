@@ -6,7 +6,7 @@
       "location" : "https://github.com/Alamofire/Alamofire.git",
       "state" : {
         "branch" : "master",
-        "revision" : "1153741db9ec477a5ffcbefc45660bf079bb0abe"
+        "revision" : "ce7f662709a152e840b130a158b9afef3402e146"
       }
     },
     {
@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/exyte/PopupView.git",
       "state" : {
-        "revision" : "5033613ce26797bfdcfae0efedeaebf627f03c23",
-        "version" : "2.3.2"
+        "revision" : "2cfc7fd290e2f7402a51359f5c675023332b4df4",
+        "version" : "2.1.1"
       }
     }
   ],

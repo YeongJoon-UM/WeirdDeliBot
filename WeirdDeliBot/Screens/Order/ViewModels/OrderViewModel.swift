@@ -16,6 +16,7 @@ class OrderViewModel: ObservableObject {
     @Published var newRequest: String = ""
     @Published var orderCode: String = ""
     @Published var orderDetail: OrderHistory?
+    @Published var newLocation: DropdownMenuOption?
     
     func setOrderList(orderList: [OrderItem]) {
         order?.orderList = orderList
@@ -39,13 +40,17 @@ class OrderViewModel: ObservableObject {
     func setNewAddress() {
         self.order?.addressDesc = self.newAddress
     }
-    /*
-    func setNewPhone() {
-        self.order?.phone = self.newPhone
-    }
-    */
+
     func setNewRequest() {
         self.order?.orderReq = self.newRequest
+    }
+    
+    func setNewLocation() {
+        if newLocation != nil && order?.addressDesc != newLocation?.id {
+            order?.addressDesc = newLocation!.id
+            order?.latitude = newLocation!.latitude
+            order?.longitude = newLocation!.longitude
+        }
     }
     
     func sendOrder() {

@@ -77,13 +77,23 @@ struct UserEditScreen: View {
                         
                         .padding(.bottom, 16)
                         .padding(.horizontal, 28)
-                    
-                    CustomButton(action: { print(phoneNumber) },
-                                 text: "완료",
-                                 textColor: .myWhite,
-                                 height: 63,
-                                 backgroundColor: .basic)
-                    
+                    if selectedOption != nil || phoneNumber.regexMatches(phoneRegex) {
+                        CustomButton(action: {
+                            rootViewModel.updateUser(location: selectedOption, phone: phoneNumber)
+                            presentation.wrappedValue.dismiss()
+                        },
+                                     text: "변경",
+                                     textColor: .myWhite,
+                                     height: 63,
+                                     backgroundColor: .basic)
+                    } else {
+                        Text("변경")
+                            .size18Regular()
+                            .frame(maxWidth: .infinity, maxHeight: 63)
+                            .foregroundColor(.myWhite)
+                            .background(RoundedRectangle(cornerRadius: 10).fill(Color.myGray.opacity(0.5)))
+                            .padding(.horizontal, 28)
+                    }
                     
                     Divider()
                         .background(Color.basic)

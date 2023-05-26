@@ -71,6 +71,19 @@ class OrderHistoryViewModel: ObservableObject {
         
     }
     
+    func cacelOrder() {
+        OrderRepository.cancelOrder(orderCode: orderHistory.orderCode){ response in
+            switch(response) {
+            case .success(let value):
+                print(value)
+                break
+            case .failure(let error) :
+                print(error)
+                break
+            }
+        }
+    }
+    
     func getTotalPrice() -> Int {
         var totalPrice: Int = 0
         for index in 0..<orderHistory.orderList.count {

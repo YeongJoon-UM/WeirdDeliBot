@@ -49,7 +49,7 @@ struct LogInScreen: View {
                         }
                         .frame(height: 63)
                         .size18Regular()
-                        .padding(.leading, 32)
+                        .padding(.leading, 20)
                         .background(Rectangle().fill(Color.myWhite).cornerRadius(10))
                         .overlay {
                             RoundedRectangle(cornerRadius: 10)
@@ -71,7 +71,7 @@ struct LogInScreen: View {
                         }
                         .frame(height: 63)
                         .size18Regular()
-                        .padding(.leading, 32)
+                        .padding(.leading, 20)
                         .background(Rectangle().fill(Color.myWhite).cornerRadius(10))
                         .overlay {
                             RoundedRectangle(cornerRadius: 10)
@@ -101,7 +101,7 @@ struct LogInScreen: View {
                             .padding(.bottom, 16)
                     }
                     
-                    NavigationLink(destination: EmptyView()) {
+                    NavigationLink(destination: SignUpScreen().environmentObject(rootViewModel)) {
                         HStack(spacing: 0) {
                             Spacer()
                             Text("회원가입")
