@@ -33,7 +33,6 @@ struct CartScreen: View {
             if !viewModel.userOrderList.isEmpty {
                 List {
                     ForEach(Array(zip(viewModel.userOrderList.indices, viewModel.userOrderList)), id: \.0) { index, order in
-                        //ForEach(viewModel.userOrderList, id: \.self) { order in
                         ZStack {
                             NavigationLink(destination: EditScreen(index: index)){}.opacity(0)
                             CartItemRow(index: index, order: order)

@@ -33,7 +33,7 @@ struct PhoneNumberFormatter: View {
         let phoneNumberLength = min(cleanedText.count, 11)
         
         for i in 0..<phoneNumberLength {
-            if i == 3 || i == 7 { // "-" 추가
+            if i == 3 || i == 7 { 
                 formattedText += "-"
             }
             formattedText += String(cleanedText[index])

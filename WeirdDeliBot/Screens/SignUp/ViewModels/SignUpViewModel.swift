@@ -70,7 +70,6 @@ class SignUpViewModel: ObservableObject {
         UserRepository.signUp(user: user) { result in
             switch(result) {
             case .success(let value):
-                print(value)
                 break
             case .failure(let error):
                 print(error)
@@ -84,8 +83,6 @@ class SignUpViewModel: ObservableObject {
             switch(result) {
             case .success(let value):
                 self.isCodeVerified = value.resultCode == 200 ? true : false
-                
-                print(value)
                 break
             case .failure(let error):
                 print(error)

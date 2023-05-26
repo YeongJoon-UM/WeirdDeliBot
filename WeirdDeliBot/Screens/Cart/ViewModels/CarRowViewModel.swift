@@ -38,7 +38,6 @@ class CartRowViewModel: ObservableObject {
             case .success(let value):
                 self.option = value.result
                 if(self.status != false) { self.status = true }
-                //self.setOptionInfo()
                 break
             case .failure(let error) :
                 print(error)
@@ -51,10 +50,6 @@ class CartRowViewModel: ObservableObject {
     func setItemInfo(amount: Int) {
         self.menu = self.menuResponse[0]
         self.menuAmount = amount
-    }
-    
-    func setOptionInfo() {
-        //self.option.append(self.optionResponse[0])
     }
     
     func isOptionShowToggle() {

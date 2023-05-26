@@ -15,7 +15,6 @@ class InfoViewModel: ObservableObject {
             switch(response) {
             case .success(let value):
                 self.orderHistories = value.result
-                //print(value)
                 break
             case .failure(let error) :
                 print(error)

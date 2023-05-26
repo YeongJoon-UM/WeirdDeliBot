@@ -132,7 +132,7 @@ struct LogInScreen: View {
                 }
                 .onChange(of: self.viewModel.token) { token in
                     if (token != nil) {
-                        self.rootViewModel.setToken(token: token!, isSave: viewModel.isAutoLogIn)
+                        self.rootViewModel.setToken(token: token!)
                     }
                 }
 

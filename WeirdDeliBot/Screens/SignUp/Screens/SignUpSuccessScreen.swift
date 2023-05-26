@@ -30,7 +30,7 @@ struct SignUpSuccessScreen: View {
         }
         .onChange(of: self.viewModel.token) { token in
             if (token != nil) {
-                self.rootViewModel.setToken(token: token!, isSave: true)
+                self.rootViewModel.setToken(token: token!)
             }
         }
     }
