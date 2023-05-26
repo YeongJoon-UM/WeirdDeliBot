@@ -8,10 +8,7 @@
 import SwiftUI
 
 struct DropdownMenuList: View {
-    /// The drop-down menu list options
     let options: [DropdownMenuOption]
-    
-    /// An action called when user select an action.
     let onSelectedAction: (_ option: DropdownMenuOption) -> Void
     
     var body: some View {

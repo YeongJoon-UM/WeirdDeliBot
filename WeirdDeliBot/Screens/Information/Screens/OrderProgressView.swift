@@ -60,7 +60,7 @@ struct OrderProgressView: View {
                 Spacer()
                 
             }
-            .frame(height: isExpanded ? 426 : 140) // Vstack 높이를 조정
+            .frame(height: isExpanded ? 426 : 140)
             .background(Color.myWhite)
             .cornerRadius(10)
             .onTapGesture {

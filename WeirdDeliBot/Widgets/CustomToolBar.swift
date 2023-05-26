@@ -57,7 +57,7 @@ struct ToolBarCart: ToolbarContent {
     var body: some ToolbarContent {
         ToolbarItem(placement: .navigationBarTrailing) {
             NavigationLink(destination: CartScreen(path: $path)){
-                ZStack{ //ZStack을 사용해 장바구니 아이콘과 아이템이 장바구니에 담겼을 경우 알림을 뜨게 함
+                ZStack { 
                     Image(systemName: "cart.fill")
                         .foregroundColor(.black)
                     if viewModel.userOrderList.count > 0 && viewModel.userOrderList.count < 10 {

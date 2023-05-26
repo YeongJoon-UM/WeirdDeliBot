@@ -16,8 +16,7 @@ class OptionViewModel: ObservableObject, OptionProtocol {
     @Published var selectedMenu: Menu?
     @Published var userOptionList: [OrderItemOption] = []
     @Published var userMenu: OrderItem?
-    //@Published var isOptionSelected: Bool = false
-    
+
     func getSelectedMenu(menu: Menu) {
         self.selectedMenu = menu
     }
@@ -77,14 +76,11 @@ class OptionViewModel: ObservableObject, OptionProtocol {
     func addOptionAmount(option: Option) {
         let index = self.userOptionList.firstIndex(where: { $0.id == option.id })
         self.userOptionList[index!].amount += 1
-        //self.isOptionSelected.toggle()
-
     }
     
     func subOptionAmount(option: Option) {
         let index = self.userOptionList.firstIndex(where: { $0.id == option.id })
         self.userOptionList[index!].amount -= 1
-        //self.isOptionSelected.toggle()
     }
 
     

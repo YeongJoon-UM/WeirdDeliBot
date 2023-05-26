@@ -30,7 +30,7 @@ struct CartItemRow: View {
                     
                 }
                 .progressViewStyle(CircularProgressViewStyle())
-            } else if viewModel.status == false { //로딩 실패 시 실패 메세지 출력.
+            } else if viewModel.status == false { 
                 Spacer()
                 Text("Loading Failed.")
             }

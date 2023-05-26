@@ -16,7 +16,6 @@ struct MenuListTab: View {
     
     var body: some View {
         ScrollView(showsIndicators: false){
-            //List(viewModel.menu ?? []){ menu in
             ForEach(viewModel.menu ?? [], id: \.self) { menu in
                 if(menu.category == category) {
                     Button(action: {

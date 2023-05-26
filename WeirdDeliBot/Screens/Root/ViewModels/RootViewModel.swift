@@ -11,27 +11,16 @@ import Combine
 import Alamofire
 
 class RootViewModel: ObservableObject {
-    //@Published var user: User = User()          // 유저 정보
     @Published var token: Token? = nil           // 토큰
     @Published var user: User?
     
-    init() {
-        //loadToken()
-    }
     
     // 토큰 받아오기
-    func setToken(token: Token, isSave: Bool) {
+    func setToken(token: Token) {
         self.token = token
         UserDefaults.standard.set(token.token, forKey: "token")
         loadUser()
-        print(token)
-        
-        /*
-        if(isSave) {
-            UserDefaults.standard.set(token.token, forKey: "token")
-            
-        }
-         */
+
     }
     
     // 토큰 불러오기
@@ -39,8 +28,6 @@ class RootViewModel: ObservableObject {
         let token = UserDefaults.standard.string(forKey: "token")
         if(token != nil) {
             self.token = Token(token: token!)
-            print(self.token)
-
         }
     }
 
@@ -98,6 +85,5 @@ class RootViewModel: ObservableObject {
         UserDefaults.standard.removeObject(forKey: "token")
     }
     
-    //TODO: getInfo root에 반환값 함수 만들기
 }
 

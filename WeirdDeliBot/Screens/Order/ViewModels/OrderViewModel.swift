@@ -28,13 +28,6 @@ class OrderViewModel: ObservableObject {
             order?.latitude = selectedOption.latitude
             order?.longitude = selectedOption.longitude
             }
-        /*
-        order?.account = user?.account ?? ""
-        order?.name = user?.name ?? ""
-        order?.address = user?.address ?? ""
-        order?.addressDesc = user?.addressDesc ?? ""
-        order?.phone = user?.phone ?? ""
-        */
     }
     
     func setNewAddress() {
@@ -81,12 +74,9 @@ class OrderViewModel: ObservableObject {
     
     func getOrderDetail(orderCode: String) {
         OrderRepository.getOrderDetail(orderCode: orderCode) { response in
-            print(orderCode)
             switch(response) {
             case .success(let value):
-                print(value)
                 self.orderDetail = value.result[0]
-                
                 break
             case .failure(let error) :
                 print(error)

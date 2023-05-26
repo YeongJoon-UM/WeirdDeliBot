@@ -37,7 +37,7 @@ struct MapView: UIViewRepresentable {
     let route: [CLLocationCoordinate2D]
     let nowPosition: [CLLocationCoordinate2D]
     private let mapZoomEdgeInsets = UIEdgeInsets(top: 30.0, left: 30.0, bottom: 30.0, right: 30.0)
-    // Create the MKMapView using UIKit.
+   
     func makeUIView(context: Context) -> MKMapView {
         let mapView = MKMapView()
         if !route.isEmpty {

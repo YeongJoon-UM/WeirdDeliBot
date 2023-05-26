@@ -8,18 +8,7 @@
 import Foundation
 
 protocol OptionProtocol: ObservableObject {
-    //var isOptionSelected: Bool { get set }
-    //var option: [Option]? { get set }
-    //var status: Bool? { get set }
-    //var selectedMenu: Menu? { get set }
-    //var userOptionList: [OrderItemOption] { get set }
-    //var userMenu: OrderItem? { get set }
 
-    //func getSelectedMenu(menu: Menu)
-    //func getOptionList()
-    //func getUserOptionList()
-    //func getUserMenu()
-    //func setUserOption()
     func addItemAmount()
     func subItemAmount()
     func getItemAmount() -> Int
