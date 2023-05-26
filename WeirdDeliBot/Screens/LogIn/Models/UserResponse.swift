@@ -14,14 +14,14 @@ struct UserResponse: Codable {
 }
 
 struct User: Codable {
-    let account: String
-    let password: String?
-    let name: String
-    let phone: String
+    var account: String
+    var password: String?
+    var name: String
+    var phone: String
     let address: String
-    let addressDesc: String
-    let latitude: String
-    let longitude: String
+    var addressDesc: String
+    var latitude: String
+    var longitude: String
 
     
     enum CodingKeys: String, CodingKey {

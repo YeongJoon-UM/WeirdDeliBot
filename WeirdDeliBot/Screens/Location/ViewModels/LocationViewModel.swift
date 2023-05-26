@@ -12,8 +12,8 @@ class LocationViewModel: ObservableObject {
     @Published var route: [CLLocationCoordinate2D] = []
     @Published var nowPosition: [CLLocationCoordinate2D] = []
     
-    func getOrderRoute() {
-        OrderRepository.getOrderRoute { response in
+    func getOrderRoute(orderCode: String = "ORD-000000000001") {
+        OrderRepository.getOrderRoute(orderCode: orderCode) { response in
             switch(response) {
             case .success(let value):
                 self.saveRoute(orderRoute: value.result)

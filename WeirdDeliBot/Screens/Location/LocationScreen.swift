@@ -18,7 +18,7 @@ struct LocationScreen: View {
             if viewModel.route.isEmpty {
                 ProgressView()
                     .task {
-                        self.viewModel.getOrderRoute()
+                        self.viewModel.getOrderRoute(orderCode: historyViewModel.orderHistory.orderCode)
                     }
             } else {
                 VStack(spacing: 0) {

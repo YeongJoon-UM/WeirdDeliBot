@@ -81,7 +81,7 @@ class OrderRepository {
                 }
     }
     
-    static func getOrderRoute(orderCode: String = "ORD-000000000001", completion: @escaping (Result<LocationResponse, AFError>) -> Void) {
+    static func getOrderRoute(orderCode: String, completion: @escaping (Result<LocationResponse, AFError>) -> Void) {
         ApiFactory.getApi(url: "order/getNowPosition", type: .post, parameters: OrderCode(orderCode: orderCode))
                 .responseDecodable(of: LocationResponse.self) { response in
                     switch (response.result) {

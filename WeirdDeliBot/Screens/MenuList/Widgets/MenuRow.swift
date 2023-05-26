@@ -19,14 +19,16 @@ struct MenuRow: View {
                         .frame(width: 90, height: 90)
                         .scaledToFit()
                 } placeholder: {
-                    HStack(spacing: 0) {
-                        ProgressView()
-                    }
-                    .frame(width: 90, height: 90)
+                    Image("Loading")
+                        .resizable()
+                        .frame(width: 90, height: 90)
+                        .scaledToFit()
                 }
             } else {
-                ProgressView()
+                Image("Loading")
+                    .resizable()
                     .frame(width: 90, height: 90)
+                    .scaledToFit()
             }
 
             Spacer()

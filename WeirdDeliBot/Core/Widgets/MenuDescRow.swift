@@ -21,17 +21,19 @@ struct MenuDescRow<ViewModel: OptionProtocol>: View {
                         .frame(width: 120, height: 120)
                         .scaledToFit()
                 } placeholder: {
-                    HStack(spacing: 0) {
-                        ProgressView()
-                            
-                    }.frame(width: 120, height: 120)
+                    Image("Loading")
+                        .resizable()
+                        .frame(width: 120, height: 120)
+                        .scaledToFit()
                 }
             } else {
-                ProgressView()
+                Image("Loading")
+                    .resizable()
                     .frame(width: 120, height: 120)
+                    .scaledToFit()
             }
         
-            CustomDivider(top: 14, bottom: 16)
+            CustomDivider(top: 6, bottom: 16)
             
             Text(menu.name)
                 .sizeCustom(20, .bold)

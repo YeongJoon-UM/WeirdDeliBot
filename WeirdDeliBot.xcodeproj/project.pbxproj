@@ -13,6 +13,12 @@
 		1B2909BC2A1D974F003480CD /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2909BB2A1D974F003480CD /* CustomAnnotationView.swift */; };
 		1B2909BE2A1DBD98003480CD /* UpdateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2909BD2A1DBD98003480CD /* UpdateInfo.swift */; };
 		1B2909C02A1DD441003480CD /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2909BF2A1DD441003480CD /* Image.swift */; };
+		1B2909C32A1F30C9003480CD /* SignUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2909C22A1F30C9003480CD /* SignUpScreen.swift */; };
+		1B2909C62A1F30EE003480CD /* InsertCodeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2909C52A1F30EE003480CD /* InsertCodeScreen.swift */; };
+		1B2909C82A1F30F8003480CD /* SignUpSuccessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2909C72A1F30F8003480CD /* SignUpSuccessScreen.swift */; };
+		1B2909CC2A1F31A0003480CD /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2909CB2A1F31A0003480CD /* SignUpViewModel.swift */; };
+		1B2909CE2A1F3D80003480CD /* StringResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2909CD2A1F3D80003480CD /* StringResponse.swift */; };
+		1B2909D02A208787003480CD /* VerifyCodeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2909CF2A208787003480CD /* VerifyCodeRequest.swift */; };
 		1B463C5D2959617500B9FE80 /* OptionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B463C5C2959617500B9FE80 /* OptionRow.swift */; };
 		1B463C602959622F00B9FE80 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B463C5F2959622F00B9FE80 /* Option.swift */; };
 		1B47B77828E562C7007E929B /* WeirdDeliBotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B47B77728E562C7007E929B /* WeirdDeliBotApp.swift */; };
@@ -115,6 +121,12 @@
 		1B2909BB2A1D974F003480CD /* CustomAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
 		1B2909BD2A1DBD98003480CD /* UpdateInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInfo.swift; sourceTree = "<group>"; };
 		1B2909BF2A1DD441003480CD /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		1B2909C22A1F30C9003480CD /* SignUpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreen.swift; sourceTree = "<group>"; };
+		1B2909C52A1F30EE003480CD /* InsertCodeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertCodeScreen.swift; sourceTree = "<group>"; };
+		1B2909C72A1F30F8003480CD /* SignUpSuccessScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSuccessScreen.swift; sourceTree = "<group>"; };
+		1B2909CB2A1F31A0003480CD /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		1B2909CD2A1F3D80003480CD /* StringResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringResponse.swift; sourceTree = "<group>"; };
+		1B2909CF2A208787003480CD /* VerifyCodeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyCodeRequest.swift; sourceTree = "<group>"; };
 		1B463C5C2959617500B9FE80 /* OptionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionRow.swift; sourceTree = "<group>"; };
 		1B463C5F2959622F00B9FE80 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		1B47B77428E562C7007E929B /* WeirdDeliBot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeirdDeliBot.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -232,6 +244,42 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		1B2909C12A1F30A4003480CD /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				1B2909C92A1F3102003480CD /* Models */,
+				1B2909CA2A1F310B003480CD /* ViewModels */,
+				1B2909C42A1F30DD003480CD /* Screens */,
+				1B2909C22A1F30C9003480CD /* SignUpScreen.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		1B2909C42A1F30DD003480CD /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				1B2909C52A1F30EE003480CD /* InsertCodeScreen.swift */,
+				1B2909C72A1F30F8003480CD /* SignUpSuccessScreen.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		1B2909C92A1F3102003480CD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1B2909CF2A208787003480CD /* VerifyCodeRequest.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1B2909CA2A1F310B003480CD /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1B2909CB2A1F31A0003480CD /* SignUpViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		1B463C5E2959622100B9FE80 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,6 +362,7 @@
 				1B47B7B628ED00A1007E929B /* Cart */,
 				1B47B7B528ED008C007E929B /* Option */,
 				1B47B7B428ED007E007E929B /* MenuList */,
+				1B2909C12A1F30A4003480CD /* SignUp */,
 				1B47B7B028ECFF9B007E929B /* LogIn */,
 				1B47B7A728E56467007E929B /* Root */,
 			);
@@ -329,6 +378,7 @@
 				1BD81FED29DCF4CC00F8AFD4 /* EmptyParameters.swift */,
 				1BA851442A160CED00A80737 /* OrderCode.swift */,
 				1BA8514A2A177D7300A80737 /* Account.swift */,
+				1B2909CD2A1F3D80003480CD /* StringResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -844,6 +894,7 @@
 				1BA851392A1367E600A80737 /* Placeholder.swift in Sources */,
 				1BA8514B2A177D7300A80737 /* Account.swift in Sources */,
 				1B47B7B928ED00E4007E929B /* MenuListScreen.swift in Sources */,
+				1B2909CC2A1F31A0003480CD /* SignUpViewModel.swift in Sources */,
 				1B47B77A28E562C7007E929B /* RootScreen.swift in Sources */,
 				1BEBF0CB29D03E75001369F0 /* OptionCode.swift in Sources */,
 				1BD81C4729DA51EB00F8AFD4 /* OrderScreen.swift in Sources */,
@@ -861,6 +912,7 @@
 				1B47B7B328ECFFCA007E929B /* LogInScreen.swift in Sources */,
 				1BEBF0A729C9D9D4001369F0 /* Token.swift in Sources */,
 				1BA8506329E9367A00A80737 /* OptionProtocol.swift in Sources */,
+				1B2909C32A1F30C9003480CD /* SignUpScreen.swift in Sources */,
 				1BA851332A130E3800A80737 /* OrderListView.swift in Sources */,
 				1BD81FEC29DCF2A300F8AFD4 /* ApiFactory.swift in Sources */,
 				1B9368492A19BD7900295176 /* OrderSuccessScreen.swift in Sources */,
@@ -874,6 +926,7 @@
 				1BA851472A161B6F00A80737 /* OrderDetailResponse.swift in Sources */,
 				1BEBF0B729C9DC6D001369F0 /* UserRepository.swift in Sources */,
 				1B47B77828E562C7007E929B /* WeirdDeliBotApp.swift in Sources */,
+				1B2909C82A1F30F8003480CD /* SignUpSuccessScreen.swift in Sources */,
 				1B2909BA2A1B568A003480CD /* LocationViewModel.swift in Sources */,
 				1BA8513F2A14847A00A80737 /* CustomToolBar.swift in Sources */,
 				1BA8513D2A147F1C00A80737 /* CustomDivider.swift in Sources */,
@@ -889,13 +942,16 @@
 				1B47B7E128ED5E53007E929B /* OptionViewModel.swift in Sources */,
 				1BEBF0AB29C9DA72001369F0 /* Menu.swift in Sources */,
 				1BA8505E29E931FC00A80737 /* ImageStyle.swift in Sources */,
+				1B2909D02A208787003480CD /* VerifyCodeRequest.swift in Sources */,
 				1BA851262A10DF4200A80737 /* DropDownMenuList.swift in Sources */,
+				1B2909CE2A1F3D80003480CD /* StringResponse.swift in Sources */,
 				1BEBF0CF29D132DF001369F0 /* EditScreen.swift in Sources */,
 				1B2909BE2A1DBD98003480CD /* UpdateInfo.swift in Sources */,
 				1BEBF0A129C9D984001369F0 /* RootViewModel.swift in Sources */,
 				1BEBF0C529CAAE1D001369F0 /* ItemCode.swift in Sources */,
 				1B463C602959622F00B9FE80 /* Option.swift in Sources */,
 				1BEBF0C729CC211A001369F0 /* OrderRepository.swift in Sources */,
+				1B2909C62A1F30EE003480CD /* InsertCodeScreen.swift in Sources */,
 				1BEBF0C129C9DF38001369F0 /* MenuListTab.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
