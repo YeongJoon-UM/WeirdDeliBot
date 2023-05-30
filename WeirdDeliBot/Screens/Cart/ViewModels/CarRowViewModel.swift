@@ -25,7 +25,7 @@ class CartRowViewModel: ObservableObject {
                 self.setItemInfo(amount: amount)
                 break
             case .failure(let error) :
-                print(error)
+                print("getItemInfo: \(error)")
                 self.status = false
                 break
             }
@@ -40,7 +40,7 @@ class CartRowViewModel: ObservableObject {
                 if(self.status != false) { self.status = true }
                 break
             case .failure(let error) :
-                print(error)
+                print("getOptionList: \(error)")
                 self.status = false
                 break
             }

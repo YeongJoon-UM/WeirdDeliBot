@@ -8,13 +8,11 @@
 import SwiftUI
 
 class SignUpViewModel: ObservableObject {
-    @Published var user: User = User(account: "", password: "", name: "", phone: "", address: "충남 천안시 동남구 충절로 1600", addressDesc: "", latitude: "", longitude: "")
+    @Published var user: SignUpRequest = SignUpRequest(account: "", password: "", name: "", phone: "", address: "충남 천안시 동남구 충절로 1600", addressDesc: "", latitude: "", longitude: "")
     @Published var password: String = ""
     @Published var checkPassword: String = ""
     @Published var location: DropdownMenuOption?
-    @Published var verfityCode: String = ""
-    @Published var token: Token? = nil
-    @Published var isCodeVerified: Bool? = nil
+    
     
     func isEmailValid() -> Bool {
         if user.account.regexMatches(emailRegex) {
@@ -51,19 +49,19 @@ class SignUpViewModel: ObservableObject {
         }
     }
     
-    func isCodeValid() -> Bool {
-        if verfityCode.regexMatches(codeRegex) {
-            return true
-        } else {
-            return false
-        }
-    }
     
     func setInfo() {
         user.password = password
-        user.addressDesc = location?.id ?? ""
+        user.addressDesc = location?.option ?? ""
         user.latitude = location?.latitude ?? ""
         user.longitude = location?.longitude ?? ""
+    }
+    
+    func resetInfo() {
+        user = SignUpRequest(account: "", password: "", name: "", phone: "", address: "충남 천안시 동남구 충절로 1600", addressDesc: "", latitude: "", longitude: "")
+        password = ""
+        checkPassword = ""
+        location = nil
     }
     
     func signUp() {
@@ -72,45 +70,11 @@ class SignUpViewModel: ObservableObject {
             case .success(let value):
                 break
             case .failure(let error):
-                print(error)
+                print(self.user)
+                print("signUp: \(error)")
                 break
             }
         }
-    }
+    }  
     
-    func sendCode() {
-        UserRepository.sendCode(account: user.account, verifyCode: verfityCode) { result in
-            switch(result) {
-            case .success(let value):
-                self.isCodeVerified = value.resultCode == 200 ? true : false
-                break
-            case .failure(let error):
-                print(error)
-                break
-            }
-        }
-    }
-    
-    func codeFieldColor() -> Color {
-        if let isVerified = isCodeVerified {
-                return isVerified ? Color.basic : Color.myRed
-            } else {
-                return Color.myGray.opacity(0.5)
-            }
-    }
-    
-    func logIn() {
-        UserRepository.logIn(account: user.account, password: user.password!) { result in
-            switch(result) {
-            case .success(let value):
-                if value.token != "" {
-                    self.token = value
-                }
-                break
-            case .failure(let error):
-                print(error)
-                break
-            }
-        }
-    }
 }

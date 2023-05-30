@@ -26,6 +26,7 @@ class LogInViewModel: NSObject, ObservableObject {
                 switch(result) {
                 case .success(let value):
                     if value.token != "" {
+                        print(value)
                         self.token = value
                         self.isLogInFailed = false
                     } else {
@@ -34,7 +35,7 @@ class LogInViewModel: NSObject, ObservableObject {
                     break
                 case .failure(let error):
                     self.isLogInFailed = true
-                    print(error)
+                    print("logIn: \(error)")
                     break
                 }
             }

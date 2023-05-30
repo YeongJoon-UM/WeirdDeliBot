@@ -22,7 +22,7 @@ class MenuViewModel: ObservableObject {
                 if(self.status != false) { self.status = true }
                 break
             case .failure(let error) :
-                print(error)
+                print("getCatList: \(error)")
                 self.status = false
                 break
             }
@@ -37,7 +37,7 @@ class MenuViewModel: ObservableObject {
                 if(self.status != false) { self.status = true }
                 break
             case .failure(let error) :
-                print(error)
+                print("getItemList: \(error)")
                 self.status = false
                 break
             }

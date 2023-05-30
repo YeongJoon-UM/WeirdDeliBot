@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct SignUpScreen: View {
-    @ObservedObject var viewModel: SignUpViewModel = SignUpViewModel()
-    @EnvironmentObject var rootViewModel: RootViewModel
+    @ObservedObject var viewModel: SignUpViewModel
+    @Binding var path: NavigationPath
     @Environment(\.presentationMode) var presentation
+    
+    init(path: Binding<NavigationPath>) {
+        self.viewModel = SignUpViewModel()
+        self._path = path
+    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -118,22 +123,21 @@ struct SignUpScreen: View {
                         .padding(.bottom, 55)
                     
                     if viewModel.isSignUpValid() {
-                        NavigationLink(destination: InsertCodeScreen()
-                            .environmentObject(viewModel)
-                            .environmentObject(rootViewModel)) {
+                        Button(action: {
+                            viewModel.setInfo()
+                            viewModel.signUp()
+                            path.append(viewModel.user)
+                            
+                        }) {
                             HStack(spacing: 0) {
                                 Spacer()
-                                Text("회원가입")
+                                Text("이메일 인증")
                                     .size18Regular()
                                     .foregroundColor(.basic)
                                 Spacer()
                             }
                         }
                         .frame(height: 63)
-                        .onTapGesture {
-                            viewModel.setInfo()
-                            viewModel.signUp()
-                        }
                         .background(Color.myWhite)
                         .cornerRadius(10)
                         .shadow(radius: 3)
@@ -169,12 +173,13 @@ struct SignUpScreen: View {
             }
             Spacer()
         }
+        .onAppear() {
+            viewModel.resetInfo()
+        }
+        .navigationDestination(for: SignUpRequest.self) { _ in
+            VerifyCodeScreen(user: viewModel.user, path: $path)
+        }
         .customToolBar("", showCartButton: false, showInfoButton: false)
     }
 }
 
-struct SignUpScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        SignUpScreen()
-    }
-}

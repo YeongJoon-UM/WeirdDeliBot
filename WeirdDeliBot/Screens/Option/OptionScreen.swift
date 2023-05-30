@@ -20,11 +20,7 @@ struct OptionScreen: View {
                 
             CustomDivider(top: 16, bottom: 16)
             
-            Text("추가 옵션")
-                .size16Bold()
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.leading, 36)
-                .padding(.bottom, 16)
+            
 
             
             if(viewModel.option == nil){
@@ -42,14 +38,28 @@ struct OptionScreen: View {
                     Text("Loading Failed.")
                 }
             } else {
-                ScrollView(showsIndicators: false) {
-                    ForEach(viewModel.option!){ option in
-                        OptionRow(viewModel: viewModel, option: option)
+                if viewModel.option!.isEmpty {
+                    Text("추가 옵션이 없습니다")
+                        .sizeCustom(20)
+                        .foregroundColor(.myGray.opacity(0.5))
+                        .frame(height: 185)
+                    
+                } else {
+                    Text("추가 옵션")
+                        .size16Bold()
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.leading, 36)
+                        .padding(.bottom, 16)
+                    
+                    ScrollView(showsIndicators: false) {
+                        ForEach(viewModel.option!){ option in
+                            OptionRow(viewModel: viewModel, option: option)
+                        }
                     }
+                    .frame(height: 153)
+                    .padding(.leading, 40)
+                    .padding(.trailing, 27)
                 }
-                .frame(height: 153)
-                .padding(.leading, 40)
-                .padding(.trailing, 27)
             }
             
             CustomDivider(top: 16, bottom: 16)

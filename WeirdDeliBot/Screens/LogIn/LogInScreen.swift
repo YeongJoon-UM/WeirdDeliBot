@@ -10,9 +10,10 @@ import SwiftUI
 struct LogInScreen: View {
     @ObservedObject var viewModel: LogInViewModel = LogInViewModel()
     @EnvironmentObject var rootViewModel: RootViewModel
-
+    @State var path: NavigationPath = NavigationPath()
+    
     var body: some View {
-        NavigationView {
+        NavigationStack(path: $path) {
             VStack(spacing: 0) {
                 Spacer()
                 Image("Logo") //임시 로고
@@ -101,7 +102,7 @@ struct LogInScreen: View {
                             .padding(.bottom, 16)
                     }
                     
-                    NavigationLink(destination: SignUpScreen().environmentObject(rootViewModel)) {
+                    NavigationLink(destination: SignUpScreen(path: $path)) {
                         HStack(spacing: 0) {
                             Spacer()
                             Text("회원가입")

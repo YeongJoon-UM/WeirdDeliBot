@@ -13,12 +13,14 @@
 		1B2909BC2A1D974F003480CD /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2909BB2A1D974F003480CD /* CustomAnnotationView.swift */; };
 		1B2909BE2A1DBD98003480CD /* UpdateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2909BD2A1DBD98003480CD /* UpdateInfo.swift */; };
 		1B2909C32A1F30C9003480CD /* SignUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2909C22A1F30C9003480CD /* SignUpScreen.swift */; };
-		1B2909C62A1F30EE003480CD /* InsertCodeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2909C52A1F30EE003480CD /* InsertCodeScreen.swift */; };
+		1B2909C62A1F30EE003480CD /* VerifyCodeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2909C52A1F30EE003480CD /* VerifyCodeScreen.swift */; };
 		1B2909C82A1F30F8003480CD /* SignUpSuccessScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2909C72A1F30F8003480CD /* SignUpSuccessScreen.swift */; };
 		1B2909CC2A1F31A0003480CD /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2909CB2A1F31A0003480CD /* SignUpViewModel.swift */; };
 		1B2909CE2A1F3D80003480CD /* StringResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2909CD2A1F3D80003480CD /* StringResponse.swift */; };
 		1B2909D02A208787003480CD /* VerifyCodeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2909CF2A208787003480CD /* VerifyCodeRequest.swift */; };
 		1B2909D42A20978C003480CD /* Code.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2909D32A20978C003480CD /* Code.swift */; };
+		1B2909DB2A25818B003480CD /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2909DA2A25818B003480CD /* SignUpRequest.swift */; };
+		1B2909DD2A258DB8003480CD /* VerifyCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2909DC2A258DB8003480CD /* VerifyCodeViewModel.swift */; };
 		1B463C5D2959617500B9FE80 /* OptionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B463C5C2959617500B9FE80 /* OptionRow.swift */; };
 		1B463C602959622F00B9FE80 /* Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B463C5F2959622F00B9FE80 /* Option.swift */; };
 		1B47B77828E562C7007E929B /* WeirdDeliBotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B47B77728E562C7007E929B /* WeirdDeliBotApp.swift */; };
@@ -113,12 +115,14 @@
 		1B2909BB2A1D974F003480CD /* CustomAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
 		1B2909BD2A1DBD98003480CD /* UpdateInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInfo.swift; sourceTree = "<group>"; };
 		1B2909C22A1F30C9003480CD /* SignUpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreen.swift; sourceTree = "<group>"; };
-		1B2909C52A1F30EE003480CD /* InsertCodeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertCodeScreen.swift; sourceTree = "<group>"; };
+		1B2909C52A1F30EE003480CD /* VerifyCodeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyCodeScreen.swift; sourceTree = "<group>"; };
 		1B2909C72A1F30F8003480CD /* SignUpSuccessScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpSuccessScreen.swift; sourceTree = "<group>"; };
 		1B2909CB2A1F31A0003480CD /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		1B2909CD2A1F3D80003480CD /* StringResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringResponse.swift; sourceTree = "<group>"; };
 		1B2909CF2A208787003480CD /* VerifyCodeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyCodeRequest.swift; sourceTree = "<group>"; };
 		1B2909D32A20978C003480CD /* Code.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Code.swift; sourceTree = "<group>"; };
+		1B2909DA2A25818B003480CD /* SignUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
+		1B2909DC2A258DB8003480CD /* VerifyCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyCodeViewModel.swift; sourceTree = "<group>"; };
 		1B463C5C2959617500B9FE80 /* OptionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionRow.swift; sourceTree = "<group>"; };
 		1B463C5F2959622F00B9FE80 /* Option.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Option.swift; sourceTree = "<group>"; };
 		1B47B77428E562C7007E929B /* WeirdDeliBot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeirdDeliBot.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -242,7 +246,7 @@
 		1B2909C42A1F30DD003480CD /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				1B2909C52A1F30EE003480CD /* InsertCodeScreen.swift */,
+				1B2909C52A1F30EE003480CD /* VerifyCodeScreen.swift */,
 				1B2909C72A1F30F8003480CD /* SignUpSuccessScreen.swift */,
 			);
 			path = Screens;
@@ -252,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				1B2909CF2A208787003480CD /* VerifyCodeRequest.swift */,
+				1B2909DA2A25818B003480CD /* SignUpRequest.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 			isa = PBXGroup;
 			children = (
 				1B2909CB2A1F31A0003480CD /* SignUpViewModel.swift */,
+				1B2909DC2A258DB8003480CD /* VerifyCodeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -856,6 +862,7 @@
 				1B47B77A28E562C7007E929B /* RootScreen.swift in Sources */,
 				1BD81C4729DA51EB00F8AFD4 /* OrderScreen.swift in Sources */,
 				1BD81FEE29DCF4CC00F8AFD4 /* EmptyParameters.swift in Sources */,
+				1B2909DD2A258DB8003480CD /* VerifyCodeViewModel.swift in Sources */,
 				1B47B7D428ED0F4A007E929B /* MenuRow.swift in Sources */,
 				1B2909BC2A1D974F003480CD /* CustomAnnotationView.swift in Sources */,
 				1BA8512F2A11D0A200A80737 /* OrderHistoryRow.swift in Sources */,
@@ -863,6 +870,7 @@
 				1BA851492A161F4900A80737 /* DateFormatter.swift in Sources */,
 				1BEBF0BF29C9DE77001369F0 /* String+Regex.swift in Sources */,
 				1BA851412A1604DF00A80737 /* OrderHistoryResponse.swift in Sources */,
+				1B2909DB2A25818B003480CD /* SignUpRequest.swift in Sources */,
 				1BA851352A1341AF00A80737 /* PhoneNumberFormatter.swift in Sources */,
 				1BEBF0A529C9D9BE001369F0 /* LogInViewModel.swift in Sources */,
 				1B47B7B328ECFFCA007E929B /* LogInScreen.swift in Sources */,
@@ -906,7 +914,7 @@
 				1BEBF0A129C9D984001369F0 /* RootViewModel.swift in Sources */,
 				1B463C602959622F00B9FE80 /* Option.swift in Sources */,
 				1BEBF0C729CC211A001369F0 /* OrderRepository.swift in Sources */,
-				1B2909C62A1F30EE003480CD /* InsertCodeScreen.swift in Sources */,
+				1B2909C62A1F30EE003480CD /* VerifyCodeScreen.swift in Sources */,
 				1BEBF0C129C9DF38001369F0 /* MenuListTab.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
