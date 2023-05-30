@@ -31,7 +31,7 @@ class OptionViewModel: ObservableObject, OptionProtocol {
                 self.getUserMenu()
                 break
             case .failure(let error) :
-                print(error)
+                print("getOptionList: \(error)")
                 self.status = false
                 break
             }

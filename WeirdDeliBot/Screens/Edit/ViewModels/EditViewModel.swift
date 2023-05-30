@@ -26,7 +26,7 @@ class EditViewModel: ObservableObject, OptionProtocol {
                 if(self.status != false) { self.status = true }
                 break
             case .failure(let error) :
-                print(error)
+                print("getItemInfo: \(error)")
                 self.status = false
                 break
             }
@@ -41,7 +41,7 @@ class EditViewModel: ObservableObject, OptionProtocol {
                 if(self.status != false) { self.status = true }
                 break
             case .failure(let error) :
-                print(error)
+                print("getOptionList: \(error)")
                 self.status = false
                 break
             }

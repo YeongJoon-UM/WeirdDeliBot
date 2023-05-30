@@ -23,7 +23,7 @@ class UserRepository {
                 }
     }
     
-    static func signUp(user: User, completion: @escaping (Result<StringResponse, AFError>) -> Void) {
+    static func signUp(user: SignUpRequest, completion: @escaping (Result<StringResponse, AFError>) -> Void) {
         ApiFactory.getApi(url: "user/addUserList", type: .put, parameters: user)
                 .responseDecodable(of: StringResponse.self) { response in
                     switch (response.result) {

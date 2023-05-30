@@ -17,7 +17,8 @@ class InfoViewModel: ObservableObject {
                 self.orderHistories = value.result
                 break
             case .failure(let error) :
-                print(error)
+                
+                print("getOrderHistory: \(error)")
                 break
             }
         }

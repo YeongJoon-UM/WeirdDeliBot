@@ -41,7 +41,7 @@ class RootViewModel: ObservableObject {
                 //print(value)
                 break
             case .failure(let error):
-                print(error)
+                print("loadUser: \(error)")
                 break
             }
         }
@@ -74,7 +74,7 @@ class RootViewModel: ObservableObject {
                 self.user = value.result
                 break
             case .failure(let error):
-                print(error)
+                print("updateUser: \(error)")
                 break
             }
         }

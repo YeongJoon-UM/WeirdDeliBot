@@ -1,5 +1,5 @@
 //
-//  InsertCodeScreen.swift
+//  VerifyCodeScreen.swift
 //  WeirdDeliBot
 //
 //  Created by 정영준 on 2023/05/25.
@@ -7,10 +7,15 @@
 
 import SwiftUI
 
-struct InsertCodeScreen: View {
-    @EnvironmentObject var viewModel: SignUpViewModel
-    @EnvironmentObject var rootViewModel: RootViewModel
+struct VerifyCodeScreen: View {
+    @ObservedObject var viewModel: VerifyCodeViewModel
+    @Binding var path: NavigationPath
     @Environment(\.presentationMode) var presentation
+    
+    init(user: SignUpRequest, path: Binding<NavigationPath>) {
+        self.viewModel = VerifyCodeViewModel(user: user)
+        self._path = path
+    }
     
     var body: some View {
         VStack(spacing: 0) {
@@ -20,7 +25,19 @@ struct InsertCodeScreen: View {
                 .foregroundColor(.basic)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, 32)
-                .padding(.bottom, 44)
+                .padding(.bottom, 8)
+            
+            HStack(spacing: 0) {
+                Image(systemName: "exclamationmark.triangle")
+                    .imageSize(15)
+                    .padding(.trailing, 8)
+                Text("메일이 안왔다면, 스팸 메일함을 확인해주세요")
+                    .size11Regular()
+                Spacer()
+            }
+            .foregroundColor(.myRed)
+            .padding(.leading, 40)
+            .padding(.bottom, 23)
             
             Text(viewModel.user.account)
                 .size18Regular()
@@ -57,25 +74,25 @@ struct InsertCodeScreen: View {
                         .padding(.trailing, 20)
                 }
             }
-                .background(Rectangle().fill(Color.myWhite).cornerRadius(10))
-                .overlay {
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(viewModel.codeFieldColor(), lineWidth: 1)
-                }
-                .padding(.bottom, 12)
-                .padding(.horizontal, 28)
-            
-            HStack(spacing: 0) {
-                Image(systemName: "exclamationmark.triangle")
-                    .imageSize(15)
-                    .padding(.trailing, 8)
-                Text("메일이 안왔다면, 스팸 메일함을 확인해주세요")
-                    .size11Regular()
-                Spacer()
+            .background(Rectangle().fill(Color.myWhite).cornerRadius(10))
+            .overlay {
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(viewModel.codeFieldColor(), lineWidth: 1)
             }
-            .foregroundColor(.myRed)
-            .padding(.leading, 40)
-            .padding(.bottom, 70)
+            .padding(.bottom, 12)
+            .padding(.horizontal, 28)
+            
+            if viewModel.isCodeVerified != nil {
+                Text(viewModel.isCodeVerified! ? "인증이 완료되었습니다." : "입력하신 인증코드가 올바르지 않습니다.")
+                    .size14Regular()
+                    .foregroundColor(viewModel.isCodeVerified! ? .basic : .myRed)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 32)
+                    .padding(.bottom, 70)
+            } else {
+                HStack(spacing: 0) {}
+                    .padding(.bottom, 95)
+            }
             
             Button(action: { viewModel.signUp() }) {
                 HStack(spacing: 0) {
@@ -87,9 +104,6 @@ struct InsertCodeScreen: View {
                 }
             }
             .frame(height: 63)
-            .onTapGesture {
-                viewModel.signUp()
-            }
             .background(Color.myWhite)
             .cornerRadius(10)
             .shadow(radius: 3)
@@ -98,11 +112,11 @@ struct InsertCodeScreen: View {
                     .stroke(Color.basic, lineWidth: 1)
             }
             .padding(.horizontal, 28)
+            .padding(.bottom, 16)
             
             if viewModel.isCodeVerified == true {
-                NavigationLink(destination: SignUpSuccessScreen()
-                    .environmentObject(viewModel)
-                    .environmentObject(rootViewModel)) {
+                NavigationLink(destination: SignUpSuccessScreen(path: $path)
+                    .environmentObject(viewModel)) {
                         HStack(spacing: 0) {
                             Spacer()
                             Text("회원가입")
@@ -135,14 +149,13 @@ struct InsertCodeScreen: View {
                 .padding(.horizontal, 28)
                 
             }
+            Spacer()
+        }
+        .onAppear() {
+            viewModel.resetInfo()
         }
         .customToolBar("", showCartButton: false, showInfoButton: false)
     }
 }
 
 
-struct InsertCodeScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        InsertCodeScreen()
-    }
-}

@@ -20,7 +20,7 @@ class LocationViewModel: ObservableObject {
                 
                 break
             case .failure(let error) :
-                print(error)
+                print("getOrderRoute: \(error)")
                 break
             }
         }

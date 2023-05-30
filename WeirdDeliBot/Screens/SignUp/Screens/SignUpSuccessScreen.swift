@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct SignUpSuccessScreen: View {
-    @EnvironmentObject var viewModel: SignUpViewModel
-    @EnvironmentObject var rootViewModel: RootViewModel
-    @Environment(\.presentationMode) var presentation
+    @Binding var path: NavigationPath
     
     var body: some View {
         VStack(spacing: 0) {
@@ -24,20 +22,12 @@ struct SignUpSuccessScreen: View {
                 .foregroundColor(.basic)
             Spacer()
             
-            CustomButton(action: {viewModel.logIn()}, text: "로그인", textColor: .myWhite, height: 63, backgroundColor: .basic)
+            CustomButton(action: { path = .init() }, text: "로그인", textColor: .myWhite, height: 63, backgroundColor: .basic)
                 
             Spacer()
         }
-        .onChange(of: self.viewModel.token) { token in
-            if (token != nil) {
-                self.rootViewModel.setToken(token: token!)
-            }
-        }
+        .customToolBar("", showBackButton: false, showCartButton: false, showInfoButton: false)
     }
 }
 
-struct SignUpSuccessScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        SignUpSuccessScreen()
-    }
-}
+

@@ -77,7 +77,7 @@ class OrderHistoryViewModel: ObservableObject {
             case .success(let value):
                 break
             case .failure(let error) :
-                print(error)
+                print("cancelOrder: \(error)")
                 break
             }
         }

@@ -55,7 +55,7 @@ class OrderViewModel: ObservableObject {
                 self.getOrderDetail(orderCode: value.result)
                 break
             case .failure(let error) :
-                print(error)
+                print("sendOrder: \(error)")
                 break
             }
         }
@@ -79,7 +79,7 @@ class OrderViewModel: ObservableObject {
                 self.orderDetail = value.result[0]
                 break
             case .failure(let error) :
-                print(error)
+                print("getOrderDetail: \(error)")
                 break
             }
         }
