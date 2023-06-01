@@ -20,9 +20,6 @@ struct OptionScreen: View {
                 
             CustomDivider(top: 16, bottom: 16)
             
-            
-
-            
             if(viewModel.option == nil){
                 if(viewModel.status == nil) {
                     ProgressView(label: {
@@ -33,6 +30,7 @@ struct OptionScreen: View {
                         }
                     }
                     ).progressViewStyle(CircularProgressViewStyle())
+                        .frame(height: 185)
                 } else if viewModel.status == false { 
                     Spacer()
                     Text("Loading Failed.")

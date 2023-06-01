@@ -17,6 +17,7 @@ class OrderViewModel: ObservableObject {
     @Published var orderCode: String = ""
     @Published var orderDetail: OrderHistory?
     @Published var newLocation: DropdownMenuOption?
+    @Published var isOrderSuccess: Bool = false
     
     func setOrderList(orderList: [OrderItem]) {
         order?.orderList = orderList
@@ -40,7 +41,7 @@ class OrderViewModel: ObservableObject {
     
     func setNewLocation() {
         if newLocation != nil && order?.addressDesc != newLocation?.id {
-            order?.addressDesc = newLocation!.id
+            order?.addressDesc = newLocation!.option
             order?.latitude = newLocation!.latitude
             order?.longitude = newLocation!.longitude
         }
@@ -51,10 +52,13 @@ class OrderViewModel: ObservableObject {
         OrderRepository.sendOrder(order: self.order!) { response in
             switch(response) {
             case .success(let value):
+                print(self.order)
                 self.orderCode = value.result
                 self.getOrderDetail(orderCode: value.result)
+                self.isOrderSuccess = true
                 break
             case .failure(let error) :
+                print(self.order)
                 print("sendOrder: \(error)")
                 break
             }

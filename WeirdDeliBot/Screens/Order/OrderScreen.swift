@@ -116,11 +116,15 @@ struct OrderScreen: View {
      
                 CustomButton(action: {
                     viewModel.sendOrder()
-           
-                    path.append(cartViewModel.totalPrice)
-                    cartViewModel.emptyOrderItem()
+                    
                 }, text: "결제하기", textColor: .myWhite, height: 63, backgroundColor: .myGreen)
                     .padding(.bottom, 74)
+            }
+        }
+        .onChange(of: viewModel.isOrderSuccess) { isOrderSuccess in
+            if isOrderSuccess {
+                path.append(cartViewModel.totalPrice)
+                cartViewModel.emptyOrderItem()
             }
         }
         .onAppear() {

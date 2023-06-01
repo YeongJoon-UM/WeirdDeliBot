@@ -5,7 +5,7 @@
 //  Created by 정영준 on 2023/05/29.
 //
 
-import SwiftUI
+import Foundation
 
 class VerifyCodeViewModel: ObservableObject {
     @Published var user: SignUpRequest
@@ -55,12 +55,6 @@ class VerifyCodeViewModel: ObservableObject {
         }
     }
     
-    func codeFieldColor() -> Color {
-        if let isVerified = isCodeVerified {
-                return isVerified ? Color.basic : Color.myRed
-            } else {
-                return Color.myGray.opacity(0.5)
-            }
-    }
+    
     
 }

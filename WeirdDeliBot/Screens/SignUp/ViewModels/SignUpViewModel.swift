@@ -5,7 +5,7 @@
 //  Created by 정영준 on 2023/05/25.
 //
 
-import SwiftUI
+import Foundation
 
 class SignUpViewModel: ObservableObject {
     @Published var user: SignUpRequest = SignUpRequest(account: "", password: "", name: "", phone: "", address: "충남 천안시 동남구 충절로 1600", addressDesc: "", latitude: "", longitude: "")

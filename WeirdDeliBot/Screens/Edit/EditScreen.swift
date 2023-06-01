@@ -26,6 +26,7 @@ struct EditScreen: View {
                         }
                     }
                     ).progressViewStyle(CircularProgressViewStyle())
+                        .frame(height: 185)
                 } else if viewModel.status == false {
                     Spacer()
                     Text("Loading Failed.")

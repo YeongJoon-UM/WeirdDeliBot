@@ -77,7 +77,7 @@ struct VerifyCodeScreen: View {
             .background(Rectangle().fill(Color.myWhite).cornerRadius(10))
             .overlay {
                 RoundedRectangle(cornerRadius: 10)
-                    .stroke(viewModel.codeFieldColor(), lineWidth: 1)
+                    .stroke(codeFieldColor(isCodeVerified: viewModel.isCodeVerified), lineWidth: 1)
             }
             .padding(.bottom, 12)
             .padding(.horizontal, 28)
@@ -155,6 +155,14 @@ struct VerifyCodeScreen: View {
             viewModel.resetInfo()
         }
         .customToolBar("", showCartButton: false, showInfoButton: false)
+    }
+    
+    func codeFieldColor(isCodeVerified: Bool?) -> Color {
+        if let isVerified = isCodeVerified {
+                return isVerified ? Color.basic : Color.myRed
+            } else {
+                return Color.myGray.opacity(0.5)
+            }
     }
 }
 
