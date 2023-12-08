@@ -19,7 +19,9 @@ struct RootScreen: View {
         } else {
             LogInScreen()
                 .environmentObject(viewModel)
-               
+                .onDisappear() {
+                    print("")
+                }
         }
     }
     
